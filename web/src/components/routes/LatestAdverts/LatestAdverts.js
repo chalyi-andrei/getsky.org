@@ -18,7 +18,7 @@ import bgImage from './intro-bg.svg';
 const Intro = styled.div`
     background: #04234A;
     background-image: linear-gradient(180deg, #04234A 0%, #0E0F10 100%);
-    padding: ${props => props.theme.spaces[8] * 2}px 0 0;
+    padding: ${props => props.theme.space[8] * 2}px 0 0;
     color: ${props => props.theme.colors.white};
     
     h1 {
@@ -37,7 +37,7 @@ const Intro = styled.div`
 
 const IntroContainer = styled(Container)`
     background: url(${bgImage}) 100% 0 no-repeat
-    padding-bottom: ${props => props.theme.spaces[8] * 2}px;
+    padding-bottom: ${props => props.theme.space[8] * 2}px;
 `;
 
 export const buyAdvertsColumns = [

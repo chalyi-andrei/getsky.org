@@ -49,10 +49,10 @@ const PositionValue = styled(Box) `
 `;
 
 const PositionRow = styled(Flex) `
-    font-size: 14px;
-    padding-top: ${props => props.theme.space[3]}px;
-    padding-bottom: ${props => props.theme.space[3]}px;
-    padding-right: ${props => props.theme.space[3]}px;
+    font-size: ${props => props.theme.fontSizes[3]}px;
+    padding-top: ${props => props.theme.space[4]}px;
+    padding-bottom: ${props => props.theme.space[4]}px;
+    padding-right: ${props => props.theme.space[4]}px;
     border-bottom: 1px solid ${props => props.theme.colors.separator};
 
     ${media.md`
