@@ -14,7 +14,7 @@ const SellButton = ({ push, text, className }) => (
     <Btn
         text={text}
         className={className}
-        onClick={() => push('postings/sell')}
+        onClick={() => push('/postings/sell')}
     />
 );
 
