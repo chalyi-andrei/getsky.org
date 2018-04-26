@@ -58,9 +58,7 @@ const FiltersWrapper = styled.div`
 `;
 
 const TabsWrapper = styled.div`
-    padding-top: 96px;
     box-shadow: 0 -8px 10px 2px rgba(0,114,255,0.07);
-    background: ${props => props.theme.colors.darkGray};
 `;
 
 const Title = styled.h2`
