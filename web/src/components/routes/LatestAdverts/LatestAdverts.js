@@ -11,12 +11,12 @@ import Spinner from 'components/layout/Spinner';
 
 import { Tab, Tabs, TabList, TabPanel } from 'components/layout/Tabs';
 import { getAdverts } from './actions';
-import bgImage from './intro-bg.jpg';
+import bgImage from './intro-bg.svg';
 
 const Intro = styled.div`
-    background: ${props => props.theme.colors.black} url(${bgImage}) 50% 20% no-repeat;
-    background-size: cover;
-    padding: ${props => props.theme.spaces[8] * 2}px 0 ${props => props.theme.introTabsHeight + props.theme.spaces[8]}px;
+    background: #04234A;
+    background-image: linear-gradient(180deg, #04234A 0%, #0E0F10 100%);
+    padding: ${props => props.theme.spaces[8] * 2}px 0 0;
     color: ${props => props.theme.colors.white};
     
     h1 {
@@ -31,6 +31,11 @@ const Intro = styled.div`
         font-size: ${props => props.theme.fontSizes[2]}px;
         line-height: 30px;
     }
+`;
+
+const IntroContainer = styled(Container)`
+    background: url(${bgImage}) 100% 0 no-repeat
+    padding-bottom: ${props => props.theme.spaces[8] * 2}px;
 `;
 
 export const buyAdvertsColumns = [
@@ -60,10 +65,10 @@ class LatestAdverts extends React.Component {
         return (
             <Box>
                 <Intro className="intro">
-                    <Container flexDirection="column">
+                    <IntroContainer flexDirection="column">
                         <h1>Buy and sell Skycoin <br />person-to-person with cash, by mail,<br /> money order & more…</h1>
                         <p>We never store Skycoin on this site so your money can't be hacked or stolen. All transactions are completely peer-to-peer (seller to buyer) and no email is required.</p>
-                    </Container>
+                    </IntroContainer>
                 </Intro>
                 <Tabs>
                     <TabList>

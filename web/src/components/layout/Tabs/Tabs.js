@@ -2,17 +2,14 @@ import styled from 'styled-components';
 import { Tab as UnstyledTab, Tabs, TabList as UnstyledTabList, TabPanel as UnstyledTabPanel } from 'react-tabs';
 
 const leftTabNames = ['first-tab', 'buy-tab'];
-const secondaryTabs = ['buy-tab', 'sell-tab'];
 const isLeftTab = props =>  leftTabNames.indexOf(props.tab) >= 0;
-const isSecondaryTab = props => secondaryTabs.indexOf(props.tab) >= 0;
 
 const TabList = styled(UnstyledTabList) `
     display: flex;
     flex-direction: row;
     justify-content: center;
     height: ${props => props.theme.introTabsHeight}px;
-    margin-top: -${props => props.theme.introTabsHeight}px;
-    background: transparent;
+    background: ${props => props.theme.colors.darkGray};    
 `;
 
 const Tab = styled(UnstyledTab) `
@@ -23,7 +20,7 @@ const Tab = styled(UnstyledTab) `
     height: ${props => props.theme.introTabsHeight}px;
     width: 100%;
     background-color: ${props => props.selected ? props.theme.colors.white : 'transparent'};
-    color: ${props => props.selected ? props.theme.colors.black : (isSecondaryTab(props) ? props.theme.colors.white : props.theme.colors.mint)};
+    color: ${props => props.selected ? props.theme.colors.black : props.theme.colors.white};
     font-size: ${props => props.theme.fontSizes[1]}px;
     font-family: ${props => props.theme.fontBold};
     line-height: 32px;
@@ -50,7 +47,7 @@ const Tab = styled(UnstyledTab) `
     }
 
     &:hover {
-        background-color: ${props => props.selected ? props.theme.colors.white : (isSecondaryTab(props) ? 'transparent' : 'rgba(255, 255, 255, 0.1)')};
+        background-color: ${props => props.selected ? props.theme.colors.white : 'transparent'};
     }
 `;
 
