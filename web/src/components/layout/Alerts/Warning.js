@@ -11,10 +11,10 @@ const YellowLine = styled(Box)`
 const Warning = ({ children }) => (
     <Flex>
         <YellowLine width={4} />
-        <Box p={10}>
+        <Box p={'20px'}>
             <Icon name={IconMap.ExclamationCircle} />
         </Box>
-        <Box py={10}>
+        <Box py={'20px'}>
             {children}
         </Box>
     </Flex>

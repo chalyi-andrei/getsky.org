@@ -24,7 +24,7 @@ const maxData9999 = max(9999, v => v.data);
 
 const FormPostingToBuy = ({ states, countries, country, handleSubmit, submitting, pristine, defaultCountry, editMode, defaultDistanceUnits }) => (
     <Form onSubmit={handleSubmit} noValidate>
-        <Box width={1 / 2}>
+        <Box width={[1, 1, 1 / 2]}>
             <FormGroup>
                 <Field
                     name="cashAmount"

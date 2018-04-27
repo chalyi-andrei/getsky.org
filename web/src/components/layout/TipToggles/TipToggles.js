@@ -9,14 +9,7 @@ const Label = styled.span`
     margin-right: 5px;
 `
 
-const Header = styled(Flex)`
-    background-color: #F6F7F7;
-    color: black;
-    cursor: pointer;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-bottom: 10px;
-`
+const cursorPointer = { cursor: 'pointer' };
 
 class TipToggles extends React.Component {
     constructor(props) {
@@ -30,17 +23,15 @@ class TipToggles extends React.Component {
     };
 
     render() {
-        const { children, label, mt } = this.props;
+        const { children, label } = this.props;
         const { expanded } = this.state;
 
         return (
             <Box>
-                <Header alignItems={'center'} justifyContent={'space-between'} onClick={this.toggle}>
+                <Flex style={cursorPointer} onClick={this.toggle}>
                     <Label>{label}</Label>
-                    <Box mt={mt}>
-                        <Icon name={expanded ? IconMap.AngleUp : IconMap.AngleDown} color={'#0072FF'} size={'1x'} />
-                    </Box>
-                </Header>
+                    <Icon name={expanded ? IconMap.AngleUp : IconMap.AngleDown} />
+                </Flex>
                 {expanded &&
                     <Box mt={1}> {children}</Box>
                 }
@@ -50,8 +41,7 @@ class TipToggles extends React.Component {
 };
 
 TipToggles.propTypes = {
-    label: PropTypes.any,
-    mt: PropTypes.string,
+    label: PropTypes.string,
 };
 
 export default TipToggles;
