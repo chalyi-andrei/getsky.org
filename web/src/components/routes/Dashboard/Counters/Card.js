@@ -36,12 +36,12 @@ const RightBox = styled(Box) `
     color: ${theme.colors.mint};
 `;
 
-const BoxTitle = styled(Box)`
+const BoxTitle = styled(Box) `
     font-size: 24px;
     line-height: 23px;
 `;
 
-const BoxContent = styled(Box)`
+const BoxContent = styled(Box) `
     font-size: 14px;
     line-height: 16px;
     text-transform: uppercase;
@@ -69,7 +69,10 @@ const Card = ({ width, title, totalAmount, leftTitle, leftAmount, rightTitle, ri
             </Flex>
         }
         {tipMessage &&
-            <Box style={CenterText} alignItems={'center'} pt={'35px'}>
+            <Box style={CenterText}
+                alignItems={'center'}
+                pb={['35px', '25px', '25px']}
+                pt={['35px', '25px', '25px']}>
                 {tipMessage}
             </Box>
         }

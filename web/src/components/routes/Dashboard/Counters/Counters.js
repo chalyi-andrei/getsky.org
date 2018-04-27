@@ -5,9 +5,9 @@ import { Box, Flex } from 'grid-styled';
 import Card from './Card';
 
 const Counters = ({ buyAdverts, sellAdverts, buyEnquiries, sellEnquiries, newMessages }) => (
-    <Flex justifyContent={'space-between'}>
+    <Flex flexWrap="wrap" justifyContent={'space-between'}>
         <Card
-            width={1 / 3}
+            width={[1, 1 / 3, 1 / 3]}
             title={'Adverts'}
             totalAmount={buyAdverts + sellAdverts}
             leftTitle={'as buyer'}
@@ -15,7 +15,10 @@ const Counters = ({ buyAdverts, sellAdverts, buyEnquiries, sellEnquiries, newMes
             rightTitle={'as seller'}
             rightAmount={sellAdverts}
         />
-        <Box width={1 / 3} mx={'30px'}>
+        <Box 
+            width={[1, 1 / 3, 1 / 3]} 
+            py={['15px', '0px', '0px']} 
+            px={['0px', '15px', '15px']}>
             <Card
                 title={'Enquiries'}
                 totalAmount={buyEnquiries + sellEnquiries}
@@ -26,7 +29,7 @@ const Counters = ({ buyAdverts, sellAdverts, buyEnquiries, sellEnquiries, newMes
             />
         </Box>
         <Card
-            width={1 / 3}
+            width={[1, 1 / 3, 1 / 3]}
             title={'New messages'}
             totalAmount={newMessages}
             tipMessage={'You can view your new messages below'}
