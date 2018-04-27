@@ -3,6 +3,7 @@ import { Flex, Box } from 'grid-styled';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+import media from 'media';
 import theme from 'components/theme';
 import Container from 'components/layout/Container';
 import Icon, { IconMap } from 'components/layout/Icon';
@@ -14,10 +15,6 @@ import {
     requestAdvertDetails,
 } from './actions';
 
-const Panel = styled(Flex) `
-    margin-bottom: 30px;
-    margin-right: 80px;
-`;
 
 const PanelBody = styled(Box) `
     background-color: ${theme.colors.lightGray2};
@@ -35,20 +32,33 @@ export const advertTypes = {
 };
 
 const PositionName = styled(Box) `
+    min-width: 100px;
     font-size: ${props => props.theme.fontSizes[1]}px;
     font-weight: bold;
     color: ${props => props.theme.colors.grayBlue};
 `;
 
 const PositionValue = styled(Box) `
+    font-size: 14px;
+
+    ${media.md`
+        font-size: 24px;
+    `}
 `;
 
 const PositionRow = styled(Flex) `
-    font-size: ${props => props.theme.fontSizes[3]}px;
-    padding-top: ${props => props.theme.space[4]}px;
-    padding-bottom: ${props => props.theme.space[4]}px;
-    padding-right: ${props => props.theme.space[4]}px;
+    font-size: 14px;
+    padding-top: ${props => props.theme.space[3]}px;
+    padding-bottom: ${props => props.theme.space[3]}px;
+    padding-right: ${props => props.theme.space[3]}px;
     border-bottom: 1px solid ${props => props.theme.colors.separator};
+
+    ${media.md`
+        font-size: ${props => props.theme.fontSizes[3]}px;
+        padding-top: ${props => props.theme.space[4]}px;
+        padding-bottom: ${props => props.theme.space[4]}px;
+        padding-right: ${props => props.theme.space[4]}px;
+    `}
 `;
 
 const SummaryPosition = ({ name, children }) => (
@@ -80,6 +90,8 @@ const TradeOptionsList = styled.ul`
     }
 
     li {
+        display: flex;
+        align-items: center;
         font-size: ${props => props.theme.fontSizes[1]}px;
     }
 `;
@@ -127,7 +139,7 @@ const Country = styled.p`
 `;
 
 export const AdvertSummary = ({ details, countries, states, skyPrices }) => (
-    <Panel flexDirection="row" flexWrap="wrap">
+    <Flex flexDirection="row" flexWrap="wrap">
         <PanelBody>
             <Flex flexDirection="row" flexWrap="wrap">
                 <PositionRow width={1}>
@@ -166,7 +178,7 @@ export const AdvertSummary = ({ details, countries, states, skyPrices }) => (
                 </SummaryPosition>
             </Flex>
         </PanelBody>
-    </Panel >
+    </Flex>
 );
 
 const NotFound = () =>
@@ -209,15 +221,15 @@ export default connect(
         return (
             <Container flexDirection="row" flexWrap="wrap">
                 <h2>Advert summary</h2>
-                <Flex w={1}>
-                    <Box width={[1, 1 / 2]}>
+                <Flex w={1} flexDirection={['column', 'row', 'row']}>
+                    <Box width={[1, 1, 1 / 2]}>
                         <AdvertSummary
                             details={advertDetails}
                             skyPrices={app.skyPrices}
                             countries={app.countries}
                             states={app.states} />
                     </Box>
-                    <Box width={[1, 1 / 2]}>
+                    <Box width={[1, 1, 1 / 2]} pl={['0px', '40px', '40px']}>
                         {app.userInfo
                             && (<Flex flexDirection="row" flexWrap="wrap">
                                 <Messages advert={advertDetails} />
