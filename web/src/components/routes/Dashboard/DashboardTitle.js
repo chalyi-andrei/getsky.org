@@ -6,16 +6,21 @@ import { BuyButton, SellButton } from 'components/layout/Button';
 import { H2 } from 'components/layout/Text';
 
 const DashboardTitle = ({ userName }) => (
-    <Flex justifyContent='space-between' alignItems={'center'} my={4}>
+    <Flex
+        flexWrap="wrap"
+        flexDirection={['column', 'row', 'row']}
+        justifyContent='space-between'
+        my={4}
+    >
         <Flex alignItems='center' >
             <H2>Hello, {userName}</H2>
         </Flex>
-        <Box width={375}>
-            <Flex justifyContent='space-between'>
-                <BuyButton primary />
-                <SellButton  />
-            </Flex>
-        </Box>
+        <Flex flex='1 1 auto' mt={['10px', '0px', '0px']} justifyContent={['flex-start', 'flex-end', 'flex-end']}>
+            <BuyButton primary />
+            <Box ml={['10px', '40px', '40px']}>
+                <SellButton />
+            </Box>
+        </Flex>
     </Flex>
 );
 
