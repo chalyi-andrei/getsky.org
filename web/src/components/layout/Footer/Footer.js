@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Box } from 'grid-styled';
+import { Flex, Box } from 'grid-styled';
 
 import Promo from 'components/layout/Promo';
 import Container from 'components/layout/Container';
@@ -28,14 +28,19 @@ export default () => (
     <Box mt={'125px'}>
         <Promo />
         <Background>
-            <LinksContainer justifyContent={'space-between'} flexWrap="wrap">
-                <Link path={'/'} text={'Home'} />
-                <Link path={'/why-skycoin'} text={'Why Skycoin'} />
-                <Link path={'/search'} text={'Search'} />
-                <Link path={'/faq'} text={'FAQ'} />
-                <Link path={'/contact-us'} text={'Contact'} />
-                <Link path={'/privacy'} text={'Privacy'} />
-                <Link path={'/terms'} text={'Terms'} />
+            <LinksContainer
+                flexDirection={['column', 'row', 'row']} justifyContent={'space-around'}>
+                <Flex flex='1 1 auto' justifyContent={'space-around'}>
+                    <Link path={'/'} text={'Home'} />
+                    <Link path={'/why-skycoin'} text={'Why Skycoin'} />
+                    <Link path={'/search'} text={'Search'} />
+                </Flex>
+                <Flex flex='1 1 auto' justifyContent={'space-around'} mt={['30px', '0px', '0px']}>
+                    <Link path={'/faq'} text={'FAQ'} />
+                    <Link path={'/contact-us'} text={'Contact'} />
+                    <Link path={'/privacy'} text={'Privacy'} />
+                    <Link path={'/terms'} text={'Terms'} />
+                </Flex>
             </LinksContainer>
             <Container justifyContent={'center'} my={'76px'}>
                 <Brand />
