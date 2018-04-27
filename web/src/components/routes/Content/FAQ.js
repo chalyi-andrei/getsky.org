@@ -5,7 +5,7 @@ import { H1, H2, P } from 'components/layout/Text';
 import TipToggles from './TipToggles';
 import TextContainer from './TextContainer';
 
-const MT = '20px';
+const MT = '5px';
 
 export default () => (
     <TextContainer flex='1 0 auto' flexDirection="column" py={4}>

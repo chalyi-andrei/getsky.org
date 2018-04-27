@@ -3,16 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Flex, Box } from 'grid-styled';
 
-import Icon, { IconMap } from 'components/layout/Icon'
+import Icon, { IconMap } from 'components/layout/Icon';
 
-const Label = styled.span`
-    margin-right: 5px;
-`
-
-const Header = styled(Flex)`
+const Header = styled(Flex) `
     background-color: ${props => props.theme.colors.lightGray2};
     color: black;
     cursor: pointer;
+    padding-top: 15px;
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;
@@ -24,15 +21,9 @@ const Header = styled(Flex)`
 `
 
 class TipToggles extends React.Component {
-    constructor(props) {
-        super(props);
-        this.toggle = this.toggle.bind(this);
-        this.state = { expanded: false }
-    };
+    state = { expanded: false };
 
-    toggle() {
-        this.setState({ ...this.state, expanded: !this.state.expanded })
-    };
+    toggle = () => this.setState((state) => ({ expanded: !this.state.expanded }));
 
     render() {
         const { children, label, mt } = this.props;
@@ -41,7 +32,7 @@ class TipToggles extends React.Component {
         return (
             <Box>
                 <Header alignItems={'center'} justifyContent={'space-between'} onClick={this.toggle}>
-                    <Label>{label}</Label>
+                    {label}
                     <Box mt={mt}>
                         <Icon name={expanded ? IconMap.AngleUp : IconMap.AngleDown} color={'#0072FF'} size={'1x'} />
                     </Box>
