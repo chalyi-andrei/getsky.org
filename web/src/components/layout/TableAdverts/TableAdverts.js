@@ -7,6 +7,7 @@ import keys from 'lodash/keys';
 import values from 'lodash/values';
 import pick from 'lodash/pick';
 import pickBy from 'lodash/pickBy';
+import media from 'media';
 
 import theme from 'components/theme';
 import Icon, { IconMap } from 'components/layout/Icon';
@@ -16,13 +17,34 @@ import { TRADE_OPTIONS } from 'constants/index';
 
 import DropdownActions from './DropdownActions';
 
+const IconWrapper = styled.span`
+    display: none;
+    
+    ${media.sm`
+        display: inline-block;    
+    `}
+`;
+
 const DoubleCellTitle = styled.div`
     color: ${props => props.theme.colors.blue};
     font-size: 18px;
     line-height: 26px;
+    
+    display: inline-block;
+    
+    ${media.sm`
+        display: block;
+    `}
 `;
 
-const DoubleCellBody = styled.div``;
+const DoubleCellBody = styled.div`
+    display: inline-block;
+    margin-left: ${props => props.theme.space[2]}px;
+    
+    ${media.sm`
+        display: block;
+    `}
+`;
 
 const DoubleCell = ({ title, body }) => (
     <Box>
@@ -44,7 +66,7 @@ const getTradeOptionsText = advert => {
     return values(pick(TRADE_OPTIONS, keys(advertOptions))).join(', ');
 };
 
-export const AdvertRow = ({ data, rowOperations }) => {
+export const AdvertRow = ({ data, rowOperations, columns }) => {
     const advert = data;
     return (
         <LinkedTableRow href={`post/${advert.id}`}>
@@ -53,19 +75,19 @@ export const AdvertRow = ({ data, rowOperations }) => {
                     <NewMessageCount newMessages={data.newMessagesAmount} totalMessages={data.totalMessagesAmount} />
                 </TableCell>
             }
-            <TableCell>
+            <TableCell data-label={columns[0].name}>
                 <DoubleCell title={advert.author} body={getFullAddress(advert)} />
             </TableCell>
-            <TableCell>
+            <TableCell data-label={columns[1].name}>
                 <DoubleCell title={getPrice(advert)} body={getConvertedPrice(data)} />
             </TableCell>
-            <TableCell>{getTradeOptionsText(advert)}</TableCell>
-            <TableCell>
+            <TableCell data-label={columns[2].name}>{getTradeOptionsText(advert)}</TableCell>
+            <TableCell data-label={columns[3].name}>
                 <Flex justifyContent={'space-between'} alignItems={'center'}>
                     {moment(advert.expiredAt).format('DD MMMM YY')}
                     {rowOperations
                         ? <DropdownActions advert={advert} operations={rowOperations} />
-                        : <Icon name={IconMap.CaretRight} color={theme.colors.blue} size={'xs'} />}
+                        : <IconWrapper><Icon name={IconMap.CaretRight} color={theme.colors.blue} size={'xs'} /></IconWrapper>}
                 </Flex>
             </TableCell>
         </LinkedTableRow>

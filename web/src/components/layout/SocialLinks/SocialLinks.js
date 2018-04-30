@@ -23,7 +23,7 @@ const TrapezoidBackground = styled(Flex) `
 
 
 export default () => (
-    <TrapezoidBackground justifyContent={'space-around'} width={['auto', '400px']}>
+    <TrapezoidBackground justifyContent={'space-around'} width={['auto', 'auto', '400px']}>
         {menuItems.map((item, i) => (
             <Box key={i} mt={'35px'}>
                 <Link to={item.url}>

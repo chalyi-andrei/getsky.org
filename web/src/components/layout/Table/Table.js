@@ -8,19 +8,28 @@ const TableWrapper = styled.div`
 `;
 
 const Table = styled.table`
+    display: block;
     width: 100%;
-    min-width: 500px;
     border-collapse: collapse;
     table-layout: fixed;
     vertical-align: middle;
+    
+    ${media.sm`
+        display: table;
+    `}
 `;
 
 const TableHead = styled.thead`
+    display: none;
     font-family: ${props => props.theme.fontBold};
     font-size: 14px;
     background-color: ${props => props.theme.colors.lightGray};
     color: ${props => props.theme.colors.grayBlue};
     text-transform: capitalize;
+    
+    ${media.sm`
+        display: table-header-group;
+    `}
 `;
 
 const TableRowHead = styled.tr``;
@@ -45,9 +54,23 @@ const TableCellHead = styled.th`
     `}
 `;
 
-const TableBody = styled.tbody``;
+const TableBody = styled.tbody`
+    display: block;
+    
+    ${media.sm`
+        display: table-row-group;
+    `}
+`;
 
 export const TableRow = styled.tr`
+    display: block;
+    border-bottom: 1px solid ${props => props.theme.colors.darkGray};
+    
+    ${media.sm`
+        display: table-row;
+        border-bottom: none;
+    `}
+
     &:hover {
         background-color: ${props => props.theme.colors.lightBlue};
         cursor: pointer;
@@ -55,12 +78,26 @@ export const TableRow = styled.tr`
 `;
 
 export const TableCell = styled.td`
+    display: flex;
     padding: ${props => props.theme.space[1]}px ${props => props.theme.space[2]}px;   
     line-height: 26px;
     font-size: 14px;
     color: ${props => props.theme.colors.darkBlue};
     
+    &::before {
+        content: attr(data-label);
+        display: block;
+        width: 30%;
+        flex-shrink: 0;
+        font-family: ${props => props.theme.fontBold};
+        
+        ${media.sm`
+            display: none;
+        `}
+    }
+    
     ${media.sm`
+        display: table-cell;
         padding: ${props => props.theme.space[3]}px ${props => props.theme.space[4]}px;
     `}
     
@@ -78,7 +115,7 @@ const TableComponent = ({ columns, rowComponent: RowComponent, rowData, rowOpera
                 </TableRowHead>
             </TableHead>
             <TableBody>
-                {rowData.map((item, i) => <RowComponent key={i} data={item} rowOperations={rowOperations} />)}
+                {rowData.map((item, i) => <RowComponent key={i} data={item} rowOperations={rowOperations} columns={columns} />)}
             </TableBody>
         </Table>
     </TableWrapper>

@@ -36,7 +36,7 @@ const Intro = styled.div`
 `;
 
 const IntroContainer = styled(Container)`
-    background: url(${bgImage}) 100% 0 no-repeat
+    background: url(${bgImage}) 100% 0 no-repeat;
     padding-bottom: ${props => props.theme.space[9] * 2}px;
 `;
 
