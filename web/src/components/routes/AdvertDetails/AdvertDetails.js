@@ -41,10 +41,11 @@ const PositionName = styled(Box) `
 `;
 
 const PositionValue = styled(Box) `
-    font-size: 14px;
+    font-size: ${props => props.theme.fontSizes[3]}px;
+    margin-top: ${props => props.theme.space[1]}px;
 
     ${media.md`
-        font-size: 24px;
+        margin-top: 0px;
     `}
 `;
 
@@ -64,11 +65,11 @@ const PositionRow = styled(Flex) `
 `;
 
 const SummaryPosition = ({ name, children }) => (
-    <PositionRow flexDirection="row" width={1}>
-        <PositionName width={1 / 3}>
+    <PositionRow flexDirection={['column', 'row', 'row']} width={1}>
+        <PositionName width={[1, 1, 1 / 3]}>
             {name}
         </PositionName>
-        <PositionValue width={2 / 3}>
+        <PositionValue width={[1, 1, 2 / 3]}>
             {children}
         </PositionValue>
     </PositionRow>
