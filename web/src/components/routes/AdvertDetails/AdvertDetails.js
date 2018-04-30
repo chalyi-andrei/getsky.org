@@ -232,11 +232,11 @@ export default connect(
                             countries={app.countries}
                             states={app.states} />
                     </Box>
-                    <Box width={[1, 1, 1 / 2]} pl={['0px', '40px', '40px']}>
-                        {app.userInfo
-                            && (<Flex flexDirection="row" flexWrap="wrap">
+                    <Box width={[1, 1, 1 / 2]} pl={[0, 8, 8]}>
+                        {app.userInfo &&
+                            <Flex flexDirection="row" flexWrap="wrap">
                                 <Messages advert={advertDetails} />
-                            </Flex>)
+                            </Flex>
                         }
                     </Box>
                 </Flex>

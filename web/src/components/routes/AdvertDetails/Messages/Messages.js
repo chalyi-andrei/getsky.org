@@ -406,7 +406,7 @@ const USER_INITIAL_COLORS = [
 
 const UsersList = ({ authors, selectAuthor, userInfo }) => (
     <div>
-        <Flex justifyContent="space-between" mb={5}>
+        <Flex justifyContent="space-between" mb={5} mt={[4, 0, 0]}>
             <Heading>Messages</Heading>
             <MessagesInfo>
                 <Icon name={IconMap.Envelope} />
