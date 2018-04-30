@@ -4,7 +4,7 @@ import { getBorderColor } from './helper';
 const ControlInput = styled.input`
     width: 100%;
     height: ${props => props.theme.controlHeight}px;
-    padding: ${props => props.theme.space[0]}px ${props => props.theme.space[1]}px;
+    padding: ${props => props.theme.space[1]}px ${props => props.theme.space[2]}px;
     border-width: 1px;
     border-style: solid;
     border-color: ${props => getBorderColor(props)};

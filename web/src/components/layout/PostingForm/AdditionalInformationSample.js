@@ -5,7 +5,7 @@ import { Warning } from 'components/layout/Alerts';
 import { Span, P, Ul, Li } from 'components/layout/Text';
 
 const AdditionalInformationSample = () => (
-    <Box mb={3}>
+    <Box mb={4}>
         <Warning>
             <Span>Additional information: This is for any additional description/terms about the trade. The information here will take precedence over the other fields.</Span>
             <P> Useful information includes:</P>

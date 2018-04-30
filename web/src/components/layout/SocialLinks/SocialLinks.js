@@ -13,19 +13,17 @@ const menuItems = [
 ];
 
 const TrapezoidBackground = styled(Flex) `
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    width: 400px;
     height: 0px;
+    box-sizing: content-box;
     border: 50px solid rgba(0,0,0,0);
     border-top: 0 solid ${props => props.theme.colors.darkBlue};
     border-bottom: 100px solid ${props => props.theme.colors.darkBlue};
+    margin: auto;
 `;
 
 
 export default () => (
-    <TrapezoidBackground justifyContent={'space-around'}>
+    <TrapezoidBackground justifyContent={'space-around'} width={['auto', '400px']}>
         {menuItems.map((item, i) => (
             <Box key={i} mt={'35px'}>
                 <Link to={item.url}>

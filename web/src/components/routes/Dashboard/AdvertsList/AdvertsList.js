@@ -13,8 +13,8 @@ export const RightCornerButton = {
 };
 
 const AdvertsList = ({ title, adverts, noAdvertsMessage, rightCorner, columns, rowComponent, rowOperations }) => (
-    <Box mt={3}>
-        <Flex alignItems={'center'} justifyContent={'space-between'} my={4}>
+    <Box mt={4}>
+        <Flex alignItems={'center'} justifyContent={'space-between'} my={5}>
             <H2>{title}</H2>
             <Box>{rightCorner}</Box>
         </Flex>
@@ -22,7 +22,7 @@ const AdvertsList = ({ title, adverts, noAdvertsMessage, rightCorner, columns, r
             <Table columns={columns} rowComponent={rowComponent} rowData={adverts} rowOperations={rowOperations} />
         }
         {adverts.length === 0 &&
-            <Box mb={3}>
+            <Box mb={4}>
                 {noAdvertsMessage}
             </Box>
         }

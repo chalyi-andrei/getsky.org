@@ -22,7 +22,7 @@ const PercentageAdjustmentTip = ({ skyPrice }) => (
         <Tip><B>A percentage (up to two decimal places) you want applied to the SKY exchange rate price.</B></Tip>
         <Tip>Example: 10</Tip>
         <Tip>At the time of the trade, if the SKY exchange rate price is <B>100 USD</B> and you choose <B>10</B> to indicate 10%, you will be selling your SKY for <B>110 USD</B> each.</Tip>
-        <Box mt={2}>
+        <Box mt={3}>
             <TipToggles label={'Exchange rate examples'}>
                 <Flex>
                     <Box width={1 / 4}><Tip>0% = {round(skyPrice, 2)} USD</Tip></Box>
@@ -30,7 +30,7 @@ const PercentageAdjustmentTip = ({ skyPrice }) => (
                     <Box width={1 / 4}><Tip>4% = {skyPriceWithPercents(skyPrice, 0.04)} USD</Tip></Box>
                     <Box width={1 / 4}><Tip>6% = {skyPriceWithPercents(skyPrice, 0.06)} USD</Tip></Box>
                 </Flex>
-                <Flex mt={1}>
+                <Flex mt={2}>
                     <Box width={1 / 4}><Tip>8% = {skyPriceWithPercents(skyPrice, 0.08)} USD</Tip></Box>
                     <Box width={1 / 4}><Tip>10% = {skyPriceWithPercents(skyPrice, 0.1)} USD</Tip></Box>
                     <Box width={1 / 4}><Tip>12% = {skyPriceWithPercents(skyPrice, 0.12)} USD</Tip></Box>
@@ -121,11 +121,11 @@ class FormCoinPriceInput extends React.Component {
 
         return (
             <FormItem name={input.name} label={<Label skyPrice={skyPrice} />} isRequired={isRequired} showError={showError} error={error}>
-                <Flex mt={2}>
+                <Flex mt={3}>
                     <Button type="button" text='PERCENTAGE ADJUSTMENT' onClick={() => this.setMode(PERCENTAGE_ADJUSTMENT)} style={fullWidth} primary={this.state.mode === PERCENTAGE_ADJUSTMENT} />
                     <Button type="button" text='FIXED PRICE' onClick={() => this.setMode(FIXED_PRICE)} style={fullWidth} primary={this.state.mode === FIXED_PRICE} />
                 </Flex>
-                <Flex mt={2} alignItems='center' >
+                <Flex mt={3} alignItems='center' >
                     {this.state.mode === PERCENTAGE_ADJUSTMENT &&
                         <ControlInput type="number" placeholder={'percentage adjustment, e.g. 5'} error={showError} value={percentageAdjustment} onChange={this.onChange} />
                     }
@@ -133,7 +133,7 @@ class FormCoinPriceInput extends React.Component {
                         <ControlInput type="number" placeholder={'USD'} error={showError} value={fixedPrice} onChange={this.onChange} />
                     }
                 </Flex>
-                <Box mt={2}>
+                <Box mt={3}>
                     {this.state.mode === PERCENTAGE_ADJUSTMENT &&
                         <PercentageAdjustmentTip skyPrice={skyPrice} />
                     }

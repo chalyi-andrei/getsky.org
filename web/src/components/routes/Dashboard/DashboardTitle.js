@@ -10,7 +10,7 @@ const DashboardTitle = ({ userName }) => (
         flexWrap="wrap"
         flexDirection={['column', 'row', 'row']}
         justifyContent='space-between'
-        my={4}
+        my={5}
     >
         <Flex alignItems='center' >
             <H2>Hello, {userName}</H2>

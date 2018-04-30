@@ -17,7 +17,7 @@ const Button = styled(BaseButton) `
     }
 `;
 
-const ButtonControl = ({ text, type, disabled, onClick, style, primary, block, className }) => (
+const ButtonControl = ({ text, type, disabled, onClick, style, primary, block, className, ...rest }) => (
     <Button
         className={className}
         type={type}
@@ -26,6 +26,7 @@ const ButtonControl = ({ text, type, disabled, onClick, style, primary, block, c
         style={style}
         primary={primary}
         block={block}
+        {...rest}
     >
         {text}
     </Button>

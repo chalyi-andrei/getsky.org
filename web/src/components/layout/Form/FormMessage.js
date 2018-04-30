@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ErrorMessage = styled.p`
-    padding: ${props => props.theme.space[3]}px; ${props => props.theme.space[3]}px;
+    padding: ${props => props.theme.space[4]}px; ${props => props.theme.space[4]}px;
     font-weight: bold;
     font-size: ${props => props.theme.fontSizes[1]}px;
     color: ${props => props.theme.colors.black};

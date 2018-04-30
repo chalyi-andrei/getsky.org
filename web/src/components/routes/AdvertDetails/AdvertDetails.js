@@ -20,7 +20,7 @@ import {
 
 const PanelBody = styled(Box) `
     background-color: ${theme.colors.lightGray2};
-    padding-left: ${props => props.theme.space[5]}px;
+    padding-left: ${props => props.theme.space[6]}px;
     width: 100%;
 `;
 
@@ -50,9 +50,9 @@ const PositionValue = styled(Box) `
 
 const PositionRow = styled(Flex) `
     font-size: ${props => props.theme.fontSizes[3]}px;
-    padding-top: ${props => props.theme.space[4]}px;
-    padding-bottom: ${props => props.theme.space[4]}px;
-    padding-right: ${props => props.theme.space[4]}px;
+    padding-top: ${props => props.theme.space[5]}px;
+    padding-bottom: ${props => props.theme.space[5]}px;
+    padding-right: ${props => props.theme.space[5]}px;
     border-bottom: 1px solid ${props => props.theme.colors.separator};
 
     ${media.md`
@@ -135,7 +135,7 @@ const Location = styled.p`
 
 const Country = styled.p`
     margin: 0;
-    margin-top: ${props => props.theme.space[1]}px;
+    margin-top: ${props => props.theme.space[2]}px;
     font-size: ${props => props.theme.fontSizes[1]}px;
     font-weight: 300;
 `;

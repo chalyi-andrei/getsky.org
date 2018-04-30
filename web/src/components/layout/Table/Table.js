@@ -1,9 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import media from 'media';
+
+const TableWrapper = styled.div`
+    overflow-x: auto;
+`;
 
 const Table = styled.table`
     width: 100%;
+    min-width: 500px;
     border-collapse: collapse;
     table-layout: fixed;
     vertical-align: middle;
@@ -20,13 +26,23 @@ const TableHead = styled.thead`
 const TableRowHead = styled.tr``;
 
 const TableCellHead = styled.th`
-    height: 60px;
-    padding: 0px 30px;
+    height: ${props => props.theme.space[8]}px;
+    padding: 0 ${props => props.theme.space[2]}px;   
     text-align: left;
+    
     &:hover {
         background-color: ${props => props.theme.colors.lightGray};
         cursor: default;
     }
+    
+    ${media.sm`
+        height: ${props => props.theme.space[10]}px;
+        padding: 0 ${props => props.theme.space[4]}px;
+    `}
+    
+    ${media.md`
+        padding: 0 ${props => props.theme.space[6]}px;
+    `}
 `;
 
 const TableBody = styled.tbody``;
@@ -39,23 +55,33 @@ export const TableRow = styled.tr`
 `;
 
 export const TableCell = styled.td`
-    padding: 24px 30px;
+    padding: ${props => props.theme.space[1]}px ${props => props.theme.space[2]}px;   
     line-height: 26px;
     font-size: 14px;
     color: ${props => props.theme.colors.darkBlue};
+    
+    ${media.sm`
+        padding: ${props => props.theme.space[3]}px ${props => props.theme.space[4]}px;
+    `}
+    
+    ${media.md`
+        padding: ${props => props.theme.space[5]}px ${props => props.theme.space[6]}px;
+    `}    
 `;
 
 const TableComponent = ({ columns, rowComponent: RowComponent, rowData, rowOperations }) => (
-    <Table>
-        <TableHead>
-            <TableRowHead>
-                {columns.map((col, i) => <TableCellHead key={i} style={col.style} >{col.name}</TableCellHead>)}
-            </TableRowHead>
-        </TableHead>
-        <TableBody>
-            {rowData.map((item, i) => <RowComponent key={i} data={item} rowOperations={rowOperations} />)}
-        </TableBody>
-    </Table>
+    <TableWrapper>
+        <Table>
+            <TableHead>
+                <TableRowHead>
+                    {columns.map((col, i) => <TableCellHead key={i} style={col.style} >{col.name}</TableCellHead>)}
+                </TableRowHead>
+            </TableHead>
+            <TableBody>
+                {rowData.map((item, i) => <RowComponent key={i} data={item} rowOperations={rowOperations} />)}
+            </TableBody>
+        </Table>
+    </TableWrapper>
 );
 
 TableComponent.propTypes = {

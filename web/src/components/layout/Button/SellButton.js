@@ -10,11 +10,12 @@ const Btn = styled(Button)`
     font-family: ${props => props.theme.fontLight };
 `;
 
-const SellButton = ({ push, text, className }) => (
+const SellButton = ({ push, text, className, ...rest }) => (
     <Btn
         text={text}
         className={className}
         onClick={() => push('postings/sell')}
+        {...rest}
     />
 );
 

@@ -17,7 +17,7 @@ import { saveNewPassword } from './actions';
 
 const BackToLogin = styled(Link) `
     display: block;
-    margin-top: ${props => props.theme.space[1]}px;
+    margin-top: ${props => props.theme.space[2]}px;
     color: ${props => props.theme.colors.blue};
 
     &:hover {
@@ -85,7 +85,7 @@ class ResetPassword extends React.Component {
     }
     render() {
         return (
-            <Container flex='1 0 auto' flexDirection="column" py={4}>
+            <Container flex='1 0 auto' flexDirection="column" py={5}>
                 <H2>Resetting the password</H2>
 
                 {this.state.passwordBeenReset && <FormMessage color="success">

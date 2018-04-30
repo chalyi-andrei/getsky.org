@@ -90,7 +90,7 @@ export default connect(
                 } = this.props;
 
                 return (
-                    <Container flex='1 0 auto' flexDirection="column" py={4}>
+                    <Container flex='1 0 auto' flexDirection="column" py={5}>
                         <Helmet><title>{getPageTitle('User settings')}</title></Helmet>
                         <h2>Your location</h2>
                         <LocationForm

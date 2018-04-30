@@ -19,7 +19,7 @@ const Li = styled.li`
 `
 
 export default () => (
-    <TextContainer flex='1 0 auto' flexDirection="column" py={4}>
+    <TextContainer flex='1 0 auto' flexDirection="column" py={5}>
         <Helmet><title>{getPageTitle('Privacy')}</title></Helmet>
         <H1>Privacy</H1>
 

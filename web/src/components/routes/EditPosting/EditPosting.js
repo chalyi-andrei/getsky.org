@@ -82,7 +82,7 @@ class PostingsBuy extends React.Component {
         const { countries, states, userInfo, skyPrices, advertDetails } = this.props;
 
         return (
-            <Container flex='1 0 auto' flexDirection='column' py={4}>
+            <Container flex='1 0 auto' flexDirection='column' py={5}>
                 <Helmet>
                     <title>{getPageTitle('Edit advert')}</title>
                 </Helmet>

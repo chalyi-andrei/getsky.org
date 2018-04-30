@@ -73,7 +73,7 @@ class PostingsPreview extends React.Component {
         const advertType = getAdvertTypeFromLocation(location);
 
         return (
-            <Container flex='1 0 auto' flexDirection='column' py={4}>
+            <Container flex='1 0 auto' flexDirection='column' py={5}>
                 <Helmet><title>{getPageTitle(advertType === AdvertTypes.BUY ? 'Buy advert preview' : 'Sell advert preview')}</title></Helmet>
                 <BackIcLink path={`/postings/${advertType}`} text='Edit advert' />
                 <H1>Advert preview</H1>

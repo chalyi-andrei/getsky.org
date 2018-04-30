@@ -13,11 +13,11 @@ const ContactUsForm = ({ handleSubmit, pristine, submitting, invalid }) => (
     <Form onSubmit={handleSubmit}>
         <Flex flexDirection="column" flexWrap="wrap" alignItems="center" justifyContent="center">
             <Box w={1} mb={25}>
-                <Flex flexDirection="row" flexWrap="wrap" justifyContent="space-between" mx={-2}>
-                    <Box width={[1, 1 / 2]} px={2}>
+                <Flex flexDirection="row" flexWrap="wrap" justifyContent="space-between" mx={-3}>
+                    <Box width={[1, 1 / 2]} px={3}>
                         <Field name="name" component={FormInput} isRequired validate={[r]} type="text" label="Name" placeholder="Name" />
                     </Box>
-                    <Box width={[1, 1 / 2]} px={2}>
+                    <Box width={[1, 1 / 2]} px={3}>
                         <Field name="email" component={FormInput} isRequired validate={[r, email]} type="email" label="Email" placeholder="Email" />
                     </Box>
                 </Flex>

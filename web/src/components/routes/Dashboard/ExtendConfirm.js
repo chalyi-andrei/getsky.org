@@ -34,7 +34,7 @@ const ExtendConfirm = ({ isOpen, onConfirm, onClose, advert }) => {
             isOpen={isOpen}
             style={style}
             footer={<Footer onConfirm={onConfirm} onClose={onClose} />}>
-            <Box pb={3}>
+            <Box pb={4}>
                 <H1>Extend advert?</H1>
                 <P>Extending an advert
                     <B> increases the expiration date by 4 weeks.</B>

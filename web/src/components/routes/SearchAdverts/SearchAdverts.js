@@ -36,10 +36,6 @@ const sellAdvertsColumns = [
 const BreadcrumbLink = styled(Link) `
     font-size: 12px;
     color: ${props => props.theme.colors.grayBlue};
-    
-    ${media.sm`
-        color: red;
-    `}
 `;
 
 const BreadcrumbLabel = styled.span`
@@ -48,8 +44,8 @@ const BreadcrumbLabel = styled.span`
     
     &:before {
         content: '/';
-        margin-left: ${props => props.theme.space[1]}px;
-        margin-right: ${props => props.theme.space[1]}px;
+        margin-left: ${props => props.theme.space[2]}px;
+        margin-right: ${props => props.theme.space[2]}px;
     }
 `;
 
@@ -75,7 +71,7 @@ const Badge = styled.span`
     border-radius: 100%;
     background: ${props => props.theme.colors.blue};
     color: ${props => props.theme.colors.white};
-    margin-left: ${props => props.theme.space[4]}px;
+    margin-left: ${props => props.theme.space[3]}px;
     text-align: center;
     vertical-align: top;
 `;
@@ -121,13 +117,12 @@ class SearchAdverts extends React.Component {
         return (
             <div>
                 <Helmet><title>{getPageTitle('Search advert')}</title></Helmet>
-                <Container flex="1 0 auto" flexDirection="row" py={3}>
+                <Container flex="1 0 auto" flexDirection="row" py={4}>
                     <BreadcrumbLink to="/">Home</BreadcrumbLink>
                     <BreadcrumbLabel>Search adverts</BreadcrumbLabel>
-                    <Span color="mint">test</Span>
                 </Container>
                 <FiltersWrapper>
-                    <Container flex="1 0 auto" flexDirection="column" py={4}>
+                    <Container flex="1 0 auto" flexDirection="column" py={5}>
                         <Filters
                             countries={countries}
                             states={states}
@@ -146,7 +141,7 @@ class SearchAdverts extends React.Component {
                             <Tab tab={'sell-tab'}><strong>Sell Skycoin</strong></Tab>
                         </TabList>
                         <TabPanel>
-                            <Container flex='1 0 auto' flexDirection="column" pt={'50px'}>
+                            <Container flex='1 0 auto' flexDirection="column" pt={9}>
                                 {this.props.loading && <Spinner />}
                                 <Title>
                                     Seller adverts
@@ -156,7 +151,7 @@ class SearchAdverts extends React.Component {
                             </Container>
                         </TabPanel>
                         <TabPanel>
-                            <Container flex='1 0 auto' flexDirection="column" pt={'50px'}>
+                            <Container flex='1 0 auto' flexDirection="column" pt={9}>
                                 {this.props.loading && <Spinner />}
                                 <Title>
                                     Buyer adverts

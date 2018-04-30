@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { space, width, fontSize } from 'styled-system';
 
 const BaseControl = styled.button`
     padding: 8px 26px;
@@ -17,6 +18,10 @@ const BaseControl = styled.button`
     &:disabled {
         opacity: 0.5;
     }
+    
+    ${width}
+    ${space}
+    ${fontSize}
 `;
 
 export default BaseControl;

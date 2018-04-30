@@ -5,7 +5,7 @@ import { Box } from 'grid-styled';
 import { H2 } from '../Text'
 
 const FormGroup = ({ label, children }) => (
-    <Box py={1}>
+    <Box py={2}>
         <H2>{label}</H2>
         {children}
     </Box>

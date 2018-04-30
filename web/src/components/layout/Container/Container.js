@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Flex } from 'grid-styled';
 
 const Container = styled(Flex)`
-    width: ${props => props.theme.container.width};
+    ${props => props.width ? '' : `width: ${props.theme.container.width};`}
     max-width: ${props => props.theme.container.maxWidth};
 `;
 

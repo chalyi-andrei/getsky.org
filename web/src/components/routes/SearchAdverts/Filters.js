@@ -9,8 +9,8 @@ import { ACCEPT_TRADE_OPTIONS } from 'components/layout/PostingForm';
 import { COUNTRY_HAS_STATES } from 'constants';
 
 const ConnectedDropdowns = (fields) => (
-    <Flex mx={-3} flexWrap="wrap">
-        <Box w={[1, 1, 1 / 2]} px={3}>
+    <Flex mx={-4} flexWrap="wrap">
+        <Box w={[1, 1, 1 / 2]} px={4}>
             <FormDropdown
                 {...fields.countryCode}
                 options={fields.countries}
@@ -18,7 +18,7 @@ const ConnectedDropdowns = (fields) => (
                 label="Country"
             />
         </Box>
-        <Box w={[1, 1, 1 / 2]} px={3}>
+        <Box w={[1, 1, 1 / 2]} px={4}>
             <FormDropdown
                 {...fields.stateCode}
                 options={fields.states}
@@ -55,8 +55,8 @@ class Filters extends React.PureComponent{
         const { countries, states, currencies, handleSubmit } = this.props;
         return (
             <Form onSubmit={handleSubmit} noValidate>
-                <Flex py={3} mx={-3} flexWrap="wrap">
-                    <Box w={[1, 1, 1 / 2]} px={3}>
+                <Flex py={4} mx={-4} flexWrap="wrap">
+                    <Box w={[1, 1, 1 / 2]} px={4}>
                         <Fields
                             names={[ 'countryCode', 'stateCode' ]}
                             component={ConnectedDropdowns}
@@ -64,10 +64,10 @@ class Filters extends React.PureComponent{
                             states={states}
                         />
                     </Box>
-                    <Box w={[1, 1 / 2, 1 / 4]} px={3}>
+                    <Box w={[1, 1 / 2, 1 / 4]} px={4}>
                         <Field component={FormInput} name="city" label="City" />
                     </Box>
-                    <Flex w={[1, 1 / 2, 1 / 4]} px={3}>
+                    <Flex w={[1, 1 / 2, 1 / 4]} px={4}>
                         <Amount pr={2}>
                             <Field component={FormInput} name="amount" label="Amount" />
                         </Amount>
@@ -75,17 +75,17 @@ class Filters extends React.PureComponent{
                     </Flex>
                 </Flex>
                 <Hr/>
-                <Flex py={3} mx={-3} flexWrap="wrap" alignItems="flex-end">
-                    <Box w={[1, 1, 3 / 4]} px={3}>
+                <Flex py={4} mx={-4} flexWrap="wrap" alignItems="flex-end">
+                    <Box w={[1, 1, 3 / 4]} px={4}>
                         <FormLabel>Trade</FormLabel>
-                        <Flex>
+                        <Flex flexWrap="wrap">
                             {ACCEPT_TRADE_OPTIONS.length > 0
                             && ACCEPT_TRADE_OPTIONS.map(o =>
                                 <Field key={`filter-${o.title}`} component={FormCheckbox} name={o.value} label={o.title} />
                             )}
                         </Flex>
                     </Box>
-                    <Box w={[1, 1, 1 / 4]} px={3}>
+                    <Box w={[1, 1, 1 / 4]} px={4} pt={[4, 0, 0]}>
                         <Button type="submit" text="Search" primary block />
                     </Box>
                 </Flex>

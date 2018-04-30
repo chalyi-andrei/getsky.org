@@ -69,10 +69,7 @@ const Card = ({ width, title, totalAmount, leftTitle, leftAmount, rightTitle, ri
             </Flex>
         }
         {tipMessage &&
-            <Box style={CenterText}
-                alignItems={'center'}
-                pb={['35px', '25px', '25px']}
-                pt={['35px', '25px', '25px']}>
+            <Box style={CenterText} alignItems={'center'} pt={7}>
                 {tipMessage}
             </Box>
         }

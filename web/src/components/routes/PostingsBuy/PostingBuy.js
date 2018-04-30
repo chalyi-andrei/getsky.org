@@ -27,7 +27,7 @@ class PostingsBuy extends React.Component {
         const { countries, states, userInfo } = this.props;
 
         return (
-            <Container flex='1 0 auto' flexDirection='column' py={4}>
+            <Container flex='1 0 auto' flexDirection='column' py={5}>
                 <Helmet><title>{getPageTitle('Buy advert')}</title></Helmet>
                 <BackIcLink path='/dashboard' text='Dashboard' />
                 <PostingTitle />

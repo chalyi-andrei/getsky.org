@@ -55,23 +55,23 @@ class RangedSingleInput extends React.Component {
 
         return (
             <FormItem name={input.name} label={label} isRequired={isRequired} showError={showError} error={error}>
-                <Flex mt={2}>
+                <Flex mt={3}>
                     <Button type="button" text='Ranged amount' onClick={() => this.setMode(RANGED_MODE)} style={fullWidth} primary={input.value.mode === RANGED_MODE} />
                     <Button type="button" text='Single amount' onClick={() => this.setMode(SINGLE_MODE)} style={fullWidth} primary={input.value.mode === SINGLE_MODE} />
                 </Flex>
                 {input.value.mode === RANGED_MODE &&
-                    <Flex mt={2} alignItems='center' >
+                    <Flex mt={3} alignItems='center' >
                         <ControlInput type="number" min={min} max={max} placeholder={placeholder} error={showError} onChange={this.onChangeFrom} value={input.value.from} />
-                        <Box mx={2}>to</Box>
+                        <Box mx={3}>to</Box>
                         <ControlInput type="number" min={min} max={max} placeholder={placeholder} error={showError} onChange={this.onChangeTo} value={input.value.to} />
                     </Flex>
                 }
                 {input.value.mode === SINGLE_MODE &&
-                    <Flex mt={2} alignItems='center' >
+                    <Flex mt={3} alignItems='center' >
                         <ControlInput type="number" min={min} max={max} placeholder={placeholder} error={showError} onChange={this.onChangeSingle} value={input.value.from} />
                     </Flex>
                 }
-                <Box mt={2}>
+                <Box mt={3}>
                     <Tip>Please choose a <B>ranged</B> or <B>single</B> amount. Valid amounts are {min} to {max}</Tip>
                     <Tip>Example for ranged amounts: <B>60 to 70</B></Tip>
                     <Tip>Example for single amount: <B>50</B></Tip>

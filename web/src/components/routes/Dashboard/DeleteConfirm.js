@@ -33,7 +33,7 @@ const DeleteConfirm = ({ isOpen, onConfirm, onClose }) => {
             isOpen={isOpen}
             style={style}
             footer={<Footer onConfirm={onConfirm} onClose={onClose} />}>
-            <Box pb={3}>
+            <Box pb={4}>
                 <H1>Delete advert?</H1>
                 <P>
                     <B>Please be certain this is what you want to do.</B>

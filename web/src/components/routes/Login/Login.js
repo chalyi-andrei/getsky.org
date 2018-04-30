@@ -23,7 +23,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <Container flex='1 0 auto' flexDirection="column" py={4}>
+            <Container flex='1 0 auto' flexDirection="column" py={5}>
                 <Helmet><title>{getPageTitle('Login')}</title></Helmet>
                 <H2>Login</H2>
                 <H3>Don't have an account? <Link to="/register"><U>Register</U></Link></H3>

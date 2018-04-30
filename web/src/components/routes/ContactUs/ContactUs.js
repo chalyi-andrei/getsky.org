@@ -21,7 +21,7 @@ class ContactUs extends React.Component {
     }
     render() {
         return (
-            <Container flex='1 0 auto' flexDirection="column" py={4}>
+            <Container flex='1 0 auto' flexDirection="column" py={5}>
                 <Helmet><title>{getPageTitle('Contact us')}</title></Helmet>
                 <H2>Contact us</H2>
                 <ContactUsForm onSubmit={this.handleSubmit} />

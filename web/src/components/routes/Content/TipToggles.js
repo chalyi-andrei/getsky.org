@@ -38,7 +38,7 @@ class TipToggles extends React.Component {
                     </Box>
                 </Header>
                 {expanded &&
-                    <Box mt={1} ml={'15px'}> {children}</Box>
+                    <Box mt={2} ml={'15px'}> {children}</Box>
                 }
             </Box>
         );

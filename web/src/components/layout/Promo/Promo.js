@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import { Flex, Box } from 'grid-styled';
 
 import Container from 'components/layout/Container';
-import { H2 } from 'components/layout/Text';
+import { H2, Text } from 'components/layout/Text';
 import { SellButton, BuyButton } from 'components/layout/Button';
 import bg from './bg.jpg';
 
 const SellBtn = styled(SellButton) `
-    width: 280px;
     height: 70px;
     font-size: 18px;
     line-height: 18px;
@@ -24,14 +23,9 @@ const SellBtn = styled(SellButton) `
 `;
 
 const BuyBtn = styled(BuyButton) `
-    width: 280px;
     height: 70px;
     font-size: 18px;
     line-height: 18px;
-`;
-
-const Title = styled(H2) `
-    margin-top: 80px;
 `;
 
 const Tip = styled.p`
@@ -39,19 +33,15 @@ const Tip = styled.p`
     font-size: 18px;
 `;
 
-const ActionText = styled.p`
-    margin-top: 60px;
-    margin-bottom: 0;
-    font-size: 18px;
-    color: ${props => props.theme.colors.grayBlue};
+const ActionText = styled(Text)`
     text-transform: uppercase;
 `;
 
 const Promo = styled.section`
     min-height: 400px;
-    padding-left: ${props => props.theme.space[5]}px;
-    padding-right: ${props => props.theme.space[5]}px;
-    padding-bottom: ${props => props.theme.space[7]}px;
+    padding-left: ${props => props.theme.space[6]}px;
+    padding-right: ${props => props.theme.space[6]}px;
+    padding-bottom: ${props => props.theme.space[8]}px;
     color: ${props => props.theme.colors.white};
     text-align: center;
     z-index: 2;
@@ -60,17 +50,17 @@ const Promo = styled.section`
 `;
 
 export default () => (
-    <Container flexDirection="column">
+    <Container flexDirection="column" width={[1, 0.9]}>
         <Promo>
-            <Title>Can't find the advert for you?</Title>
+            <H2 mt={[7, 9, 11]} fontSize={[3, 4]}>Can't find the advert for you?</H2>
             <Tip>If you can't see a buyer or seller that is offering what you want, you can post your own advert.</Tip>
-            <ActionText>I want to advertise to</ActionText>
-            <Flex justifyContent={'center'} flexWrap="wrap">
-                <Box mx={2} mt={4}>
-                    <BuyBtn text={'Buy Skycoin'} primary />
+            <ActionText mt={[6, 8, 10]} color="grayBlue" fontSize={[1, 2]}>I want to advertise to</ActionText>
+            <Flex justifyContent={'center'} flexWrap="wrap" flexDirection={['column', 'row']}>
+                <Box mx={3} mt={5}>
+                    <BuyBtn text={'Buy Skycoin'} primary width={[1, '280px']} />
                 </Box>
-                <Box mx={2} mt={4}>
-                    <SellBtn text={'Sell Skycoin'} />
+                <Box mx={3} mt={5}>
+                    <SellBtn text={'Sell Skycoin'} width={[1, '280px']} />
                 </Box>
             </Flex>
         </Promo>

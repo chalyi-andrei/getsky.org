@@ -10,7 +10,7 @@ import TextContainer from './TextContainer';
 const MT = '5px';
 
 export default () => (
-    <TextContainer flex='1 0 auto' flexDirection="column" py={4}>
+    <TextContainer flex='1 0 auto' flexDirection="column" py={5}>
         <Helmet><title>{getPageTitle('FAQ')}</title></Helmet>
         <H1>FAQ</H1>
 

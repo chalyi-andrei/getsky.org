@@ -6,7 +6,7 @@ import { H1, H2, H3, P } from 'components/layout/Text';
 import TextContainer from './TextContainer';
 
 export default () => (
-    <TextContainer flex='1 0 auto' flexDirection="column" py={4}>
+    <TextContainer flex='1 0 auto' flexDirection="column" py={5}>
         <Helmet><title>{getPageTitle('Why skycoin')}</title></Helmet>
         <H1>Why Skycoin?</H1>
 

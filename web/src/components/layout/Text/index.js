@@ -8,5 +8,6 @@ import P from './P';
 import Span from './Span';
 import Li from './Li';
 import Ul from './Ul';
+import Text from './Text';
 
-export { U, B, Tip, H1, H2, H3, P, Span, Ul, Li };
+export { U, B, Tip, H1, H2, H3, P, Span, Ul, Li, Text };
