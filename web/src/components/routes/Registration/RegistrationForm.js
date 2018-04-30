@@ -45,7 +45,7 @@ class RegistrationForm extends React.Component {
         const { handleSubmit, pristine, submitting } = this.props;
         return (
             <Form onSubmit={handleSubmit}>
-                <Box width={1 / 2}>
+                <Box width={[1, 1, 1 / 2]}>
                     <Field
                         name="userName"
                         component={FormInput}

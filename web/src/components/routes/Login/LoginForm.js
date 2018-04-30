@@ -23,7 +23,7 @@ const LoginForm = props => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Box width={1 / 2}>
+            <Box width={[1, 1, 1 / 2]}>
                 <Field name="userName" component={FormInput} type="text" label="Username" placeholder="Username" />
                 <Field name="password" component={FormInput} type="password" label="Password" placeholder="Password" />
             </Box>
