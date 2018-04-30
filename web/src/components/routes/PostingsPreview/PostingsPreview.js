@@ -18,7 +18,7 @@ const AdvertTypes = {
 const getAdvertTypeFromLocation = (reactLocation) => reactLocation.pathname.includes('buy') ? AdvertTypes.BUY : AdvertTypes.SELL;
 
 const ExchangeRateWarningBuy = () => (
-    <Box>
+    <Box mb={'10px'}>
         <Warning>
             <B>
                 The amount of SKY shown in the advert may change with the exchange rate of USD.
@@ -32,7 +32,7 @@ const ExchangeRateWarningBuy = () => (
 );
 
 const ExchangeRateWarningSell = () => (
-    <Box>
+    <Box mb={'10px'}>
         <Warning>
             <B>
                 The amount of SKY shown in the advert may change with the exchange rate of USD.
