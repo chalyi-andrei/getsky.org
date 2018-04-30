@@ -38,6 +38,9 @@ const authNavItems = [
     { url: '/why-skycoin', name: 'Why Skycoin', border: false },
 ];
 
+const HomePageStyle = { position: 'absolute', width: '100%' };
+const OtherPagesStyle = { backgroundColor: theme.colors.black };
+
 const Header = ({ authorized, userInfo, skyPrices, currencies, location, logout }) => (
     <header style={{ overflow: 'hidden' }}>
         <SubHeaderWrapper>
@@ -46,25 +49,12 @@ const Header = ({ authorized, userInfo, skyPrices, currencies, location, logout 
                 {authorized && <UserSubmenu userInfo={userInfo} logout={logout} />}
             </Container>
         </SubHeaderWrapper>
-        {location === '/' &&
-            <HeaderWrapper alignItems={'center'} justifyContent={'space-between'} style={{ position: 'absolute', width: '100%' }}>
-                <Container alignItems={'center'} justifyContent={'space-between'}>
-                    <Brand />
-                    <Nav navItems={authorized ? authNavItems : noAuthNavItems} />
-                </Container>
-            </HeaderWrapper>
-        }
-        {/* Don't merge HeaderWrapper above and HeaderWrapper bellow by adding 'style={location === '/' ? HomePageStyle : OtherPagesStyle}'
-            react-snapshot can't process such construction: style={location === '/' ? HomePageStyle : OtherPagesStyle} and layout becomes broken 
-         */}
-        {location !== '/' &&
-            <HeaderWrapper alignItems={'center'} justifyContent={'space-between'} style={{ backgroundColor: theme.colors.black }}>
-                <Container alignItems={'center'} justifyContent={'space-between'}>
-                    <Brand />
-                    <Nav navItems={authorized ? authNavItems : noAuthNavItems} />
-                </Container>
-            </HeaderWrapper>
-        }
+        <HeaderWrapper alignItems={'center'} justifyContent={'space-between'} style={location === '/' ? HomePageStyle : OtherPagesStyle}>
+            <Container alignItems={'center'} justifyContent={'space-between'}>
+                <Brand />
+                <Nav navItems={authorized ? authNavItems : noAuthNavItems} />
+            </Container>
+        </HeaderWrapper>
     </header>
 );
 
