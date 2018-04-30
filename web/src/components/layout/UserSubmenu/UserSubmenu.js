@@ -24,9 +24,8 @@ const UserName = styled.span`
 
 const UserMenu = styled(Box) `
     position: absolute;
-    right: -20px;
+    left: -40px;
     margin-top: 11px;
-    margin-left: -70px;
     padding: 8px 0px;
     background-color: ${theme.colors.darkBlue};
     z-index: 1000;
