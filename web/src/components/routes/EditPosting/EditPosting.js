@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { Helmet } from 'react-helmet';
 
+import { getPageTitle } from 'utils';
 import Container from 'components/layout/Container';
 import { BackIcLink } from 'components/layout/Links';
 
@@ -81,6 +83,9 @@ class PostingsBuy extends React.Component {
 
         return (
             <Container flex='1 0 auto' flexDirection='column' py={4}>
+                <Helmet>
+                    <title>{getPageTitle('Edit advert')}</title>
+                </Helmet>
                 <BackIcLink path='/dashboard' text='Dashboard' />
                 {advertDetails.type === ADVERT_BUY && <PostingBuyForm
                     editMode

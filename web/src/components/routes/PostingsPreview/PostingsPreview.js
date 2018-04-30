@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Box } from 'grid-styled';
+import { Helmet } from 'react-helmet';
 
+import { getPageTitle } from 'utils';
 import Container from 'components/layout/Container';
 import { BackIcLink } from 'components/layout/Links';
 import { H1, B, P } from 'components/layout/Text';
@@ -72,6 +74,7 @@ class PostingsPreview extends React.Component {
 
         return (
             <Container flex='1 0 auto' flexDirection='column' py={4}>
+                <Helmet><title>{getPageTitle(advertType === AdvertTypes.BUY ? 'Buy advert preview' : 'Sell advert preview')}</title></Helmet>
                 <BackIcLink path={`/postings/${advertType}`} text='Edit advert' />
                 <H1>Advert preview</H1>
                 {advertType === AdvertTypes.BUY

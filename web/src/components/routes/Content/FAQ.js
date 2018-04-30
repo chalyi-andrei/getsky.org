@@ -1,5 +1,7 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
+import { getPageTitle } from 'utils';
 import { H1, H2, P } from 'components/layout/Text';
 
 import TipToggles from './TipToggles';
@@ -9,6 +11,7 @@ const MT = '5px';
 
 export default () => (
     <TextContainer flex='1 0 auto' flexDirection="column" py={4}>
+        <Helmet><title>{getPageTitle('FAQ')}</title></Helmet>
         <H1>FAQ</H1>
 
         <TipToggles label={<H2>Is there a Fee?</H2>} mt={MT}>

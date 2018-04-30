@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
+import { getPageTitle } from 'utils';
 import { H1, H2, P } from 'components/layout/Text';
 import TextContainer from './TextContainer';
 
@@ -18,6 +20,7 @@ const Li = styled.li`
 
 export default () => (
     <TextContainer flex='1 0 auto' flexDirection="column" py={4}>
+        <Helmet><title>{getPageTitle('Privacy')}</title></Helmet>
         <H1>Privacy</H1>
 
         <H2>Privacy Policy</H2>

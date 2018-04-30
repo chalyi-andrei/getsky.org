@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Box } from 'grid-styled';
+import { Helmet } from 'react-helmet';
 
+import { getPageTitle } from 'utils';
 import Container from 'components/layout/Container';
 import Table from 'components/layout/Table';
 import { AdvertRow } from 'components/layout/TableAdverts';
@@ -59,6 +61,7 @@ class LatestAdverts extends React.Component {
         const buyAdvertsWithPrice = buyAdverts.map(i => ({ ...i, price: skyPrices['USD'] }));
         return (
             <Box>
+                <Helmet><title>{getPageTitle('Latest adverts')}</title></Helmet>
                 <Intro className="intro">
                     <Container flexDirection="column">
                         <h1>Buy and sell Skycoin <br />person-to-person with cash, by mail,<br /> money order & more…</h1>

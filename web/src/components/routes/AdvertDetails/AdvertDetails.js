@@ -2,7 +2,9 @@ import React from 'react';
 import { Flex, Box } from 'grid-styled';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
+import { getPageTitle } from 'utils';
 import media from 'media';
 import theme from 'components/theme';
 import Container from 'components/layout/Container';
@@ -220,6 +222,7 @@ export default connect(
 
         return (
             <Container flexDirection="row" flexWrap="wrap">
+                <Helmet><title>{getPageTitle('Advert details')}</title></Helmet>
                 <h2>Advert summary</h2>
                 <Flex w={1} flexDirection={['column', 'row', 'row']}>
                     <Box width={[1, 1, 1 / 2]}>

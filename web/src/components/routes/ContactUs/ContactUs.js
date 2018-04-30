@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { Helmet } from 'react-helmet';
 
+import { getPageTitle } from 'utils';
 import Container from 'components/layout/Container';
 import { H2 } from 'components/layout/Text';
 
@@ -20,6 +22,7 @@ class ContactUs extends React.Component {
     render() {
         return (
             <Container flex='1 0 auto' flexDirection="column" py={4}>
+                <Helmet><title>{getPageTitle('Contact us')}</title></Helmet>
                 <H2>Contact us</H2>
                 <ContactUsForm onSubmit={this.handleSubmit} />
             </Container>);

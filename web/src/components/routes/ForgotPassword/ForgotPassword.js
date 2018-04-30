@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, Form } from 'redux-form';
 import { Box } from 'grid-styled';
+import { Helmet } from 'react-helmet';
 
+import { getPageTitle } from 'utils';
 import Container from 'components/layout/Container';
 import { H2 } from 'components/layout/Text';
 import { Button } from 'components/layout/Button';
@@ -56,6 +58,9 @@ class ForgotPassword extends React.Component {
     render() {
         return (
             <Container flex='1 0 auto' flexDirection="column" py={4}>
+                <Helmet>
+                    <title>{getPageTitle('Password recovery')}</title>
+                </Helmet>
                 <H2>Forgot your password?</H2>
                 {this.state.passwordBeenReset && <FormMessage color="success">
                     If that was a valid email address, an email has been sent to you. Please check your email (including your Spam box) for further instructions.

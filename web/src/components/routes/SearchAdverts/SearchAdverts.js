@@ -5,6 +5,9 @@ import { push } from 'react-router-redux';
 import qs from 'qs';
 import _ from 'lodash';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
+
+import { getPageTitle } from 'utils';
 import Container from 'components/layout/Container';
 import Spinner from 'components/layout/Spinner';
 import Table from 'components/layout/Table';
@@ -119,6 +122,7 @@ class SearchAdverts extends React.Component {
         const { countries, states, currencies, location, search: { buyAdverts, sellAdverts }, skyPrices } = this.props;
         return (
             <div>
+                <Helmet><title>{getPageTitle('Search advert')}</title></Helmet>
                 <Container flex="1 0 auto" flexDirection="row" py={3}>
                     <BreadcrumbLink to="/">Home</BreadcrumbLink>
                     <BreadcrumbLabel>Search adverts</BreadcrumbLabel>

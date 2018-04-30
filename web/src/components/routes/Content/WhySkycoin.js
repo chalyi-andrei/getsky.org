@@ -1,18 +1,21 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
+import { getPageTitle } from 'utils';
 import { H1, H2, H3, P } from 'components/layout/Text';
 import TextContainer from './TextContainer';
 
 export default () => (
     <TextContainer flex='1 0 auto' flexDirection="column" py={4}>
+        <Helmet><title>{getPageTitle('Why skycoin')}</title></Helmet>
         <H1>Why Skycoin?</H1>
-        
+
         <H2>WHAT IS SKYCOIN?</H2>
         <P>The year was 2012 and while it was business as usual for most of the world, a small group of visionaries were busy catalyzing a revolution. While analyzing the Bitcoin source code, they identified several design flaws which would ultimately cause Satoshi’s vision of a decentralized  currency to fail. So,  they set out to rectify them and the rest is history</P>
         <P>Mining rewards and transaction fees were identified as the primary drivers of network centralization as is evident with Bitcoin today where a few large mining pools control the entire network. Obelisk – Skycoin’s Consensus algorithm was created to eliminate these flaws by negating the need for POW or POS. As such, SKY has no transcation fees and no mining. All of the coins were created on the genesis block were sealed into a series of timelocked multisig wallets to be made available via a per-determined release schedule</P>
         <P>In the fledgling world of cryptocurrency, a coin’s value is almost exclusively derived from speculation. This leaves it vulnerable to price manipulation by whales. Sky is a commodity backed coin, a type of asset which derives its value from an actual good and service rather than the whims of speculators. In the case of sky, the commodity is the new Internet. Skywire is a meshnet, a peer to peer data carrier network running on it’s own privacy protocol and open source hardware. Participants are rewarded with Skycoin for offering services on the Skywire network.</P>
         <P>Being experienced Bitcoin veterans, the skycoin devs saw through the marketing gimmicks that are smart contracts. They wanted a real solution and they created it with the blockchain programming language CX and distributed object storage CXO. These integral pieces of the puzzle facilitate the development of a truly decentralized, private and secure blockchain based application.</P>
-        
+
         <H2>VALUES</H2>
         <P>Sky was spawned from a primordial soup of ideals and values centered around personal liberty and freedom. We see our technology as a tool with which we can promote these ideals for the betterment of society and the world at large.</P>
         <H3>Environmentally friendly decentralization</H3>

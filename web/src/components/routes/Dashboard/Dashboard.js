@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { Helmet } from 'react-helmet';
 
+import { getPageTitle } from 'utils';
 import Container from 'components/layout/Container';
 import { sellAdvertsColumns, buyAdvertsColumns } from 'components/routes/LatestAdverts';
 import { AdvertRow } from 'components/layout/TableAdverts';
@@ -71,6 +73,9 @@ class Dashboard extends React.Component {
 
         return (
             <Container flex='1 0 auto' flexDirection="column">
+                <Helmet>
+                    <title>{getPageTitle('Dashboard')}</title>
+                </Helmet>
                 <ExtendConfirm
                     isOpen={this.state.extendConfirmationVisible}
                     onConfirm={this.extendAdvert}

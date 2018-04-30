@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
+import { getPageTitle } from 'utils';
 import { H1, H2, P } from 'components/layout/Text';
 import TextContainer from './TextContainer';
 
@@ -18,6 +20,7 @@ const Li = styled.li`
 
 export default () => (
     <TextContainer flex='1 0 auto' flexDirection="column" py={4}>
+        <Helmet><title>{getPageTitle('Terms')}</title></Helmet>
         <H1>Terms</H1>
 
         <H2>Terms of Service</H2>
@@ -154,10 +157,10 @@ export default () => (
 
         <H2>Links to other websites</H2>
         <P>Our Website may, from time to time, contain links to third party websites. These links are provided solely as a convenience to you. By linking to these websites, we do not create or have an affiliation with, or sponsor such third party websites. Inclusion of links for any website on our Website does not mean that we endorse, guarantee, warrant, or recommend the services, information, content and/or data of such third party websites. The Owners has no control over the legal documents and privacy practices of third party websites; as such, you access any such third party websites at your own risk.</P>
-        
+
         <H2>Payments</H2>
         <P>You represent and warrant that if you are purchasing something from us that (i) any credit information you supply is true and complete, (ii) charges incurred by you will be honored by your bank or credit card company, (iii) you will pay the charges incurred by you at the posted prices, including any applicable taxes, and (iv) if your initial payment method is dishonored, you will still pay the charges incurred, including any surcharge we may incur due to such dishonored payment.</P>
-       
+
         <H2>Refund Policy</H2>
         <P>You agree that refunds or credits will not be issued by us for any reason.</P>
 
