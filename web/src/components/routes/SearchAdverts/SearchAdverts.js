@@ -14,8 +14,6 @@ import Table from 'components/layout/Table';
 import { AdvertRow } from 'components/layout/TableAdverts';
 import { Tab, Tabs, TabList, TabPanel } from 'components/layout/Tabs';
 import Filters from './Filters';
-import media from 'media';
-import { Span } from 'components/layout/Text';
 
 import { searchAdverts, setFilters } from "./actions";
 
