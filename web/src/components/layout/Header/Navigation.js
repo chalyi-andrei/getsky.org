@@ -104,7 +104,6 @@ const Wrapper = styled(Flex) `
     width: 270px;
     min-height: 100%;
     text-align: left;
-    margin-top: 20px;
     ${media.md`
         flex-direction: row;
         width: auto;
