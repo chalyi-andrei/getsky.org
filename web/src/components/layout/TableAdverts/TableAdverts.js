@@ -83,7 +83,7 @@ export const AdvertRow = ({ data, rowOperations, columns }) => {
             </TableCell>
             <TableCell data-label={columns[2].name}>{getTradeOptionsText(advert)}</TableCell>
             <TableCell data-label={columns[3].name}>
-                <Flex justifyContent={'space-between'} alignItems={'center'}>
+                <Flex justifyContent={'space-between'} width={'100%'} alignItems={'center'}>
                     {moment(advert.expiredAt).format('DD MMMM YY')}
                     {rowOperations
                         ? <DropdownActions advert={advert} operations={rowOperations} />
