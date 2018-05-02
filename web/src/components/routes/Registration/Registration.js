@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { SubmissionError } from 'redux-form';
 import { Helmet } from 'react-helmet';
+import { Box } from 'grid-styled';
 
 import { getPageTitle } from 'utils';
 import Container from 'components/layout/Container';
+import { H2 } from 'components/layout/Text';
 import RegistrationForm from './RegistrationForm';
 import { register } from './actions'
 
@@ -22,8 +24,10 @@ class Registration extends React.Component {
         return (
             <Container flex='1 0 auto' flexDirection="column" py={5}>
                 <Helmet><title>{getPageTitle('Registration')}</title></Helmet>
-                <h2>Registration</h2>
-                <RegistrationForm onSubmit={this.onSubmit} />
+                <H2>Registration</H2>
+                <Box mt={2}>
+                    <RegistrationForm onSubmit={this.onSubmit} />
+                </Box>
             </Container>
         );
     }

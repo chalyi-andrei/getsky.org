@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { SubmissionError } from 'redux-form';
 import { Helmet } from 'react-helmet';
+import { Box } from 'grid-styled';
 
 import { getPageTitle } from 'utils';
 import LoginForm from './LoginForm';
@@ -27,7 +28,9 @@ class Login extends React.Component {
                 <Helmet><title>{getPageTitle('Login')}</title></Helmet>
                 <H2>Login</H2>
                 <H3>Don't have an account? <Link to="/register"><U>Register</U></Link></H3>
-                <LoginForm onSubmit={this.onSubmit} />
+                <Box mt={2}>
+                    <LoginForm onSubmit={this.onSubmit} />
+                </Box>
             </Container>
         );
     }
