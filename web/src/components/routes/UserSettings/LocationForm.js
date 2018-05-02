@@ -38,7 +38,7 @@ export default reduxForm({ form: 'userLocationSettingsForm' })(
 
             return (
                 <Form onSubmit={handleSubmit}>
-                    <Box width={1 / 2}>
+                    <Box width={[1, 1, 1 / 2]}>
                         {submitSucceeded && <FormMessage>Settings updated</FormMessage>}
                         <Field
                             name="timeOffset"

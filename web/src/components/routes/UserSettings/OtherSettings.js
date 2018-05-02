@@ -26,7 +26,7 @@ export default reduxForm({ form: 'userOtherSettingsForm' })(
 
             return (
                 <Form onSubmit={handleSubmit}>
-                    <Box width={1 / 2}>
+                    <Box width={[1, 1, 1 / 2]}>
                         {submitSucceeded && <FormMessage>Settings updated</FormMessage>}
                         <Field
                             name="email"
