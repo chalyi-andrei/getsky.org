@@ -35,7 +35,7 @@ const ForgotPasswordForm = reduxForm({
 
         return (
             <Form onSubmit={handleSubmit}>
-                <Box width={1 / 2}>
+                <Box width={[1, 1, 1 / 2]}>
                     <Field name="email" component={FormInput} type="email" label="Email" placeholder="Email" />
                     <Field name="recaptcha" component={FormCaptcha} validate={[r]} withRef ref={r => { this.recaptchaField = r }} isRequired />
                 </Box>
