@@ -9,6 +9,8 @@ import {
     SELECT_AUTHOR,
 } from './actions';
 
+import { LOGOUT_USER } from 'components/routes/Login/actions';
+
 const initialState = {
     state: null,
     messages: [],
@@ -33,6 +35,9 @@ export default (state = initialState, action) => {
             return { ...state, authors: action.authors };
         case SELECT_AUTHOR:
             return { ...state, selectedAuthor: action.author, state: messageStates.messages };
-        default: return state;
+        case LOGOUT_USER:
+            return initialState;
+        default:
+            return state;
     }
 }

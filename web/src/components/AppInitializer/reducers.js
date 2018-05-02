@@ -5,6 +5,8 @@ import {
     SKYCOIN_PRICE_RESPONSE,
 } from './actions';
 
+import { LOGOUT_USER } from 'components/routes/Login/actions';
+
 export const initialState = {
     countries: [],
     states: [],
@@ -30,6 +32,8 @@ export default (state = initialState, action) => {
             return { ...state, userInfo: action.userInfo };
         case SKYCOIN_PRICE_RESPONSE:
             return { ...state, skyPrices: saveSkycoinPrice(state.skyPrices, action.currency, action.price) };
+        case LOGOUT_USER:
+            return { ...state, userInfo: null };
         default:
             return state;
     }
