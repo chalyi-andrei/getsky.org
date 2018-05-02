@@ -6,12 +6,12 @@ import { Flex } from 'grid-styled';
 
 import Container from 'components/layout/Container';
 import Brand from 'components/layout/Brand';
-import Nav from 'components/layout/Nav';
 import UserSubmenu from 'components/layout/UserSubmenu';
 import SkyPrice from 'components/layout/SkyPrice';
 import theme from 'components/theme';
-
 import { logout } from 'components/routes/Login/actions';
+
+import Navigation from './Navigation';
 
 const SubHeaderWrapper = styled(Flex) `
     background: ${props => props.theme.colors.darkBlue};
@@ -52,7 +52,7 @@ const Header = ({ authorized, userInfo, skyPrices, currencies, location, logout 
         <HeaderWrapper alignItems={'center'} justifyContent={'space-between'} style={location === '/' ? HomePageStyle : OtherPagesStyle}>
             <Container alignItems={'center'} justifyContent={'space-between'}>
                 <Brand />
-                <Nav navItems={authorized ? authNavItems : noAuthNavItems} />
+                <Navigation navItems={authorized ? authNavItems : noAuthNavItems} isMobile />
             </Container>
         </HeaderWrapper>
     </header>
