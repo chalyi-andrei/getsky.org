@@ -19,9 +19,9 @@ import DropdownActions from './DropdownActions';
 
 const IconWrapper = styled.span`
     display: none;
-    
+
     ${media.sm`
-        display: inline-block;    
+        display: inline-block;
     `}
 `;
 
@@ -29,7 +29,7 @@ const DoubleCellTitle = styled.div`
     color: ${props => props.theme.colors.blue};
     font-size: 18px;
     line-height: 26px;
-    
+    margin-right: ${props => props.theme.space[2]}px;
     display: inline-block;
     
     ${media.sm`
@@ -39,8 +39,7 @@ const DoubleCellTitle = styled.div`
 
 const DoubleCellBody = styled.div`
     display: inline-block;
-    margin-left: ${props => props.theme.space[2]}px;
-    
+
     ${media.sm`
         display: block;
     `}
@@ -68,21 +67,22 @@ const getTradeOptionsText = advert => {
 
 export const AdvertRow = ({ data, rowOperations, columns }) => {
     const advert = data;
+    let i = data.totalMessagesAmount !== undefined ? 1 : 0;
     return (
         <LinkedTableRow href={`post/${advert.id}`}>
             {data.totalMessagesAmount !== undefined &&
-                <TableCell>
+                <TableCell data-label={columns[0].name}>
                     <NewMessageCount newMessages={data.newMessagesAmount} totalMessages={data.totalMessagesAmount} />
                 </TableCell>
             }
-            <TableCell data-label={columns[0].name}>
+            <TableCell data-label={columns[i++].name}>
                 <DoubleCell title={advert.author} body={getFullAddress(advert)} />
             </TableCell>
-            <TableCell data-label={columns[1].name}>
+            <TableCell data-label={columns[i++].name}>
                 <DoubleCell title={getPrice(advert)} body={getConvertedPrice(data)} />
             </TableCell>
-            <TableCell data-label={columns[2].name}>{getTradeOptionsText(advert)}</TableCell>
-            <TableCell data-label={columns[3].name}>
+            <TableCell data-label={columns[i++].name}>{getTradeOptionsText(advert)}</TableCell>
+            <TableCell data-label={columns[i++].name}>
                 <Flex justifyContent={'space-between'} width={'100%'} alignItems={'center'}>
                     {moment(advert.expiredAt).format('DD MMMM YY')}
                     {rowOperations

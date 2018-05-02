@@ -79,7 +79,7 @@ export const TableRow = styled.tr`
 
 export const TableCell = styled.td`
     display: flex;
-    padding: ${props => props.theme.space[1]}px ${props => props.theme.space[2]}px;   
+    padding: ${props => props.theme.space[1]}px ${props => props.theme.space[2]}px;
     line-height: 26px;
     font-size: 14px;
     color: ${props => props.theme.colors.darkBlue};
@@ -90,20 +90,20 @@ export const TableCell = styled.td`
         width: 30%;
         flex-shrink: 0;
         font-family: ${props => props.theme.fontBold};
-        
+
         ${media.sm`
             display: none;
         `}
     }
-    
+
     ${media.sm`
         display: table-cell;
         padding: ${props => props.theme.space[3]}px ${props => props.theme.space[4]}px;
     `}
-    
+
     ${media.md`
         padding: ${props => props.theme.space[5]}px ${props => props.theme.space[6]}px;
-    `}    
+    `}
 `;
 
 const TableComponent = ({ columns, rowComponent: RowComponent, rowData, rowOperations }) => (

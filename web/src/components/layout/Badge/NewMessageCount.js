@@ -26,7 +26,7 @@ const NewMessagesContainer = styled.div`
 
 const NewMessageCount = ({ newMessages, totalMessages }) => (
     <NewMessageCountContainer justifyContent={'center'}>
-        <Flex ml={'10px'}>
+        <Flex ml={[0, 2, 2]}>
             <Icon name={IconMap.Envelope} />
             {newMessages > 0 &&
                 <CircleContainer>
