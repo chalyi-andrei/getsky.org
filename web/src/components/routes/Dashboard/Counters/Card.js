@@ -57,7 +57,7 @@ const Card = ({ width, title, totalAmount, leftTitle, leftAmount, rightTitle, ri
             <TopBoxContent style={CenterText}>{title}</TopBoxContent>
         </TopBox>
         {!tipMessage &&
-            <Flex py={'21px'}>
+            <Flex py={4}>
                 <LeftBox flex='1 1 auto'>
                     <BoxTitle style={CenterText}>{leftAmount}</BoxTitle>
                     <BoxContent style={CenterText}>{leftTitle}</BoxContent>
@@ -69,7 +69,10 @@ const Card = ({ width, title, totalAmount, leftTitle, leftAmount, rightTitle, ri
             </Flex>
         }
         {tipMessage &&
-            <Box style={CenterText} alignItems={'center'} pt={7}>
+            <Box
+                style={{ height: '84px', textAlign: 'center' }}
+                pt={[5, 6, 6]}
+                px={1}>
                 {tipMessage}
             </Box>
         }
