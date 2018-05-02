@@ -16,7 +16,7 @@ const ToggleButton = styled.button`
     height: 30px;
     width: 30px;
     padding: 0;
-    border: 0;
+    border: none;
     box-shadow: none;
     cursor: pointer;
     
@@ -125,35 +125,8 @@ const Wrapper = styled(Flex) `
     }
 `;
 
-const withActiveProp = (Component) => {
-    const C = (props) => {
-        const matched = null;
-        const active = props.to && (matched != null) && matched.isExact;
-        return (
-            <Component
-                {...props}
-                active={active}
-            />
-        );
-    };
-
-    C.displayName = `withActiveProp(${Component.displayName || Component.name})`;
-    C.WrappedComponent = Component;
-    C.propTypes = {
-        location: PropTypes.shape({
-            pathname: PropTypes.string.isRequired,
-        }).isRequired,
-        to: PropTypes.string,
-    };
-    C.defaultProps = {
-        to: undefined,
-    };
-
-    return C;
-};
-
 /* eslint-disable no-nested-ternary */
-const StyledLink = withActiveProp(styled(Link) `
+const StyledLink = styled(Link) `
     display: flex;
     align-items: center;
     width: auto;
@@ -165,7 +138,7 @@ const StyledLink = withActiveProp(styled(Link) `
     font-family: ${props => props.theme.fontFamilies.sans};
     color: ${props => props.theme.colors.blue};
     text-decoration: none;
-    border: ${props => props.border ? '1px solid white' : ''};
+    border: ${props => props.borderVisible ? '1px solid white' : ''};
 
     &:hover {
         opacity: .8;
@@ -190,7 +163,7 @@ const StyledLink = withActiveProp(styled(Link) `
     ${media.lg`
         margin-left: ${props => rem(props.theme.space[7])};
     `}
-`);
+`;
 
 const Overlay = styled.div`
     display: ${props => (props.visible ? 'block' : 'none')};
@@ -245,11 +218,14 @@ class Navigation extends React.PureComponent {
                 <Overlay visible={menuVisible} />
                 <Container>
                     <Scrollable menuVisible={menuVisible}>
-                        <Wrapper wrap>
+                        <Wrapper>
                             <MenuClose onClick={this.toggleMenu} />
                             <GroupWrapper show>
                                 {navItems.map(nv =>
-                                    <StyledLink key={nv.url} border={nv.border} to={nv.url}>
+                                    <StyledLink
+                                        key={nv.url}
+                                        border={nv.border ? '1px solid white' : ''}
+                                        to={nv.url}>
                                         {nv.name}
                                     </StyledLink>
                                 )}
