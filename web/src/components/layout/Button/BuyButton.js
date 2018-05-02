@@ -9,7 +9,7 @@ const BuyButton = ({ push, text, className, primary, ...rest }) => (
     <Button
         text={text}
         className={className}
-        onClick={() => push('postings/buy')}
+        onClick={() => push('/postings/buy')}
         primary={primary}
         {...rest}
     />

@@ -30,7 +30,7 @@ const FormPostingToBuy = ({ states, countries, country, handleSubmit, submitting
                     name="cashAmount"
                     component={FormRangedSingleInput}
                     placeholder={'SKY'}
-                    label={'What is the amount of cash you will pay in SKY?'}
+                    label={'What is the amount of SKY you will buy?'}
                     parse={({ from, to, mode }) => {
                         return {
                             from: from !== '' ? new Decimal(from) : '',

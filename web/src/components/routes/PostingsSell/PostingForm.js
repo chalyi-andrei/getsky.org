@@ -31,7 +31,7 @@ const FormPostingToSell = ({ states, countries, country, skyPrices, handleSubmit
                     name="cashAmount"
                     component={FormRangedSingleInput}
                     placeholder={'SKY'}
-                    label={'What is the amount of cash you will pay in SKY?'}
+                    label={'What is the amount of SKY you will sell?'}
                     isRequired
                     parse={({ from, to, mode }) => {
                         return {
