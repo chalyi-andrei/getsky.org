@@ -32,7 +32,6 @@ const ToggleButton = styled.button`
 const MenuClose = ToggleButton.extend`
     background: url(${cancelIc}) 0 0 no-repeat;
     position: absolute;
-    top: 82px;
     right: 53px;
     cursor: pointer;
 `;
@@ -68,8 +67,6 @@ const Scrollable = styled.div`
     position: relative;
     padding-right: 17px;
     right: -17px;
-    top: -60px;
-    padding-top: 60px;
 
     ${media.md`
         top: 0;
@@ -168,8 +165,6 @@ const StyledLink = styled(Link) `
 const Overlay = styled.div`
     display: ${props => (props.visible ? 'block' : 'none')};
     position: fixed;
-    top: -60px;
-    padding-top: 60px;
     height: 100%;
     bottom: 0;
     left: 0;
