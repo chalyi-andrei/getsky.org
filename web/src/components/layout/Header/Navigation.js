@@ -42,10 +42,10 @@ const MenuOpen = ToggleButton.extend`
 `;
 
 const Container = styled.div`
-    position: ${props => props.isMobile ? 'fixed' : 'relative'};
-    top: ${props => props.isMobile ? '0' : 'auto'};
-    bottom: ${props => props.isMobile ? '0' : 'auto'};
-    right: ${props => props.isMobile ? '-270px' : 'auto'};
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -270px;
     z-index: 2;
 
     ${media.md`
@@ -62,7 +62,7 @@ const Scrollable = styled.div`
     height: 100%;
 
     overflow-y: auto;
-    background: ${props => (props.isMobile ? props.theme.colors.white : 'transparent')};
+    background: ${props => props.theme.colors.white};
     transform: translateX(${props => (props.menuVisible ? '-270px' : '0')});
     transition: transform 400ms ease-in-out;
     position: relative;
@@ -82,13 +82,13 @@ const Scrollable = styled.div`
 `;
 
 const GroupWrapper = styled.div`
-    display: ${props => (props.show || props.isMobile ? 'flex' : 'none')};;
+    display: ${props => (props.show ? 'flex' : 'none')};;
     flex-wrap: wrap;
-    flex-direction: ${props => props.isMobile ? 'column' : 'row'};
-    width: ${props => props.isMobile ? 'auto' : '100%'};
-    margin-top: ${props => props.isMobile ? '0' : rem(props.theme.space[6])};
-    padding: ${props => props.isMobile ? rem(props.theme.space[5]) : '0'}  0;
-    font-size: ${props => props.isMobile ? props.theme.fontSizes[1] + 'px' : rem(props.theme.fontSizes[2])};
+    flex-direction: column;
+    width: auto;
+    margin-top: 0;
+    padding: ${props => rem(props.theme.space[5])}  0;
+    font-size: ${props => props.theme.fontSizes[1] + 'px'};
     text-align: left;
     ${media.sm`
         width: auto;
@@ -103,9 +103,9 @@ const GroupWrapper = styled.div`
 `;
 
 const Wrapper = styled(Flex) `
-    flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
-    width: ${props => (props.isMobile ? '270px' : 'auto')};
-    min-height: ${props => (props.isMobile ? '100%' : 'auto')};
+    flex-direction: column;
+    width: 270px;
+    min-height: 100%;
     text-align: left;
     ${media.md`
         flex-direction: row;
@@ -155,47 +155,34 @@ const withActiveProp = (Component) => {
 const StyledLink = withActiveProp(styled(Link) `
     display: flex;
     align-items: center;
-    width: ${props => props.isMobile ? 'auto' : '33.3333%'};
+    width: auto;
     margin: 0;
-    padding-top: ${props => props.isMobile ? rem(props.theme.space[3]) : rem(props.theme.space[1])}; 
-    padding-bottom: ${props => props.isMobile ? rem(props.theme.space[3]) : rem(props.theme.space[1])};
-    padding-left: ${props => props.isMobile ? rem(props.theme.space[8]) : '0'}; 
-    padding-right: ${props => props.isMobile ? rem(props.theme.space[8]) : '0'};
+    padding-top: ${props => rem(props.theme.space[3])};
+    padding-bottom: ${props => rem(props.theme.space[3])};
+    padding-left: ${props => rem(props.theme.space[8])}; 
+    padding-right: ${props => rem(props.theme.space[8])};
     font-family: ${props => props.theme.fontFamilies.sans};
-    color: ${props => !props.isMobile ? 'white' : (props.active ? props.theme.colors.white : props.theme.colors.blue)};
+    color: ${props => props.theme.colors.blue};
     text-decoration: none;
-    border: ${props => !props.isMobile && props.border ? '1px solid white' : ''};
+    border: ${props => props.border ? '1px solid white' : ''};
 
     &:hover {
-        color: ${props => !props.isMobile ? 'white' : props.theme.colors.white};
-        opacity: ${props => !props.isMobile ? '.7' : '1'};
+        opacity: .8;
         text-decoration: none;
     }
 
-    > span {
-        ${media.md`
-            display: ${props => props.social ? 'none' : 'inline-block'};
-        `}
-    }
-
     ${media.sm`
+        color: ${props => props.theme.colors.blue};
         width: auto;
-        margin-left: ${props => props.isMobile ? '0' : rem(props.theme.space[7])};
     `};
 
     ${media.md`
         margin-left: ${props => rem(props.theme.space[4])};
-        padding: ${props => rem(props.theme.space[1])};
-        border-top: 2px solid transparent;
-        border-bottom: 2px solid ${props => (props.active ? props.theme.colors.black : 'transparent')};
-        color: ${props => (props.active ? props.theme.colors.white : props.theme.colors.white)};
+        padding: ${props => rem(props.theme.space[2])};
+        color: ${props => props.theme.colors.white};
 
         &:first-child {
             margin-left: 0;
-        }
-
-        &:hover {
-            opacity: ${props => (props.isMobile ? '.8' : '1')};
         }
     `}
   
@@ -224,11 +211,7 @@ const Overlay = styled.div`
 `;
 
 const NavWrapper = styled.div`
-  width: ${props => (props.isMobile ? 'auto' : '100%')};
-  
-  ${media.sm`
     width: auto;
-  `}
 `;
 
 class Navigation extends React.PureComponent {
@@ -252,26 +235,24 @@ class Navigation extends React.PureComponent {
     }
 
     render() {
-        const { white, social, showBuy, showNav, isMobile, socialWhite, navItems } = this.props;
+        const { navItems } = this.props;
         const { menuVisible } = this.state;
 
         return (
-            <NavWrapper isMobile={isMobile}>
-                {isMobile && <MenuOpen onClick={this.toggleMenu} white={white} />}
+            <NavWrapper>
+                <MenuOpen onClick={this.toggleMenu} />
                 <Overlay visible={menuVisible} />
-                <Container isMobile={isMobile}>
-                    <Scrollable menuVisible={menuVisible} isMobile={isMobile}>
-                        <Wrapper wrap isMobile={isMobile}>
-                            {isMobile && <MenuClose onClick={this.toggleMenu} />}
-                            {showNav &&
-                                <GroupWrapper isMobile={isMobile} show>
-                                    {navItems.map(nv =>
-                                        <StyledLink key={nv.url} border={nv.border} isMobile={isMobile} to={nv.url}>
-                                            {nv.name}
-                                        </StyledLink>
-                                    )}
-                                </GroupWrapper>
-                            }
+                <Container>
+                    <Scrollable menuVisible={menuVisible}>
+                        <Wrapper wrap>
+                            <MenuClose onClick={this.toggleMenu} />
+                            <GroupWrapper show>
+                                {navItems.map(nv =>
+                                    <StyledLink key={nv.url} border={nv.border} to={nv.url}>
+                                        {nv.name}
+                                    </StyledLink>
+                                )}
+                            </GroupWrapper>
                         </Wrapper>
                     </Scrollable>
                 </Container>
@@ -281,21 +262,11 @@ class Navigation extends React.PureComponent {
 }
 
 Navigation.propTypes = {
-    white: PropTypes.bool,
-    social: PropTypes.bool,
-    showBuy: PropTypes.bool,
-    showNav: PropTypes.bool,
-    isMobile: PropTypes.bool,
-    socialWhite: PropTypes.bool,
+    navItems: PropTypes.array,
 };
 
 Navigation.defaultProps = {
-    white: false,
-    social: false,
-    showBuy: false,
-    showNav: true,
-    isMobile: false,
-    socialWhite: false,
+    navItems: PropTypes.array,
 };
 
 export default Navigation;
