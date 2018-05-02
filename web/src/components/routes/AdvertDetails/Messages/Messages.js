@@ -118,6 +118,8 @@ const NewMessagesInfo = styled.span`
 const MessagesInfo = styled(Box) `
     color: ${props => props.theme.colors.grayBlue};
     font-size: ${props => props.theme.fontSizes[0]}px;
+    padding-top: 8px;
+    min-width: 80px;
 
     div {
         float: left;
@@ -135,7 +137,7 @@ const ShowMoreLink = styled(BaseLink) `
     text-align: center;
 `;
 
-const AuthorInfo = styled.div`
+const AuthorInfo = styled(Box)`
     width: 100%;
 `;
 
@@ -145,7 +147,7 @@ const ShowMoreLinkContainer = styled.div`
 `;
 
 const Author = ({ backToUsers, selectedAuthor, messages, userInfo, allMessagesVisible, showAllMessages }) => (
-    <AuthorInfo>
+    <AuthorInfo mt={[2, 0, 0]}>
         <BackLink onClick={backToUsers}>
             <Icon name={IconMap.AngleLeft} />
             Back to users
@@ -158,7 +160,10 @@ const Author = ({ backToUsers, selectedAuthor, messages, userInfo, allMessagesVi
             <Heading>Messages from {selectedAuthor}</Heading>
             <MessagesInfo>
                 <Icon name={IconMap.Envelope} />
-                <NewMessagesInfo> {messages.filter(m => m.author !== userInfo.username && !m.isRead).length} new </NewMessagesInfo> / {messages.length}
+                <NewMessagesInfo>
+                    {messages.filter(m => m.author !== userInfo.username && !m.isRead).length} new
+                </NewMessagesInfo>
+                / {messages.length}
             </MessagesInfo>
         </UsernameContainer>
         {!allMessagesVisible && <ShowMoreLinkContainer>

@@ -41,10 +41,11 @@ const PositionName = styled(Box) `
 `;
 
 const PositionValue = styled(Box) `
-    font-size: ${props => props.theme.fontSizes[3]}px;
+    font-size: ${props => props.theme.fontSizes[2]}px;
     margin-top: ${props => props.theme.space[1]}px;
 
     ${media.md`
+        font-size: ${props => props.theme.fontSizes[3]}px;
         margin-top: 0px;
     `}
 `;
