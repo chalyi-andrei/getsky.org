@@ -15,6 +15,7 @@ const SellButton = ({ push, text, className, ...rest }) => (
         text={text}
         className={className}
         onClick={() => push('/postings/sell')}
+        {...rest}
     />
 );
 
