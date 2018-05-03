@@ -11,7 +11,7 @@ const Text = styled(Box) `
     color: ${theme.colors.grayBlue};
 `;
 
-const Link = styled.a `
+const Link = styled.a`
     font-size: ${theme.fontSizes[0]}px;
     color: ${theme.colors.grayBlue};
     text-decoration: underline;
@@ -23,12 +23,16 @@ const SkyPrice = ({ skyPrices }) => {
             <Text>
                 <Link href="https://coinmarketcap.com/currencies/skycoin/"> Latest Skycoin (SKY) price:</Link>
             </Text>
-            <Text ml={'12px'}>
-                USD {round(skyPrices.USD, 3)}
-            </Text>
-            <Text ml={'12px'}>
-                EUR {round(skyPrices.EUR, 3)}
-            </Text>
+            {skyPrices.USD &&
+                <Text ml={'12px'}>
+                    USD {round(skyPrices.USD, 3)}
+                </Text>
+            }
+            {skyPrices.EUR &&
+                <Text ml={'12px'}>
+                    EUR {round(skyPrices.EUR, 3)}
+                </Text>
+            }
         </Flex>
     );
 };
