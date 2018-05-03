@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
 import { Flex } from 'grid-styled';
+import debounce from 'debounce';
+
 import Icon, { IconMap } from 'components/layout/Icon';
 
 const ExpanderLabel = styled(Flex) `
@@ -25,36 +27,38 @@ export default class extends React.Component {
         label: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
         iconName: PropTypes.any,
     }
+
     state = {
         visible: false,
     }
+
     componentDidMount() {
-        document.addEventListener('touchend', this.hideExpander, true)
-        document.addEventListener('click', this.hideExpander, true)
+        document.addEventListener('touchend', this.hideExpander, false);
+        document.addEventListener('click', this.hideExpander, false);
     }
+
     componentWillUnmount() {
-        document.removeEventListener('touchend', this.hideExpander, true)
-        document.removeEventListener('click', this.hideExpander, true)
+        document.removeEventListener('touchend', this.hideExpander, false);
+        document.removeEventListener('click', this.hideExpander, false);
     }
-    hideExpander = () => {
+
+    hideExpander = debounce((e) => {
         if (this.state.visible) {
             this.setState({ ...this.state, visible: false });
         }
-    }
-    toggleExpander = visible => {
+    }, 40);
+
+    toggleExpander = debounce(visible => {
         this.setState({ ...this.state, visible, });
-    }
+    }, 50);
+
     render() {
         const { visible } = this.state;
         const { iconName, openedColor, closedColor } = this.props
 
         return (
             <div>
-                <ExpanderLabel onClick={e => {
-                    e.nativeEvent.stopImmediatePropagation();
-                    e.stopPropagation();
-                    this.toggleExpander(!visible);
-                }}>
+                <ExpanderLabel onClick={e => this.toggleExpander(!visible)}>
                     {this.props.label && <TextLabel>{this.props.label}</TextLabel>}
                     {visible && <Icon name={iconName || IconMap.CaretUp} color={openedColor || 'white'} />}
                     {!visible && <Icon name={iconName || IconMap.CaretDown} color={closedColor || 'white'} />}
@@ -62,6 +66,7 @@ export default class extends React.Component {
                 <div style={visible ? visibleStyle : hiddenStyle}>
                     {this.props.children}
                 </div>
+
             </div >);
     }
 }

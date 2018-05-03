@@ -33,6 +33,7 @@ const MenuClose = ToggleButton.extend`
     background: url(${cancelIc}) 0 0 no-repeat;
     position: absolute;
     right: 53px;
+    top: 20px;
     cursor: pointer;
 `;
 
@@ -79,12 +80,12 @@ const Scrollable = styled.div`
 `;
 
 const GroupWrapper = styled.div`
-    display: ${props => (props.show ? 'flex' : 'none')};;
+    display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     width: auto;
-    margin-top: 0;
-    padding: ${props => rem(props.theme.space[5])}  0;
+    margin-top: 50;
+    padding: ${props => rem(props.theme.space[7])}  0;
     font-size: ${props => props.theme.fontSizes[1] + 'px'};
     text-align: left;
     ${media.sm`
@@ -93,7 +94,6 @@ const GroupWrapper = styled.div`
     `};
     
     ${media.md`
-        display: ${props => (props.show ? 'flex' : 'none')};
         flex-direction: row;
         padding: 0;
     `}
@@ -214,7 +214,7 @@ class Navigation extends React.PureComponent {
                     <Scrollable menuVisible={menuVisible}>
                         <Wrapper>
                             <MenuClose onClick={this.toggleMenu} />
-                            <GroupWrapper show>
+                            <GroupWrapper>
                                 {navItems.map(nv =>
                                     <StyledLink
                                         key={nv.url}
