@@ -58,7 +58,11 @@ export default class extends React.Component {
 
         return (
             <div>
-                <ExpanderLabel onClick={e => this.toggleExpander(!visible)}>
+                <ExpanderLabel onClick={e => {
+                    e.nativeEvent.stopImmediatePropagation();
+                    e.stopPropagation();
+                    this.toggleExpander(!visible);
+                }}>
                     {this.props.label && <TextLabel>{this.props.label}</TextLabel>}
                     {visible && <Icon name={iconName || IconMap.CaretUp} color={openedColor || 'white'} />}
                     {!visible && <Icon name={iconName || IconMap.CaretDown} color={closedColor || 'white'} />}
