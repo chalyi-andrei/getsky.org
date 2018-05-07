@@ -6,7 +6,8 @@ const H2 = styled.h2`
     line-height: 28px;
     margin: 0px;
     font-family: ${props => props.theme.fontBold};
-    
+    width: ${props => (props.wide ? '100%' : 'auto')};
+
     ${space}
     ${fontSize}
 `;

@@ -14,6 +14,7 @@ import Table from 'components/layout/Table';
 import { AdvertRow } from 'components/layout/TableAdverts';
 import { Tab, Tabs, TabList, TabPanel } from 'components/layout/Tabs';
 import Filters from './Filters';
+import Breadcrumbs from '../../layout/Breadcrumbs/Breadcrumbs';
 
 import { searchAdverts, setFilters, clearFilters } from "./actions";
 
@@ -30,22 +31,6 @@ const sellAdvertsColumns = [
     { name: 'Trade options' },
     { name: 'Expired', style: { width: '170px' } },
 ];
-
-const BreadcrumbLink = styled(Link) `
-    font-size: 12px;
-    color: ${props => props.theme.colors.grayBlue};
-`;
-
-const BreadcrumbLabel = styled.span`
-    font-size: 12px;
-    color: ${props => props.theme.colors.grayBlue};
-    
-    &:before {
-        content: '/';
-        margin-left: ${props => props.theme.space[2]}px;
-        margin-right: ${props => props.theme.space[2]}px;
-    }
-`;
 
 const FiltersWrapper = styled.div`
     background: ${props => props.theme.colors.lightGray2};
@@ -128,10 +113,7 @@ class SearchAdverts extends React.Component {
         return (
             <div>
                 <Helmet><title>{getPageTitle('Search advert')}</title></Helmet>
-                <Container flex="1 0 auto" flexDirection="row" py={4}>
-                    <BreadcrumbLink to="/">Home</BreadcrumbLink>
-                    <BreadcrumbLabel>Search adverts</BreadcrumbLabel>
-                </Container>
+                <Breadcrumbs page="Search adverts" />
                 <FiltersWrapper>
                     <Container flex="1 0 auto" flexDirection="column" py={5}>
                         <Filters

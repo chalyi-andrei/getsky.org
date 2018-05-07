@@ -1,17 +1,21 @@
 import React from 'react';
 import { Field, reduxForm, Form } from 'redux-form';
+import styled from 'styled-components';
 import { Box, Flex } from 'grid-styled';
 
 import { required, email, maxLength } from 'validation/rules';
 import { FormInput, FormTextArea, FormCaptcha } from '../../layout/Form';
 import { Submit } from 'components/layout/Button';
 
+const ContactForm = styled(Form)`
+    width: 100%;
+`;
 const r = required(v => v);
 const maxLength10K = maxLength(10000);
 
 const ContactUsForm = ({ handleSubmit, pristine, submitting, invalid }) => (
-    <Form onSubmit={handleSubmit}>
-        <Flex flexDirection="column" flexWrap="wrap" alignItems="center" justifyContent="center">
+    <ContactForm onSubmit={handleSubmit}>
+        <Flex flexDirection="column" flexWrap="wrap" alignItems="center" justifyContent="center" mt={30} >
             <Box w={1} mb={25}>
                 <Flex flexDirection="row" flexWrap="wrap" justifyContent="space-between" mx={-3}>
                     <Box width={[1, 1 / 2]} px={3}>
@@ -33,7 +37,7 @@ const ContactUsForm = ({ handleSubmit, pristine, submitting, invalid }) => (
                 <Submit disabled={invalid || pristine || submitting} showSpinner={submitting} text="Send Message" primary />
             </Flex>
         </Flex>
-    </Form>);
+    </ContactForm>);
 
 export default reduxForm({
     form: 'contactUsForm'
