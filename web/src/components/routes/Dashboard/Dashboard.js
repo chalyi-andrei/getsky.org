@@ -36,13 +36,12 @@ class Dashboard extends React.Component {
     }
 
     extendAdvert = () => {
-        this.toggleExtendConfirmation();
+        this.toggleExtendConfirmation({});
         this.props.extendExpirationDate(this.state.selectedAdvert.id);
     }
     deleteAdvert = () => {
         this.props.deleteAdvert(this.state.selectedAdvert.id);
-        this.toggleDeleteConfirmation();
-
+        this.toggleDeleteConfirmation({});
     }
     toggleDeleteConfirmation = advert => {
         this.setState({
