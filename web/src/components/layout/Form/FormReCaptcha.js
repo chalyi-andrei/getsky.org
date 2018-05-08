@@ -16,7 +16,7 @@ class ReCaptcha extends React.Component {
         const showError = !!(touched && (error || warning));
 
         return (
-            <ControlWrapper>
+            <ControlWrapper noSpace>
                 <ReCAPTCHA ref={cpt => { this.reCaptcha = cpt; }} sitekey={RE_CAPTCHA_KEY} onChange={onChange} />
                 {showError && <ErrorMessage>{error || warning}</ErrorMessage>}
             </ControlWrapper>
