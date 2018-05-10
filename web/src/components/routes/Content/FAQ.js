@@ -2,7 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import { getPageTitle } from 'utils';
-import { H1, H3, P } from 'components/layout/Text';
+import { H1, H2, P } from 'components/layout/Text';
+import Breadcrumbs from '../../layout/Breadcrumbs/Breadcrumbs';
 
 import TipToggles from './TipToggles';
 import TextContainer from './TextContainer';
@@ -10,7 +11,9 @@ import TextContainer from './TextContainer';
 const MT = '5px';
 
 export default () => (
-    <TextContainer flex='1 0 auto' flexDirection="column" py={5}>
+    <div>
+        <Breadcrumbs page="FAQ" />
+        <TextContainer flex='1 0 auto' flexDirection="column" py={5}>
         <Helmet><title>{getPageTitle('FAQ')}</title></Helmet>
         <H1>FAQ</H1>
 
@@ -50,4 +53,5 @@ export default () => (
             <P>No. BuySky was created so the Skycoin community had a place to transact p2p. You can however create an advert and offer your Skycoin for a different digital currency.</P>
         </TipToggles>
     </TextContainer>
+    </div>
 );
