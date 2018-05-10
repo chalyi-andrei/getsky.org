@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Box } from 'grid-styled';
 import { Helmet } from 'react-helmet';
+import media from 'media';
+
 
 import { getPageTitle } from 'utils';
 import Container from 'components/layout/Container';
@@ -21,12 +23,6 @@ const Intro = styled.div`
     padding: ${props => props.theme.space[9] * 2}px 0 0;
     color: ${props => props.theme.colors.white};
     
-    h1 {
-        font-family: ${props => props.theme.fontBold};
-        font-size: 38px;
-        line-height: 44px;
-        padding-top: 10px;
-    }
     
     p {
         max-width: 650px;
@@ -38,6 +34,18 @@ const Intro = styled.div`
 const IntroContainer = styled(Container)`
     background: url(${bgImage}) 100% 0 no-repeat;
     padding-bottom: ${props => props.theme.space[9] * 2}px;
+`;
+
+const H1 = styled.h1`
+    font-family: ${props => props.theme.fontBold};
+    font-size: 29px;
+    line-height: 38px;
+    padding-top: 10px;
+
+    ${media.sm`
+        font-size: 38px;
+        line-height: 44px;
+    `}
 `;
 
 export const buyAdvertsColumns = [
@@ -69,7 +77,7 @@ class LatestAdverts extends React.Component {
                 <Helmet><title>{getPageTitle('Latest adverts')}</title></Helmet>
                 <Intro className="intro">
                     <IntroContainer flexDirection="column">
-                        <h1>Buy and sell Skycoin <br />person-to-person with cash, by mail,<br /> money order & more…</h1>
+                        <H1>Buy and sell Skycoin <br />person-to-person with cash, by mail,<br /> money order & more…</H1>
                         <p>We never store Skycoin on this site so your money can't be hacked or stolen. All transactions are completely peer-to-peer (seller to buyer) and no email is required.</p>
                     </IntroContainer>
                 </Intro>
