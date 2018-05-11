@@ -34,3 +34,5 @@ ssh $RUN_USER@$IP -p $PORT <<EOF
   docker exec backend sh -c "cd /usr/local/go/src/github.com/skycoin/getsky.org/db/ && bash ./migrate.sh"
 EOF
 
+exit 0
+
