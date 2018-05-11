@@ -196,7 +196,7 @@ func TestRegisterHandler(t *testing.T) {
 		u := tradedb.NewUsers(sql)
 
 		w := httptest.NewRecorder()
-		server := &HTTPServer{authenticator: a, users: u, checkRecaptcha: FakeRecaptchaChecker, log: logger.InitLogger()}
+		server := &HTTPServer{authenticator: a, users: u, checkRecaptcha: FakeRecaptchaChecker, log: logger.InitLogger(), mailer: MailerMock{}}
 		server.validate = validator.New()
 		handler := server.setupRouter(test.StubSecure)
 

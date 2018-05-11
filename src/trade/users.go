@@ -132,7 +132,20 @@ func RegisterHandler(s *HTTPServer) httputil.APIHandler {
 
 		}
 
-		return nil
+		welcomeEmail :=
+			fmt.Sprintf("Welcome to Buysky.org <br/><br/>"+
+				"Please keep this email for your records. Your account information is as follows<br/>"+
+				"---<br/>"+
+				"Username: %s<br/>"+
+				"Password: %s<br/>"+
+				"---<br/><br/>"+
+				"Thank you for registering.", req.UserName, req.Password)
+		err = s.mailer.SendMail(&mail.Letter{
+			Body:    welcomeEmail,
+			Subject: "Welcome to Buysky.org",
+			To:      req.Email,
+		})
+		return err
 	}
 }
 
