@@ -137,7 +137,7 @@ const ShowMoreLink = styled(BaseLink) `
     text-align: center;
 `;
 
-const AuthorInfo = styled(Box)`
+const AuthorInfo = styled(Box) `
     width: 100%;
 `;
 
@@ -148,24 +148,26 @@ const ShowMoreLinkContainer = styled.div`
 
 const Author = ({ backToUsers, selectedAuthor, messages, userInfo, allMessagesVisible, showAllMessages }) => (
     <AuthorInfo mt={[2, 0, 0]}>
-        <BackLink onClick={backToUsers}>
-            <Icon name={IconMap.AngleLeft} />
-            Back to users
-        </BackLink>
-        <UsernameContainer
-            flexDirection="row"
-            justifyContent="space-between"
-            alignItems="flex-end"
-            mt={3} pb={5} mb={5}>
-            <Heading>Messages from {selectedAuthor}</Heading>
-            <MessagesInfo>
-                <Icon name={IconMap.Envelope} />
-                <NewMessagesInfo>
-                    {messages.filter(m => m.author !== userInfo.username && !m.isRead).length} new
+        {selectedAuthor
+            && <BackLink onClick={backToUsers}>
+                <Icon name={IconMap.AngleLeft} />
+                Back to users
+        </BackLink>}
+        {selectedAuthor
+            && <UsernameContainer
+                flexDirection="row"
+                justifyContent="space-between"
+                alignItems="flex-end"
+                mt={3} pb={5} mb={5}>
+                <Heading>Messages from {selectedAuthor}</Heading>
+                <MessagesInfo>
+                    <Icon name={IconMap.Envelope} />
+                    <NewMessagesInfo>
+                        {messages.filter(m => m.author !== userInfo.username && !m.isRead).length} new
                 </NewMessagesInfo>
-                / {messages.length}
-            </MessagesInfo>
-        </UsernameContainer>
+                    / {messages.length}
+                </MessagesInfo>
+            </UsernameContainer>}
         {!allMessagesVisible && <ShowMoreLinkContainer>
             <ShowMoreLink onClick={showAllMessages}>Show more </ShowMoreLink>
         </ShowMoreLinkContainer>}
@@ -336,16 +338,15 @@ class MessagesContainer extends React.Component {
 
         return (
             <div>
-                {selectedAuthor
-                    && <Author
-                        backToUsers={backToUsers}
-                        selectedAuthor={selectedAuthor}
+                <Author
+                    backToUsers={backToUsers}
+                    selectedAuthor={selectedAuthor}
 
-                        messages={messages}
-                        userInfo={userInfo}
+                    messages={messages}
+                    userInfo={userInfo}
 
-                        showAllMessages={showAllMessages}
-                        allMessagesVisible={allMessagesVisible} />}
+                    showAllMessages={showAllMessages}
+                    allMessagesVisible={allMessagesVisible} />
                 {messagesToShow.map((m, i) => (<Message key={i} m={m} userInfo={userInfo} />))}
                 <div
                     ref={e => { this.inputForm = e; }}>
@@ -354,9 +355,10 @@ class MessagesContainer extends React.Component {
                         messageText={messageText}
                         sendMessage={sendMessage} />
                 </div>
-                <ScrollToBottom onClick={this.scrollToBottom}>
-                    <Icon name={IconMap.AngleDown} />
-                </ScrollToBottom>
+                {messagesToShow.length > 5
+                    && <ScrollToBottom onClick={this.scrollToBottom}>
+                        <Icon name={IconMap.AngleDown} />
+                    </ScrollToBottom>}
             </div>
         );
     }
