@@ -65,6 +65,18 @@ const LinkWrapper = styled(Box).attrs({
     
 `;
 
+const DonationSection = styled(Box)`
+    background: ${props => props.theme.colors.darkBlue};
+`;
+
+const DonationText = styled(Box)`
+    color: ${props => props.theme.colors.grayBlue};
+    font-size: ${props => props.theme.fontSizes[1]}px;
+    margin: 20px 0;
+    text-align: center;
+    line-height: 20px;
+`;
+
 export default () => (
     <Box mt={[10, 12, 14]}>
         <Promo />
@@ -87,5 +99,10 @@ export default () => (
                 <MicroText order={[2, 3]} mt={[2, 4]} textAlign={['center', 'right']} width={[1, 1 / 5]}>©2018 GetSky.com. All rights reserved.</MicroText>
             </Container>
         </Background>
+        <DonationSection>
+            <Container justifyContent="center">
+                <DonationText>Buysky is fee-free and run entirely on donations. If you feel the team deserves to eat this week buy us lunch! <span role="img" aria-label="wink">&#x1f609;</span></DonationText>
+            </Container>
+        </DonationSection>
     </Box>
 );
