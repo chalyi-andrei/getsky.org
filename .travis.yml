@@ -29,7 +29,9 @@ before_install:
 
 deploy:
 - provider: script
-  script: sh $TRAVIS_BUILD_DIR/.travis/deploy.sh
+  script: 
+  - sh $TRAVIS_BUILD_DIR/.travis/deploy.sh
+  - kill $(jobs -p)
   skip_cleanup: true
   on:
     branch: master
