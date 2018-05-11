@@ -16,7 +16,10 @@ An online Skycoin advert platform, part of the [getsky.org](http://getsky.org)
 1. Follow the [instructions](./db/README.md) to apply migrations.
 
 ### Backend configuration
-1. Run backend using following command `go run ./trade.go -binding=127.0.0.1:8081 -mysql=localhost:3306 -recaptchaSecret=RECAPTCHA_SECRET -mailUsername=MAIL_USERNAME -mailPassword=MAIL_PASSWORD`
+1. Run backend using following command 
+```sh 
+$ go run ./trade.go -binding=127.0.0.1:8081 -mysql=localhost:3306 -recaptchaSecret=RECAPTCHA_SECRET -mailUsername=MAIL_USERNAME -mailPassword=MAIL_PASSWORD 
+```
 
 ### Client app configuration
 1. Copy content of the `repo_root/.nginx/nginx.conf` file to the `/etc/nginx/nginx.conf`
@@ -26,3 +29,16 @@ An online Skycoin advert platform, part of the [getsky.org](http://getsky.org)
 1. Find the line `proxy_pass        http://backend:8081` and change it to `proxy_pass        http://127.0.0.1:8081`
 1. Run `systemctl restart nginx`
 1. Copy built client to the `/usr/share/nginx/html` folder ([Instructions on how to build the client app](./web/README.md))
+
+## Deployment via docker
+### Required software
+1. Docker
+1. Nodejs
+1. Yarn
+
+### Deployment
+To set up the system run following commands:
+```sh
+$ make run-docker
+$ docker exec backend sh -c "cd /usr/local/go/src/github.com/skycoin/getsky.org/db/ && bash ./migrate.sh"
+```
