@@ -46,3 +46,4 @@ chrome-user-data
 
 # ---- data ----
 mysql_data/**
+.travis/id_rsa.getsky.deploy
