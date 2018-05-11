@@ -25,4 +25,4 @@ An online Skycoin advert platform, part of the [getsky.org](http://getsky.org)
 1. Copy content of the `repo_root/.nginx/vhost.d/proxy.conf` file to the `/etc/nginx/vhost.d/proxy.conf`
 1. Find the line `proxy_pass        http://backend:8081` and change it to `proxy_pass        http://127.0.0.1:8081`
 1. Run `systemctl restart nginx`
-1. Copy built client to the `/usr/share/nginx/html` folder
+1. Copy built client to the `/usr/share/nginx/html` folder ([Instructions on how to build the client app](./web/README.md))
