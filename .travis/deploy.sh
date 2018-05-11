@@ -35,4 +35,3 @@ ssh $RUN_USER@$IP -p $PORT <<EOF
 EOF
 
 ssh-agent -k
-kill $(jobs -p)
