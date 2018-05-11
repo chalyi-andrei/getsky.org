@@ -2,3 +2,4 @@
 # Front-end development
 Run `make run-local` from project root to start MySql DB in container and Go backend locally. </br>
 Run `yarn start` from `/web` to start node dev server with hot-reloading.  
+Run `yarn build` to build client app. Build client app will be located in the `./build` folder
