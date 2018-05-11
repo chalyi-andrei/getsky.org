@@ -30,7 +30,7 @@ before_install:
 deploy:
 - provider: script
   script: sh $TRAVIS_BUILD_DIR/.travis/deploy.sh
-  skip_cleanup: false
+  skip_cleanup: true
   on:
     branch: master
     repo: skycoin/getsky.org
