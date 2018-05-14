@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    container_name: "mysql"
+    restart: always
+    ports: 
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_DATABASE: getskytrade
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+  backend:
+    image: golang
+    container_name: "backend"
+    depends_on: 
+      - "mysql"
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      TRADE_MYSQL: "mysql:3306"
+      RECAPTCHA_SECRET: ${RECAPTCHA_SECRET}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+    volumes:
+      - ./cmd:/usr/local/go/src/github.com/skycoin/getsky.org/cmd
+      - ./db:/usr/local/go/src/github.com/skycoin/getsky.org/db
+      - ./src:/usr/local/go/src/github.com/skycoin/getsky.org/src
+      - ./vendor:/usr/local/go/src/github.com/skycoin/getsky.org/vendor
+    command: /bin/bash -c 'cd /usr/local/go/src/github.com/skycoin/getsky.org/cmd/trade/ && go run ./trade.go -binding=0.0.0.0:8081 -mysql=mysql:3306 -recaptchaSecret=${RECAPTCHA_SECRET} -mailUsername=${MAIL_USERNAME} -mailPassword=${MAIL_PASSWORD}'
+  web:
+    image: nginx
+    restart: always
+    container_name: "web"
+    depends_on: 
+      - "backend"
+    ports: 
+      - "80:80"
+    environment:
+      - NGINX_HOST=getskytrade
+      - NGINX_PORT=80
+    volumes:
+      - ./.nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./web/build/:/usr/share/nginx/html
+      - ./.nginx/certs/:/usr/share/nginx/cert-validation
+      - ./.nginx/vhost.d/proxy.test.conf:/etc/nginx/vhost.d/proxy.conf
+      - ./.nginx/certs/:/etc/nginx/certs/
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command: /bin/bash -c "rm -rf /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+
+

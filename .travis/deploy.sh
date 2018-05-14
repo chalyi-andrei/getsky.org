@@ -29,7 +29,7 @@ ssh $RUN_USER@$IP -p $PORT <<EOF
   export MAIL_PASSWORD=${MAIL_PASSWORD}
   cd $DEPLOY_DIR
   sudo service docker restart # restart docker service to prevent "timeout" errors (https://github.com/docker/compose/issues/3633#issuecomment-254194717)
-  make run-docker
+  make run-test-docker
   # run migrations
   docker exec backend sh -c "cd /usr/local/go/src/github.com/skycoin/getsky.org/db/ && bash ./migrate.sh"
 EOF

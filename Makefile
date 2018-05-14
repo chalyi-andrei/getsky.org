@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: trade test-api lint check db-schema stop-docker build-web run-web run-mysql run-docker help
+.PHONY: trade test-api lint check db-schema stop-docker build-web run-web run-mysql run-docker help run-test-docker
 
 build-web: ## Restores packages and builds web app
 	cd web; yarn install
@@ -14,7 +14,12 @@ stop-docker: ## Stops all docker containers
 docker-up: ## Starts docker containers
 	docker-compose up -d
 
+docker-test-up: ## Starts docker containers with test server configuration
+	docker-compose up -d -f docker-compose.test.yml
+
 run-docker: build-web docker-up ## Run all containers
+
+run-test-docker: build-web docker-test-up ## Run all containers with test server configuration
 
 trade: ## Run trade back-end. To add arguments, do 'make ARGS="--foo" trade'.
 	go run cmd/trade/trade.go ${ARGS}&
