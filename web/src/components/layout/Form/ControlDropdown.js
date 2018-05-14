@@ -32,8 +32,12 @@ const Select = styled.select`
     background: transparent;
     font-family: ${props => props.theme.fontLight};
     font-size: ${props => props.theme.fontSizes[1]}px;
-    -webkit-appearance: none;
     
+    appearance: none;
+    &::-ms-expand {
+        display: none;
+    }
+
     &:focus {
         outline: none;
         border: 1px solid ${props => props.theme.colors.blue};

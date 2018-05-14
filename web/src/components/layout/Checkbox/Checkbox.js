@@ -7,7 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 const CheckBoxInput = styled.input`
     font: normal normal normal 14px/1 FontAwesome;
-    -webkit-appearance: none;
+    appearance: none;
     background-color: transparent;
     color: black;
     border: 1px solid ${props => props.theme.colors.grayBlue};

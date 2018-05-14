@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const FormLabel = styled.label`
@@ -7,4 +8,8 @@ const FormLabel = styled.label`
     font-size: ${ props => props.theme.fontSizes[0]}px;
 `;
 
-export default FormLabel;
+export default ({ label, isRequired }) => 
+    <FormLabel>
+        {label || '\u00A0'}
+        {isRequired && '*'}
+    </FormLabel>;
