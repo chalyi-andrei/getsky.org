@@ -15,7 +15,7 @@ docker-up: ## Starts docker containers
 	docker-compose up -d
 
 docker-test-up: ## Starts docker containers with test server configuration
-	docker-compose up -d -f ./docker-compose.test.yml
+	docker-compose -f docker-compose.yml -f docker-compose.test.yml up -d
 
 run-docker: build-web docker-up ## Run all containers
 
