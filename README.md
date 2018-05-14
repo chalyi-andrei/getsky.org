@@ -42,3 +42,12 @@ To set up the system run following commands:
 $ make run-docker
 $ docker exec backend sh -c "cd /usr/local/go/src/github.com/skycoin/getsky.org/db/ && bash ./migrate.sh"
 ```
+
+## SSL configuration
+1. Follow [these instructions](https://certbot.eff.org/lets-encrypt/ubuntuxenial-other) to install certbot;
+2. Stop docker containers using following command `docker kill $(docker ps -q)` (optional, only if docker-compose is used)
+3. Run certbot: ``` sudo certbot certonly --webroot -w repo_root/.nginx/certs -d domain.name --register-unsafely-without-email -n --agree-tos ```
+4. Copy issued certificates to the `repo_root/.nginx/certs` directory (fullchain.pem and privkey.pem)
+5. Start docker containers: ` docker start $(docker ps -aq) `
+
+**Please note:** `./.nginx/vhost.d/proxy.test.conf` and `./.nginx/vhost.d/cert.test.conf` Nginx configuration files must be used instead of proxy.conf for manual installation to support SSL.
