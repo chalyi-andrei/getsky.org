@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import isUndefined from 'lodash/isUndefined';
 
 const ControlWrapper = styled.div`
     margin-top: ${props => props.theme.space[1]}px;
