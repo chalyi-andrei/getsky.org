@@ -40,13 +40,14 @@ class PostAdvert extends React.Component {
                 <Helmet><title>{getPageTitle(`${advertType === AdvertType.SELL ? 'Sell' : 'Buy'} advert`)}</title></Helmet>
                 <BackIcLink path='/dashboard' text='Dashboard' />
                 <PostingTitle />
-                <PostingForm
+                {userInfo && <PostingForm
+                    advertType={advertType}
                     countries={countries}
                     states={states}
                     onSubmit={this.onSubmit}
                     skyPrices={skyPrices}
-                    initialValues={userInfo && { ...userInfo, distance: { data: '', prefix: userInfo.distanceUnits }}} 
-                />
+                    initialValues={{ ...userInfo, distance: { data: '', prefix: userInfo.distanceUnits }}} 
+                />}
             </Container>
         )
     }
