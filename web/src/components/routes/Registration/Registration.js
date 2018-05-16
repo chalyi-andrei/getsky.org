@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { SubmissionError } from 'redux-form';
 import { Helmet } from 'react-helmet';
 import { Box } from 'grid-styled';
+import moment from 'moment';
 
 import { getPageTitle } from 'utils';
 import Container from 'components/layout/Container';
@@ -26,7 +27,7 @@ class Registration extends React.Component {
                 <Helmet><title>{getPageTitle('Registration')}</title></Helmet>
                 <H2>Registration</H2>
                 <Box mt={2}>
-                    <RegistrationForm onSubmit={this.onSubmit} />
+                    <RegistrationForm onSubmit={this.onSubmit} initialValues={{ timeOffset: moment().utcOffset() / 60 }} />
                 </Box>
             </Container>
         );

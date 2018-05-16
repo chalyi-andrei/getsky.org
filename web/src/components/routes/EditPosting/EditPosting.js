@@ -3,17 +3,15 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Helmet } from 'react-helmet';
 
-import { getPageTitle } from 'utils';
+import { getPageTitle, AdvertType } from 'utils';
 import Container from 'components/layout/Container';
 import { BackIcLink } from 'components/layout/Links';
 
 import { requestAdvertDetails } from '../AdvertDetails/actions';
 import { saveAdvert } from './actions';
+import { ADVERT_BUY } from 'components/routes/PostingsPreview/actions';
 
-import { ADVERT_BUY, ADVERT_SELL } from 'components/routes/PostingsPreview/actions';
-
-import PostingBuyForm from '../PostingsBuy/PostingForm';
-import PostingSellForm from '../PostingsSell/PostingForm';
+import PostingForm from '../PostAdvert/PostingForm';
 
 const mapAcceptOptions = a => {
     return ['tradeCashByMail', 'tradeCashInPerson', 'tradeMoneyOrderByMail', 'tradeOther']
@@ -37,22 +35,16 @@ const mapAdvertDetailsToForm = a => (
     }
 );
 
-class PostingsBuy extends React.Component {
+class EditAdvert extends React.Component {
     componentWillMount() {
         this.props.requestAdvertDetails(this.props.match.params.id);
     }
     onSubmit = async form => {
         const { advertDetails, saveAdvert, push } = this.props;
-        let extraData = {};
-        if (advertDetails.type === ADVERT_BUY) {
-            extraData = {};
-        }
-        if (advertDetails.type === ADVERT_SELL) {
-            const { value } = form.pricePerCoin;
-            extraData = form.pricePerCoin.type === 'PERCENTAGE_ADJUSTMENT'
-                ? { percentageAdjustment: value, fixedPrice: null, }
-                : { percentageAdjustment: null, fixedPrice: value, };
-        }
+        const { value } = form.pricePerCoin;
+        const extraData = form.pricePerCoin.type === 'PERCENTAGE_ADJUSTMENT'
+            ? { percentageAdjustment: value, fixedPrice: null, }
+            : { percentageAdjustment: null, fixedPrice: value, };
 
         const advert = {
             additionalInfo: form.additionalInfo,
@@ -87,16 +79,7 @@ class PostingsBuy extends React.Component {
                     <title>{getPageTitle('Edit advert')}</title>
                 </Helmet>
                 <BackIcLink path='/dashboard' text='Dashboard' />
-                {advertDetails.type === ADVERT_BUY && <PostingBuyForm
-                    editMode
-                    enableReinitialize
-                    initialValues={mapAdvertDetailsToForm(advertDetails)}
-                    countries={countries}
-                    states={states}
-                    onSubmit={this.onSubmit}
-                    defaultCountry={userInfo ? userInfo.countryCode : undefined} />}
-
-                {advertDetails.type === ADVERT_SELL && <PostingSellForm
+                <PostingForm
                     editMode
                     enableReinitialize
                     initialValues={mapAdvertDetailsToForm(advertDetails)}
@@ -104,7 +87,9 @@ class PostingsBuy extends React.Component {
                     states={states}
                     skyPrices={skyPrices}
                     onSubmit={this.onSubmit}
-                    defaultCountry={userInfo ? userInfo.countryCode : undefined} />}
+                    user={userInfo}
+                    advertType={advertDetails.type === ADVERT_BUY ? AdvertType.BUY : AdvertType.SELL} 
+                />
             </Container>
         )
     }
@@ -118,4 +103,4 @@ const mapStateToProps = ({ app, advertDetails }) => ({
     advertDetails,
 });
 
-export default connect(mapStateToProps, { push, requestAdvertDetails, saveAdvert })(PostingsBuy);
+export default connect(mapStateToProps, { push, requestAdvertDetails, saveAdvert })(EditAdvert);

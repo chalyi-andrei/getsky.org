@@ -4,50 +4,17 @@ import PropTypes from 'prop-types';
 import ControlDropdown from './ControlDropdown';
 import FormItem from './FormItem';
 
-class FormDropdown extends React.Component {
-    componentDidMount() {
-        // ReduxForm doesn't have a prop for 'defaultValue'. You need to set it manually.
-        const { defaultValue, options, input: { value, onChange }, triggerOnChange } = this.props;
+const FormDropdown = props => {
+    const { label, isRequired, options, description, input: { name, onChange }, meta: { error, warning, touched }, disabled } = props;
+    const showError = !!(touched && (error || warning));
 
-        if (!triggerOnChange) return;
+    return (
+        <FormItem name={name} label={label} isRequired={isRequired} description={description} showError={showError} error={error}>
+            <ControlDropdown {...props} name={name} onChange={onChange} options={options} disabled={disabled} />
+        </FormItem>
+    );
+};
 
-        if (defaultValue) {
-            if (!value) {
-                onChange(defaultValue);
-            }
-        } else if (options.length > 0) {
-            if (!value) {
-                onChange(options[0].value);
-            }
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        const { defaultValue, options, input: { onChange }, triggerOnChange } = this.props;
-
-        if (!triggerOnChange) return;
-
-        // ReduxForm doesn't have a prop for 'defaultValue'. You need to set it manually.
-        if (prevProps.options.length === 0 && options.length > 0) {
-            if (defaultValue) {
-                onChange(defaultValue);
-            } else {
-                onChange(options[0].value);
-            }
-        }
-    }
-
-    render() {
-        const { label, defaultValue, isRequired, options, description, input: { name, onChange }, meta: { error, warning, touched }, disabled } = this.props;
-        const showError = !!(touched && (error || warning));
-
-        return (
-            <FormItem name={name} label={label} isRequired={isRequired} description={description} showError={showError} error={error}>
-                <ControlDropdown {...this.props} name={name} onChange={onChange} defaultValue={defaultValue} options={options} disabled={disabled} />
-            </FormItem>
-        );
-    }
-}
 
 FormDropdown.propTypes = {
     input: PropTypes.shape({
@@ -62,12 +29,6 @@ FormDropdown.propTypes = {
     label: PropTypes.string,
     isRequired: PropTypes.bool,
     options: PropTypes.array,
-    defaultValue: PropTypes.any,
-    triggerOnChange: PropTypes.bool,
-}
-
-FormDropdown.defaultProps = {
-    triggerOnChange: true
 }
 
 export default FormDropdown;

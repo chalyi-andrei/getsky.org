@@ -20,12 +20,9 @@ const passwordsMatch = (value, allValues) => allValues.password && value !== all
 
 class RegistrationForm extends React.Component {
     timeOffsets = [];
-    defaultOffset = 0;
 
     componentWillMount() {
         const date = moment();
-        this.defaultOffset = date.utcOffset() / 60;
-
         for (let i = UTC_OFFSET_FROM; i <= UTC_OFFSET_TO; i++) {
             const timeOffset = date.utcOffset(i).format('LLL');
             const offset = i >= 0 ? `+${i}` : i;
@@ -85,7 +82,7 @@ class RegistrationForm extends React.Component {
                         validate={[r, passwordsMatch]}
                         isRequired
                     />
-                    <Field name="timeOffset" component={FormDropdown} options={this.timeOffsets} label="Your local time" validate={[r]} parse={parseInt} defaultValue={this.defaultOffset} isRequired />
+                    <Field name="timeOffset" component={FormDropdown} options={this.timeOffsets} label="Your local time" validate={[r]} parse={parseInt} isRequired />
                     <Field name="recaptcha" component={FormCaptcha} validate={[r]} withRef ref={r => { this.recaptchaField = r }} isRequired />
                     <Button type="submit" disabled={pristine || submitting} text="Register" primary />
                 </Box>

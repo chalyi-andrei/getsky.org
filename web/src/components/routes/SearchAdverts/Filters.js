@@ -5,8 +5,7 @@ import { Flex, Box } from 'grid-styled';
 import { Field, Fields, reduxForm, Form, formValueSelector, change } from 'redux-form';
 import { FormDropdown, FormInput, FormCheckbox, FormLabel } from 'components/layout/Form';
 import { Button } from 'components/layout/Button';
-import { ACCEPT_TRADE_OPTIONS } from 'components/layout/PostingForm';
-import { COUNTRY_HAS_STATES } from 'constants/index';
+import { ACCEPT_TRADE_OPTIONS, COUNTRY_HAS_STATES } from 'constants/index';
 
 const ConnectedDropdowns = (fields) => (
     <Flex mx={-4} flexWrap="wrap">

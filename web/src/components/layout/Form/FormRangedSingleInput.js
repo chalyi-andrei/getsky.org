@@ -94,7 +94,6 @@ RangedSingleInput.propTypes = {
     label: PropTypes.string,
     isRequired: PropTypes.bool,
     options: PropTypes.array,
-    defaultValue: PropTypes.any,
     min: PropTypes.number,
     max: PropTypes.number,
 };

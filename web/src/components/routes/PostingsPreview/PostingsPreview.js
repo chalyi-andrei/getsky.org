@@ -4,20 +4,13 @@ import { push } from 'react-router-redux';
 import { Box } from 'grid-styled';
 import { Helmet } from 'react-helmet';
 
-import { getPageTitle } from 'utils';
+import { getPageTitle, AdvertType, getAdvertTypeFromLocation } from 'utils';
 import Container from 'components/layout/Container';
 import { BackIcLink } from 'components/layout/Links';
 import { H1, B, P } from 'components/layout/Text';
 import { Warning } from 'components/layout/Alerts';
 import FormPreview from './FormPreview';
 import { createBuyAdvert, createSellAdvert } from './actions';
-
-const AdvertTypes = {
-    BUY: 'buy',
-    SELL: 'sell',
-};
-
-const getAdvertTypeFromLocation = (reactLocation) => reactLocation.pathname.includes('buy') ? AdvertTypes.BUY : AdvertTypes.SELL;
 
 const ExchangeRateWarningBuy = () => (
     <Box mb={'10px'}>
@@ -61,7 +54,7 @@ class PostingsPreview extends React.Component {
         const advertType = getAdvertTypeFromLocation(this.props.location);
         const preparedPreview = { ...this.props.preview, recaptcha: form.recaptcha };
 
-        if (advertType === AdvertTypes.BUY) {
+        if (advertType === AdvertType.BUY) {
             this.props.createBuyAdvert(preparedPreview);
         } else {
             this.props.createSellAdvert(preparedPreview);
@@ -74,10 +67,10 @@ class PostingsPreview extends React.Component {
 
         return (
             <Container flex='1 0 auto' flexDirection='column' py={5}>
-                <Helmet><title>{getPageTitle(advertType === AdvertTypes.BUY ? 'Buy advert preview' : 'Sell advert preview')}</title></Helmet>
+                <Helmet><title>{getPageTitle(advertType === AdvertType.BUY ? 'Buy advert preview' : 'Sell advert preview')}</title></Helmet>
                 <BackIcLink path={`/postings/${advertType}`} text='Edit advert' />
                 <H1>Advert preview</H1>
-                {advertType === AdvertTypes.BUY
+                {advertType === AdvertType.BUY
                     ? <ExchangeRateWarningBuy />
                     : <ExchangeRateWarningSell />
                 }

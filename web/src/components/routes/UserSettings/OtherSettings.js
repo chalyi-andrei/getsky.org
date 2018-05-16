@@ -40,7 +40,6 @@ export default reduxForm({ form: 'userOtherSettingsForm' })(
                         <Field
                             name="distanceUnits"
                             component={FormDropdown}
-                            defaultValue={'ml'}
                             options={distanceUnits}
                             label="Distance units" />
 

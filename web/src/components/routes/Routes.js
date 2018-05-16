@@ -7,9 +7,8 @@ import LatestAdverts from './LatestAdverts';
 import SearchAdverts from './SearchAdverts';
 import Registration from './Registration';
 import Login from './Login';
-import PostingsBuy from './PostingsBuy';
+import PostAdvert from './PostAdvert';
 import PostingsPreview from './PostingsPreview';
-import PostingsSell from './PostingsSell';
 import AdvertDetails from './AdvertDetails';
 import UserSettings from './UserSettings';
 import Dashboard from './Dashboard';
@@ -54,9 +53,9 @@ const Routes = ({ match }) => {
             <PrivateRoute path={`/dashboard`} component={Dashboard} />
             <PrivateRoute path={`/user-settings`} component={UserSettings} />
             <PrivateRoute path={`/postings/buy/preview`} component={PostingsPreview} />
-            <PrivateRoute path={`/postings/buy`} component={PostingsBuy} />
             <PrivateRoute path={`/postings/sell/preview`} component={PostingsPreview} />
-            <PrivateRoute path={`/postings/sell`} component={PostingsSell} />
+            <PrivateRoute path={`/postings/sell`} component={PostAdvert} />
+            <PrivateRoute path={`/postings/buy`} component={PostAdvert} />
             <PrivateRoute path={`/edit-post/:id`} component={EditPosting} />
 
             <Route path={`/`} component={LatestAdverts} />

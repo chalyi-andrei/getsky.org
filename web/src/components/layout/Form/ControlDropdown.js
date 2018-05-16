@@ -44,18 +44,16 @@ const Select = styled.select`
     }
 `;
 
-const ControlDropdown = ({ name, options, defaultValue, onChange, error, input, disabled }) => (
+const ControlDropdown = ({ name, options, onChange, error, input, disabled }) =>
     <SelectWrapper>
-        <Select name={name} value={input && input.value} onChange={onChange} defaultValue={defaultValue} error={error} disabled={disabled} >
+        <Select name={name} value={input && input.value} onChange={onChange} error={error} disabled={disabled} >
             <option value="" disabled>Select</option>
             {options.map((item, i) => <option value={item.value} key={i}>{item.text}</option>)}
         </Select>
-    </SelectWrapper>
-);
+    </SelectWrapper>;
 
 ControlDropdown.propTypes = {
     name: PropTypes.string.isRequired,
-    defaultValue: PropTypes.any,
     onChange: PropTypes.func.isRequired,
     options: PropTypes.arrayOf(PropTypes.shape({
         value: PropTypes.any.isRequired,

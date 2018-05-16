@@ -106,7 +106,7 @@ export default connect(
                             <h2>Other settings</h2>
                             <OtherSettings
                                 enableReinitialize
-                                initialValues={userInfo ? { ...userInfo, timeOffset: userInfo.timeOffset.toString() } : {}}
+                                initialValues={userInfo ? { ...userInfo, timeOffset: userInfo.timeOffset.toString(), distanceUnits: 'ml' } : {}}
                                 onSubmit={this.saveOtherForm} />
                         </Box>
 

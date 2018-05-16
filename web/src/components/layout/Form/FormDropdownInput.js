@@ -9,23 +9,6 @@ import FormItem from './FormItem';
 const inputStyle = { borderRight: 0 };
 
 class FormDropdownInput extends React.Component {
-    componentWillMount() {
-        const { defaultValue, input: { value, onChange } } = this.props;
-
-        if (value === '') {
-            onChange(defaultValue);
-        }
-    }
-
-    componentWillReceiveProps(newProps) {
-        const { input: { onChange } } = this.props;
-
-        if (this.props.defaultValue.data !== newProps.defaultValue.data
-            || this.props.defaultValue.prefix !== newProps.defaultValue.prefix) {
-            onChange(newProps.defaultValue);
-        }
-    }
-
     onChangeText = e => {
         const { input: { onChange, value } } = this.props;
         onChange({ ...value, data: e.target.value });
@@ -50,7 +33,6 @@ class FormDropdownInput extends React.Component {
                         <ControlDropdown
                             name={`${name}_input_options`}
                             options={options}
-                            defaultValue={value ? value.prefix : ''}
                             value={value ? value.prefix : ''}
                             input={{ value: value ? value.prefix : '' }}
                             onChange={this.onChangeDropdownValue}

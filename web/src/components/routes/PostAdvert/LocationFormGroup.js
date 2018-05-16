@@ -9,17 +9,16 @@ const placeHolder = `Example: I can meet in the Starbucks on Main St,\nin McDona
 
 const r = required();
 
-const LocationFormGroup = ({ states, countries, showStates, defaultCountry }) => (
+const LocationFormGroup = ({ states, countries, showStates }) =>
     <FormGroup label={'Your location'}>
-        <Field name="countryCode" component={FormDropdown} options={countries} label={'Country'} isRequired validate={[r]} defaultValue={defaultCountry} />
+        <Field name="countryCode" component={FormDropdown} options={countries} label={'Country'} isRequired validate={[r]} />
         {showStates &&
             <Field name="stateCode" component={FormDropdown} options={states} label={'State'} isRequired validate={[r]} />
         }
         <Field name="city" component={FormInput} label={'City'} isRequired validate={[r]} />
         <Field name="postalCode" component={FormInput} label={'Postal code (required for most countries)'} isRequired validate={[r]} />
         <Field name="additionalInfo" component={FormTextArea} label={'Additional information (optional)'} tip={'Up to 3,000 characters'} placeholder={placeHolder} />
-    </FormGroup>
-);
+    </FormGroup>;
 
 LocationFormGroup.propTypes = {
     states: PropTypes.arrayOf(PropTypes.shape({

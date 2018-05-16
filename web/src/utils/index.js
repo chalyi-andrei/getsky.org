@@ -4,3 +4,10 @@ export const round = (value, decimals) => {
 }
 
 export const getPageTitle = (postfix) => `${postfix} - Buysky`;
+
+export const AdvertType = {
+    BUY: 'buy',
+    SELL: 'sell',
+};
+
+export const getAdvertTypeFromLocation = (reactLocation) => reactLocation.pathname.includes('buy') ? AdvertType.BUY : AdvertType.SELL;
