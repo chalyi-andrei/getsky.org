@@ -5,7 +5,8 @@ import { Flex, Box } from 'grid-styled';
 import { Field, Fields, reduxForm, Form, formValueSelector, change } from 'redux-form';
 import { FormDropdown, FormInput, FormCheckbox, FormLabel } from 'components/layout/Form';
 import { Button } from 'components/layout/Button';
-import { ACCEPT_TRADE_OPTIONS, COUNTRY_HAS_STATES } from 'constants/index';
+import { ACCEPT_TRADE_OPTIONS } from 'constants/index';
+import { countryHasStates } from 'utils';
 
 const ConnectedDropdowns = (fields) => (
     <Flex mx={-4} flexWrap="wrap">
@@ -22,7 +23,7 @@ const ConnectedDropdowns = (fields) => (
                 {...fields.stateCode}
                 options={fields.states}
                 triggerOnChange={false}
-                disabled={fields.countryCode.input.value !== COUNTRY_HAS_STATES}
+                disabled={!countryHasStates(fields.countryCode.input.value)}
                 label="State"
             />
         </Box>
@@ -44,7 +45,7 @@ class Filters extends React.PureComponent{
 
     componentWillUpdate(nextProps) {
         const { countryCode, stateCode } = this.props;
-        if (countryCode !== nextProps.countryCode && nextProps.countryCode !== COUNTRY_HAS_STATES && stateCode !== '') {
+        if (countryCode !== nextProps.countryCode &&  !countryHasStates(nextProps.countryCode) && stateCode !== '') {
             this.props.dispatch(change('filters', 'stateCode', ''));
         }
     }

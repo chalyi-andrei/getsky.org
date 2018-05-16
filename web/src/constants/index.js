@@ -10,8 +10,6 @@ export const RE_CAPTCHA_KEY = '6LcIDlkUAAAAACqwh2NQTvvpXzGxTNrfluexYDhL';
 export const SellFormName = 'formPostingToSell';
 export const BuyFormName = 'formPostingToBuy';
 
-export const COUNTRY_HAS_STATES = 'US';
-
 export const ACCEPT_TRADE_OPTIONS = [{
     title: 'Cash in person',
     value: 'tradeCashInPerson',

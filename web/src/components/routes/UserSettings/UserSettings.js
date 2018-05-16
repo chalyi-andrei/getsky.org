@@ -4,7 +4,7 @@ import { SubmissionError } from 'redux-form';
 import { Helmet } from 'react-helmet';
 import { Box } from 'grid-styled';
 
-import { getPageTitle } from 'utils';
+import { getPageTitle, countryInFormHasStates } from 'utils';
 import Container from 'components/layout/Container';
 
 import LocationForm from './LocationForm';
@@ -95,18 +95,17 @@ export default connect(
                         <h2>Your location</h2>
                         <LocationForm
                             enableReinitialize
-                            initialValues={userInfo ? { ...userInfo, timeOffset: userInfo.timeOffset.toString() } : {}}
-                            userInfo={userInfo || {}}
+                            initialValues={userInfo && { ...userInfo, timeOffset: userInfo.timeOffset.toString() }}
                             countries={countries}
                             states={states}
-                            showStates={locationForm && locationForm.values.countryCode === 'US'}
+                            showStates={countryInFormHasStates(locationForm)}
                             onSubmit={this.saveLocation} />
 
                         <Box mt={'30px'}>
                             <h2>Other settings</h2>
                             <OtherSettings
                                 enableReinitialize
-                                initialValues={userInfo ? { ...userInfo, timeOffset: userInfo.timeOffset.toString(), distanceUnits: 'ml' } : {}}
+                                initialValues={userInfo && { ...userInfo, timeOffset: userInfo.timeOffset.toString()}}
                                 onSubmit={this.saveOtherForm} />
                         </Box>
 

@@ -11,3 +11,7 @@ export const AdvertType = {
 };
 
 export const getAdvertTypeFromLocation = (reactLocation) => reactLocation.pathname.includes('buy') ? AdvertType.BUY : AdvertType.SELL;
+
+export const countryHasStates = countryCode => countryCode === 'US';
+
+export const countryInFormHasStates = form => form && form.values && countryHasStates(form.values.countryCode)

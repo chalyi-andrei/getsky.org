@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { reduxForm, Form, Field } from 'redux-form';
 import { Box } from 'grid-styled'
 import { Decimal } from 'decimal.js-light';
@@ -10,6 +11,7 @@ import LocationFormGroup from './LocationFormGroup';
 import AdditionalInformationSample from './AdditionalInformationSample';
 import FormCoinPriceInput from './FormCoinPriceInput';
 import { ACCEPT_TRADE_OPTIONS, DISTANCE_UNITS_OPTIONS } from 'constants/index';
+import { countryInFormHasStates } from 'utils';
 
 const RANGED_MIN = 1;
 const RANGED_MAX = 999999.9999999;
@@ -21,7 +23,7 @@ const rData = required(v => v ? v.data === 0 ? 1 : v.data : v);
 const minData0 = min(0, v => v.data);
 const maxData9999 = max(9999, v => v.data);
 
-const form = ({ advertType, states, countries, skyPrices, handleSubmit, editMode }) => {
+const PostAdvert = ({ advertType, states, countries, skyPrices, handleSubmit, editMode, theForm }) => {
     return(
         <Form onSubmit={handleSubmit} noValidate>
             <Box width={[1, 1, 1 / 2]}>
@@ -75,7 +77,7 @@ const form = ({ advertType, states, countries, skyPrices, handleSubmit, editMode
                         validate={[rData, minData0, maxData9999]}
                     />
                 </FormGroup>
-                <LocationFormGroup states={states} countries={countries} />
+                <LocationFormGroup states={states} countries={countries} showStates={countryInFormHasStates(theForm)} />
                 <AdditionalInformationSample />
                 <Button type="submit" text={editMode ? 'Save' : 'Next'} primary />
             </Box>
@@ -83,4 +85,6 @@ const form = ({ advertType, states, countries, skyPrices, handleSubmit, editMode
     );
 }
 
-export default reduxForm({ form: 'postAdvert', destroyOnUnmount: false })(form);
+export default connect(({ form }) => ({ theForm: form.postAdvert }))(
+    reduxForm({ form: 'postAdvert', destroyOnUnmount: false })(PostAdvert)
+);
