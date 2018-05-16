@@ -139,7 +139,7 @@ func RegisterHandler(s *HTTPServer) httputil.APIHandler {
 				"Username: %s<br/>"+
 				"---<br/><br/>"+
 				"Thank you for registering.", req.UserName)
-		s.mailer.SendMail(&mail.Letter{
+		_ = s.mailer.SendMail(&mail.Letter{
 			Body:    welcomeEmail,
 			Subject: "Welcome to Buysky.org",
 			To:      req.Email,
