@@ -96,7 +96,7 @@ class FormCoinPriceInput extends React.Component {
     onChange(e) {
         const { input: { onChange } } = this.props;
         const val = e.target.value;
-        const value = isNaN(parseInt(val, 10)) ? '' : parseInt(val, 10);
+        const value = isNaN(parseFloat(val)) ? '' : parseFloat(val);
 
         if (val === '') {
             onChange(null);
@@ -127,10 +127,10 @@ class FormCoinPriceInput extends React.Component {
                 </Flex>
                 <Flex mt={3} alignItems='center' >
                     {this.state.mode === PERCENTAGE_ADJUSTMENT &&
-                        <ControlInput type="number" placeholder={'percentage adjustment, e.g. 5'} error={showError} value={percentageAdjustment} onChange={this.onChange} />
+                        <ControlInput type="number" placeholder={'percentage adjustment, e.g. 5'} error={showError} min={0} max={100} step={0.01} value={percentageAdjustment} onChange={this.onChange} />
                     }
                     {this.state.mode === FIXED_PRICE &&
-                        <ControlInput type="number" placeholder={'USD'} error={showError} value={fixedPrice} onChange={this.onChange} />
+                        <ControlInput type="number" placeholder={'USD'} error={showError} value={fixedPrice} step={0.01} onChange={this.onChange} />
                     }
                 </Flex>
                 <Box mt={3}>

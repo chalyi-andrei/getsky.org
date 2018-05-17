@@ -44,6 +44,7 @@ const PostAdvert = ({ advertType, states, countries, skyPrices, handleSubmit, ed
                         validate={[rangedRequired, ranged, rMin, rMax]}
                         min={RANGED_MIN}
                         max={RANGED_MAX}
+                        step={0.01}
                     />
                     <Field
                         name="pricePerCoin"
@@ -53,8 +54,6 @@ const PostAdvert = ({ advertType, states, countries, skyPrices, handleSubmit, ed
                         skyPrices={skyPrices}
                         isRequired
                         validate={[r]}
-                        min={RANGED_MIN}
-                        max={RANGED_MAX}
                     />
                     <Field
                         name="acceptOptions"
@@ -69,11 +68,12 @@ const PostAdvert = ({ advertType, states, countries, skyPrices, handleSubmit, ed
                         name={'distance'}
                         component={FormDropdownInput}
                         options={DISTANCE_UNITS_OPTIONS}
-                        parse={(v) => ({ ...v, data: v.data ? parseInt(v.data, 10) : '' })}
+                        parse={(v) => ({ ...v, data: v.data ? parseFloat(v.data) : '' })}
                         label={'How far will you travel to trade?'}
                         isRequired
                         min={0}
                         max={9999}
+                        step={0.01}
                         validate={[rData, minData0, maxData9999]}
                     />
                 </FormGroup>

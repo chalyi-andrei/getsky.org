@@ -20,14 +20,14 @@ class FormDropdownInput extends React.Component {
     }
 
     render() {
-        const { label, type, min, max, description, isRequired, options, input: { name, value }, meta: { error, warning, touched } } = this.props;
+        const { label, type, min, max, step, description, isRequired, options, input: { name, value }, meta: { error, warning, touched } } = this.props;
         const showError = !!(touched && (error || warning));
 
         return (
             <FormItem name={name} label={label} isRequired={isRequired} description={description} showError={showError} error={error}>
                 <Flex>
                     <Box width={3 / 4}>
-                        <ControlInput name={`${name}_input_text`} type={type} min={min} max={max} value={value ? value.data : ''} placeholder={'Distance'} onChange={this.onChangeText} style={inputStyle} error={showError} />
+                        <ControlInput name={`${name}_input_text`} type={type} min={min} max={max} step={step} value={value ? value.data : ''} placeholder={'Distance'} onChange={this.onChangeText} style={inputStyle} error={showError} />
                     </Box>
                     <Box width={1 / 4}>
                         <ControlDropdown
