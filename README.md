@@ -50,4 +50,4 @@ $ docker exec backend sh -c "cd /usr/local/go/src/github.com/skycoin/getsky.org/
 4. Copy issued certificates to the `repo_root/.nginx/certs` directory (fullchain.pem and privkey.pem)
 5. Start docker containers: ` docker start $(docker ps -aq) `
 
-**Please note:** `./.nginx/vhost.d/proxy.test.conf` and `./.nginx/vhost.d/cert.test.conf` Nginx configuration files must be used instead of proxy.conf for manual installation to support SSL.
+**Please note:** `./.nginx/vhost.d/proxy.test.conf` and `./.nginx/vhost.d/cert.test.conf` Nginx configuration files must be used instead of proxy.conf for manual installation to support SSL. Also, the path to the certificates issued by certbot must be specified in the proxy.test.conf configuration file.
