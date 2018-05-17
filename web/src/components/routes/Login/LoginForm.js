@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 import { Button } from 'components/layout/Button';
 import { FormInput } from '../../layout/Form';
+import { required } from 'validation/rules';
 
 const ForgotPasswordLink = styled(Link) `
     display: block;
@@ -18,17 +19,19 @@ const ForgotPasswordLink = styled(Link) `
     }
 `;
 
+const r = required();
+
 const LoginForm = props => {
-    const { handleSubmit, pristine, submitting } = props;
+    const { handleSubmit, submitting } = props;
 
     return (
         <Form onSubmit={handleSubmit}>
             <Box width={[1, 1, 1 / 2]}>
-                <Field name="userName" component={FormInput} type="text" label="Username" placeholder="Username" />
-                <Field name="password" component={FormInput} type="password" label="Password" placeholder="Password" />
+                <Field name="userName" component={FormInput} isRequired validate={[r]} type="text" label="Username" placeholder="Username" />
+                <Field name="password" component={FormInput} isRequired validate={[r]} type="password" label="Password" placeholder="Password" />
             </Box>
 
-            <Button type="submit" disabled={pristine || submitting} text="Login" primary />
+            <Button type="submit" disabled={submitting} text="Login" primary />
             <ForgotPasswordLink to="/forgot-password">Forgot your password?</ForgotPasswordLink>
         </Form>
     )
@@ -36,7 +39,6 @@ const LoginForm = props => {
 
 LoginForm.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
-    pristine: PropTypes.bool.isRequired,
     submitting: PropTypes.bool.isRequired,
 };
 

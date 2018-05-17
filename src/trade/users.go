@@ -50,7 +50,7 @@ func AuthenticateHandler(s *HTTPServer) httputil.APIHandler {
 		err := s.authenticator.VerifyPassword(req.UserName, req.Password)
 		if err != nil {
 			return httputil.StatusError{
-				Err:  errors.New("invalid username of password"),
+				Err:  errors.New("Invalid username or password"),
 				Code: http.StatusUnauthorized,
 			}
 		}
