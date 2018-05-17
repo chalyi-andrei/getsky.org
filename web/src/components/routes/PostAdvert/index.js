@@ -46,7 +46,8 @@ class PostAdvert extends React.Component {
                     states={states}
                     onSubmit={this.onSubmit}
                     skyPrices={skyPrices}
-                    initialValues={{ ...userInfo, distance: { data: '', prefix: userInfo.distanceUnits }}} 
+                    initialValues={{ ...userInfo, distance: { data: '', prefix: userInfo.distanceUnits }}}
+                    enableReinitialize
                 />}
             </Container>
         )

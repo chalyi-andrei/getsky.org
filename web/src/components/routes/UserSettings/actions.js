@@ -1,4 +1,5 @@
 import { updateUserSettings, changePassword as changePasswordApi } from 'api'
+import { getUserInfo } from 'components/AppInitializer/actions';
 
 export const SAVE_USER_SETTINGS_REQUEST = 'SAVE_USER_SETTINGS_REQUEST';
 export const SAVE_USER_SETTINGS_RESPONSE = 'SAVE_USER_SETTINGS_RESPONSE';
@@ -18,6 +19,7 @@ export const saveUserSettings = settings => async dispatch => {
     }
 
     dispatch({ type: SAVE_USER_SETTINGS_RESPONSE, });
+    dispatch(getUserInfo()); //reload user data on site
 };
 
 export const CHANGE_PASSWORD_REQUEST = 'CHANGE_PASSWORD_REQUEST';
