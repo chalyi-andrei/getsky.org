@@ -45,7 +45,7 @@ const Routes = ({ match }) => {
             <Route path={`/post/:id`} component={AdvertDetails} />
             <Route path={`/contact-us`} component={ContactUs} />
 
-            <Route path={`/why-skycoin`} component={WhySkycoin} />
+            <Route path={`/skycoin`} component={WhySkycoin} />
             <Route path={`/faq`} component={FAQ} />
             <Route path={`/terms`} component={Terms} />
             <Route path={`/privacy`} component={Privacy} />

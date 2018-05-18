@@ -12,7 +12,7 @@ import media from 'media';
 
 const links = [
     { path: '/', text: 'Home' },
-    { path: '/why-skycoin', text: 'Why Skycoin' },
+    { path: '/skycoin', text: 'Skycoin' },
     { path: '/search', text: 'Search' },
     { path: '/faq', text: 'FAQ' },
     { path: '/contact-us', text: 'Contact' },

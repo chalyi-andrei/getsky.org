@@ -26,7 +26,7 @@ const noAuthNavItems = [
     { url: '/search', name: 'Search', border: false },
     { url: '/contact-us', name: 'Contact', border: false },
     { url: '/faq', name: 'FAQ', border: false },
-    { url: '/why-skycoin', name: 'Why Skycoin', border: false },
+    { url: '/skycoin', name: 'Skycoin', border: false },
     { url: '/register', name: 'Register', border: false },
     { url: '/login', name: 'Login', border: true },
 ];
@@ -35,7 +35,7 @@ const authNavItems = [
     { url: '/search', name: 'Search', border: false },
     { url: '/contact-us', name: 'Contact', border: false },
     { url: '/faq', name: 'FAQ', border: false },
-    { url: '/why-skycoin', name: 'Why Skycoin', border: false },
+    { url: '/skycoin', name: 'Skycoin', border: false },
 ];
 
 const HomePageStyle = { position: 'absolute', width: '100%' };
