@@ -27,8 +27,8 @@ const noAuthNavItems = [
     { url: '/contact-us', name: 'Contact', border: false },
     { url: '/faq', name: 'FAQ', border: false },
     { url: '/why-skycoin', name: 'Why Skycoin', border: false },
-    { url: '/register', name: 'Sign Up', border: false },
-    { url: '/login', name: 'Log In', border: true },
+    { url: '/register', name: 'Register', border: false },
+    { url: '/login', name: 'Login', border: true },
 ];
 
 const authNavItems = [
