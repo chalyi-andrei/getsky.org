@@ -16,7 +16,7 @@ import (
 func main() {
 	bindingFlag := flag.String("binding", "0.0.0.0:8081", "HTTP server binding")
 	mysqlFlag := flag.String("mysql", "0.0.0.0:3306", "HTTP server binding")
-	recaptchaSecret := flag.String("recaptchaSecret", "6LdTKksUAAAAAAMgKNhOcxgWYYCDRrgx8YoEH5qX", "HTTP server binding")
+	recaptchaSecret := flag.String("recaptchaSecret", "6LcIDlkUAAAAAB7-YebjJSUBb2aINasOnNk0zF8W", "HTTP server binding")
 
 	mailHost := flag.String("mailHost", "smtp.gmail.com:587", "HTTP server binding")
 	mailUsername := flag.String("mailUsername", "test@email.com", "HTTP server binding")

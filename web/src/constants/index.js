@@ -5,7 +5,7 @@ export const TRADE_OPTIONS = {
     tradeOther: 'Other',
 };
 
-export const RE_CAPTCHA_KEY = '6LcIDlkUAAAAACqwh2NQTvvpXzGxTNrfluexYDhL';
+export const RE_CAPTCHA_KEY = process.env.REACT_APP_RE_CAPTCHA_KEY || '6LcIDlkUAAAAACqwh2NQTvvpXzGxTNrfluexYDhL';
 
 export const SellFormName = 'formPostingToSell';
 export const BuyFormName = 'formPostingToBuy';
