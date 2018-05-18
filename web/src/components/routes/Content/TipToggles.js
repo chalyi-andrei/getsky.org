@@ -15,6 +15,11 @@ const Header = styled(Flex) `
     padding-bottom: 15px;
     margin-bottom: 5px;
 
+    h3 {
+        margin-top: 0;
+        text-align:center;
+    }
+
     &:hover {
         background-color: ${props => props.theme.colors.lightGray};
     }
@@ -31,8 +36,10 @@ class TipToggles extends React.Component {
 
         return (
             <Box>
-                <Header alignItems={'center'} justifyContent={'space-between'} onClick={this.toggle}>
-                    {label}
+                <Header alignItems={'center'} justifyContent={'center'} onClick={this.toggle}>
+                    <Box flex={1} alignItems={'center'} justifyContent={'center'}>
+                        {label}
+                    </Box>
                     <Box mt={mt}>
                         <Icon name={expanded ? IconMap.AngleUp : IconMap.AngleDown} color={'#0072FF'} size={'1x'} />
                     </Box>
