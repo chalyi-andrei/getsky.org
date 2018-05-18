@@ -317,7 +317,7 @@ func ResetPasswordRequestHandler(s *HTTPServer) httputil.APIHandler {
 		err = s.mailer.SendMail(&mail.Letter{
 			To:      body.Email,
 			Subject: "BuySky Password Recovery",
-			Body:    `To set a new password go by this <a href='` + linkHref + `'>link</a>`,
+			Body:    `To set a new password please follow this <a href='` + linkHref + `'>link</a>`,
 		})
 
 		return err
