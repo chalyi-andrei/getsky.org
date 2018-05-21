@@ -78,7 +78,7 @@ type RegisterRequest struct {
 	UserName   string `json:"userName" validate:"required"`
 	Password   string `json:"password" validate:"required"`
 	Email      string `json:"email" validate:"required,email"`
-	TimeOffset int    `json:"timeOffset" validate:"required,min=-11,max=14"`
+	TimeOffset int    `json:"timeOffset" validate:"min=-11,max=14"`
 	Recaptcha  string `json:"recaptcha" validate:"required"`
 }
 

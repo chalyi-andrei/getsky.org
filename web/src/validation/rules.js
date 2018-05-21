@@ -9,9 +9,8 @@ const validateValueExtractor = valueExtractor => {
 export const required = (valueExtractor = id) =>
     value => {
         validateValueExtractor(valueExtractor);
-
-        const extractedValue = value ? valueExtractor(value) : undefined;
-        return extractedValue ? undefined : 'This field is required';
+        const extractedValue = value === 0 || value ? valueExtractor(value) : undefined;
+        return extractedValue === 0 || extractedValue ? undefined : 'This field is required';
     }
 
 export const min = (min, valueExtractor = id) =>
