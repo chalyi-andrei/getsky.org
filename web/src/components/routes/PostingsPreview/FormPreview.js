@@ -5,7 +5,7 @@ import { reduxForm, Form, Field } from 'redux-form';
 import { required } from 'validation/rules';
 import { AdvertSummary } from 'components/routes/AdvertDetails';
 import { FormCaptcha } from 'components/layout/Form';
-import { Button } from 'components/layout/Button';
+import { Submit } from 'components/layout/Button';
 
 const r = required();
 
@@ -27,7 +27,7 @@ class FormPreview extends React.Component {
                     <AdvertSummary countries={countries} states={states} details={details} skyPrices={skyPrices} />
                 }
                 <Field name="recaptcha" component={FormCaptcha} validate={[r]} withRef ref={r => { this.recaptchaField = r }} isRequired />
-                <Button type="submit" disabled={pristine || submitting} text="Post advert" primary />
+                <Submit disabled={pristine || submitting} showSpinner={submitting} text="Post advert" primary />
             </Form>
         )
     }

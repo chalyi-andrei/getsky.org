@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Box } from 'grid-styled';
 
 import { FormInput, FormDropdown, FormMessage, } from 'components/layout/Form';
-import { Button } from 'components/layout/Button';
+import { Submit } from 'components/layout/Button';
 
 const UTC_OFFSET_FROM = -11;
 const UTC_OFFSET_TO = 14;
@@ -72,7 +72,7 @@ export default reduxForm({ form: 'userLocationSettingsForm' })(
                             placeholder="Postal code"
                         />
 
-                        <Button type="submit" disabled={pristine || submitting} text="Save" primary />
+                        <Submit disabled={pristine || submitting} showSpinner={submitting} text="Save" primary />
                     </Box>
                 </Form>
             )

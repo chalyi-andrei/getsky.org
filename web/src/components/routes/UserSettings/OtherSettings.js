@@ -3,7 +3,7 @@ import { Field, reduxForm, Form } from 'redux-form';
 import { Box } from 'grid-styled';
 
 import { FormInput, FormDropdown, FormMessage, } from 'components/layout/Form';
-import { Button } from 'components/layout/Button';
+import { Submit } from 'components/layout/Button';
 
 const distanceUnits = [
     { text: 'Kilometers', value: 'km' },
@@ -49,7 +49,7 @@ export default reduxForm({ form: 'userOtherSettingsForm' })(
                             options={currencies}
                             label="Currency" />
 
-                        <Button type="submit" disabled={pristine || submitting} text="Save" primary />
+                        <Submit disabled={pristine || submitting} showSpinner={submitting} text="Save" primary />
                     </Box>
                 </Form>
             )

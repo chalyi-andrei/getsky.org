@@ -10,6 +10,7 @@ import Container from 'components/layout/Container';
 import { H2 } from 'components/layout/Text';
 import { Button } from 'components/layout/Button';
 import { FormInput, FormMessage } from 'components/layout/Form';
+import { Submit } from 'components/layout/Button';
 
 import { required, minLength, } from 'validation/rules';
 
@@ -63,7 +64,7 @@ const ResetPasswordForm = reduxForm({
                     />
                 </Box>
 
-                <Button type="submit" disabled={pristine || submitting} text="Save new password" primary />
+                <Submit disabled={pristine || submitting} showSpinner={submitting} text="Save new password" primary />
             </Form>
         );
     }

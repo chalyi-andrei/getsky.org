@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet';
 import { getPageTitle } from 'utils';
 import Container from 'components/layout/Container';
 import { H2 } from 'components/layout/Text';
-import { Button } from 'components/layout/Button';
+import { Submit } from 'components/layout/Button';
 import { FormInput, FormCaptcha, FormMessage } from 'components/layout/Form';
 
 import { required } from 'validation/rules';
@@ -40,7 +40,7 @@ const ForgotPasswordForm = reduxForm({
                     <Field name="recaptcha" component={FormCaptcha} validate={[r]} withRef ref={r => { this.recaptchaField = r }} isRequired />
                 </Box>
 
-                <Button type="submit" disabled={pristine || submitting} text="Reset your password" primary />
+                <Submit disabled={pristine || submitting} showSpinner={submitting} text="Reset your password" primary />
             </Form>
         );
     }

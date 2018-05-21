@@ -4,7 +4,7 @@ import { Box, Flex } from 'grid-styled';
 
 import { required, email, maxLength } from 'validation/rules';
 import { FormInput, FormTextArea, FormCaptcha } from '../../layout/Form';
-import { Button } from 'components/layout/Button';
+import { Submit } from 'components/layout/Button';
 
 const r = required(v => v);
 const maxLength10K = maxLength(10000);
@@ -30,7 +30,7 @@ const ContactUsForm = ({ handleSubmit, pristine, submitting, invalid }) => (
             </Box>
             <Flex justifyContent="center" flexDirection="column">
                 <Field name="recaptcha" component={FormCaptcha} validate={[r]} withRef ref={r => { this.recaptchaField = r }} isRequired />
-                <Button type="submit" disabled={invalid || pristine || submitting} text="Send Message" primary />
+                <Submit disabled={invalid || pristine || submitting} showSpinner={submitting} text="Send Message" primary />
             </Flex>
         </Flex>
     </Form>);

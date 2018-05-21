@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Button } from 'components/layout/Button';
+import { Submit } from 'components/layout/Button';
 import { FormInput } from '../../layout/Form';
 import { required } from 'validation/rules';
 
@@ -31,7 +31,7 @@ const LoginForm = props => {
                 <Field name="password" component={FormInput} isRequired validate={[r]} type="password" label="Password" placeholder="Password" />
             </Box>
 
-            <Button type="submit" disabled={submitting} text="Login" primary />
+            <Submit disabled={submitting} showSpinner={submitting} text="Login" primary />
             <ForgotPasswordLink to="/forgot-password">Forgot your password?</ForgotPasswordLink>
         </Form>
     )
