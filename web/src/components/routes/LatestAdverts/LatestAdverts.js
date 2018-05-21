@@ -49,7 +49,7 @@ export const buyAdvertsColumns = [
 
 export const sellAdvertsColumns = [
     { name: 'Buyer' },
-    { name: 'Will pay' },
+    { name: 'Will buy' },
     { name: 'Trade options' },
     { name: 'Expired', style: { width: '170px' } },
 ];
