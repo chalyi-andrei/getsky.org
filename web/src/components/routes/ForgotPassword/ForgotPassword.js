@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, Form } from 'redux-form';
+import { Field, reduxForm, Form, SubmissionError } from 'redux-form';
 import { Box } from 'grid-styled';
 import { Helmet } from 'react-helmet';
 
@@ -52,8 +52,11 @@ class ForgotPassword extends React.Component {
     }
     resetPassword = async () => {
         const { form, resetPassword } = this.props;
-        await resetPassword(form.values.email, form.values.recaptcha);
-        this.setState({ passwordBeenReset: true });
+        return resetPassword(form.values.email, form.values.recaptcha)
+            .then(() => this.setState({ passwordBeenReset: true }))
+            .catch((err) => {
+                throw new SubmissionError(err);
+            });
     }
     render() {
         return (
@@ -70,7 +73,6 @@ class ForgotPassword extends React.Component {
                 </FormMessage>}
 
                 <ForgotPasswordForm onSubmit={this.resetPassword} />
-
             </Container>
         );
     }
