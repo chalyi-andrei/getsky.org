@@ -69,7 +69,7 @@ class Filters extends React.PureComponent{
                     </Box>
                     <Flex w={[1, 1 / 2, 1 / 4]} px={4}>
                         <Amount pr={2}>
-                            <Field component={FormInput} name="amount" label="Amount (USD)" />
+                            <Field component={FormInput} name="amount" label="Amount (SKY)" />
                         </Amount>
                         {/* <Field component={FormDropdown} options={currencies} name="currency" triggerOnChange={false} /> */}
                     </Flex>

@@ -440,7 +440,7 @@ func (s Storage) SearchAdverts(f models.SearchAdvertsFilter, t board.AdvertType,
 		`AND (:CountryCode = "" OR a.CountryCode = :CountryCode) ` +
 		`AND (:StateCode = 0 OR a.StateCode = :StateCode) ` +
 		`AND (:City = "" OR LOWER(a.City) LIKE :City) ` +
-		`AND (:Amount = 0 OR (:Amount BETWEEN a.AmountFrom AND COALESCE(a.AmountTo, :Amount))) ` +
+		`AND (:Amount = 0 OR a.AmountFrom = :Amount OR :Amount BETWEEN a.AmountFrom AND a.AmountTo) ` +
 		`AND (:Currency = "" OR a.Currency = :Currency) ` +
 		`ORDER BY a.CreatedAt`
 
