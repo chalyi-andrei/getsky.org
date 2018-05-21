@@ -4,7 +4,7 @@ import { Field, reduxForm, Form } from 'redux-form';
 import moment from 'moment';
 import { Box } from 'grid-styled';
 
-import { Button } from 'components/layout/Button';
+import { Submit } from 'components/layout/Button';
 import { FormInput, FormDropdown, FormCaptcha } from 'components/layout/Form';
 import { required, email, minLength, maxLength, alphaNumeric } from 'validation/rules';
 
@@ -40,6 +40,7 @@ class RegistrationForm extends React.Component {
 
     render() {
         const { handleSubmit, pristine, submitting } = this.props;
+        console.log(submitting);
         return (
             <Form onSubmit={handleSubmit}>
                 <Box width={[1, 1, 1 / 2]}>
@@ -84,7 +85,8 @@ class RegistrationForm extends React.Component {
                     />
                     <Field name="timeOffset" component={FormDropdown} options={this.timeOffsets} label="Your local time" validate={[r]} parse={parseInt} isRequired />
                     <Field name="recaptcha" component={FormCaptcha} validate={[r]} withRef ref={r => { this.recaptchaField = r }} isRequired />
-                    <Button type="submit" disabled={pristine || submitting} text="Register" primary />
+                    
+                    <Submit disabled={pristine || submitting} showSpinner={submitting} text="Register" primary />
                 </Box>
             </Form>
         )
