@@ -50,18 +50,18 @@ const NavLink = styled(Link) `
     }
 `;
 
-const UserSubmenu = ({ userInfo, logout }) => (
+const UserSubmenu = ({ userInfo, logout, push }) => (
     <Expander label={
         <UserName>
             {userInfo && userInfo.username}
         </UserName>
     }>
         <UserMenu>
-            <UserMenuItem alignItems={'center'}>
+            <UserMenuItem alignItems={'center'} onClick={() => { push('/dashboard'); }}>
                 <Ic src={icDashboard} />
                 <NavLink to="/dashboard">Dashboard</NavLink>
             </UserMenuItem>
-            <UserMenuItem alignItems={'center'}>
+            <UserMenuItem alignItems={'center'} onClick={() => { push('/user-settings'); }}>
                 <Ic src={icSettings} />
                 <NavLink to="/user-settings">Settings</NavLink>
             </UserMenuItem>

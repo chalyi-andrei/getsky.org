@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Flex } from 'grid-styled';
+import { push } from 'react-router-redux'
 
 import Container from 'components/layout/Container';
 import Brand from 'components/layout/Brand';
@@ -41,12 +42,12 @@ const authNavItems = [
 const HomePageStyle = { position: 'absolute', width: '100%' };
 const OtherPagesStyle = { backgroundColor: theme.colors.black };
 
-const Header = ({ authorized, userInfo, skyPrices, currencies, location, logout }) => (
+const Header = ({ authorized, userInfo, skyPrices, currencies, location, logout, push }) => (
     <header style={{ overflow: 'hidden' }}>
         <SubHeaderWrapper>
             <Container alignItems={'center'} justifyContent={'space-between'}>
                 <SkyPrice skyPrices={skyPrices} />
-                {authorized && <UserSubmenu userInfo={userInfo} logout={logout} />}
+                {authorized && <UserSubmenu push={push} userInfo={userInfo} logout={logout} />}
             </Container>
         </SubHeaderWrapper>
         <HeaderWrapper alignItems={'center'} justifyContent={'space-between'} style={location === '/' ? HomePageStyle : OtherPagesStyle}>
@@ -72,4 +73,4 @@ const mapStateToProps = ({ login, app, routing }) => {
     }
 };
 
-export default connect(mapStateToProps, { logout })(Header);
+export default connect(mapStateToProps, { logout, push })(Header);
