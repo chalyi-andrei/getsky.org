@@ -26,10 +26,27 @@ import {
     WhySkycoin,
 } from './Content';
 
+const OnlyNotAuthorizedRoute = connect(({ login }) => ({
+    login
+}), null)(({ login, ...props }) => {
+    if (login.authorized &&
+        (props.location.pathname === '/login' ||
+            props.location.pathname === '/register' ||
+            props.location.pathname === '/forgot-password' ||
+            props.location.pathname === '/password-recovery')
+    ) {
+        return <Redirect to={{ pathname: '/dashboard', state: { from: props.location } }} />;
+    }
+
+    return <Route {...props} />;
+});
+
 const PrivateRoute = connect(({ login }) => ({
     login
 }), null)(({ login, ...props }) => {
-    if (login.authorized) return <Route {...props} />
+    if (login.authorized) {
+        return <Route {...props} />
+    }
 
     return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
 });
@@ -38,10 +55,6 @@ const Routes = ({ match }) => {
     return (
         <Switch>
             <Route path={`/search`} component={SearchAdverts} />
-            <Route path={`/register`} component={Registration} />
-            <Route path={`/login`} component={Login} />
-            <Route path={`/forgot-password`} component={ForgotPassword} />
-            <Route path={`/password-recovery`} component={ResetPassword} />
             <Route path={`/post/:id`} component={AdvertDetails} />
             <Route path={`/contact-us`} component={ContactUs} />
 
@@ -49,6 +62,11 @@ const Routes = ({ match }) => {
             <Route path={`/faq`} component={FAQ} />
             <Route path={`/terms`} component={Terms} />
             <Route path={`/privacy`} component={Privacy} />
+
+            <OnlyNotAuthorizedRoute path={`/register`} component={Registration} />
+            <OnlyNotAuthorizedRoute path={`/login`} component={Login} />
+            <OnlyNotAuthorizedRoute path={`/forgot-password`} component={ForgotPassword} />
+            <OnlyNotAuthorizedRoute path={`/password-recovery`} component={ResetPassword} />
 
             <PrivateRoute path={`/dashboard`} component={Dashboard} />
             <PrivateRoute path={`/user-settings`} component={UserSettings} />
