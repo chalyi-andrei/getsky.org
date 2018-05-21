@@ -12,7 +12,7 @@ export const initialState = {
     states: [],
     userInfo: null,
     skyPrices: {},
-    currencies: ['USD', 'EUR'],
+    currencies: ['USD'] //, 'EUR'],
 };
 
 const saveSkycoinPrice = (prices, currency, price) => {

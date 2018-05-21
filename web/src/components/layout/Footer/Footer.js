@@ -96,7 +96,7 @@ export default () => (
                 <Box order={[3, 2]} mt={[4, 0]}  width={[1, 3 / 5]}>
                     <SocialLinks />
                 </Box>
-                <MicroText order={[2, 3]} mt={[2, 4]} textAlign={['center', 'right']} width={[1, 1 / 5]}>©2018 GetSky.com. All rights reserved.</MicroText>
+                <MicroText order={[2, 3]} mt={[2, 4]} textAlign={['center', 'right']} width={[1, 1 / 5]}>©2018 BuySky.org. All rights reserved.</MicroText>
             </Container>
         </Background>
         <DonationSection>

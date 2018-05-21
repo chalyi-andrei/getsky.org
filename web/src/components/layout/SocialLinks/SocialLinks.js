@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Flex, Box } from 'grid-styled';
-import { Link } from 'react-router-dom';
 
 import theme from 'components/theme';
 import Icon, { IconMap } from '../Icon/Icon';
@@ -26,9 +25,9 @@ export default () => (
     <TrapezoidBackground justifyContent={'space-around'} width={['auto', 'auto', '400px']}>
         {menuItems.map((item, i) => (
             <Box key={i} mt={'35px'}>
-                <Link to={item.url}>
+                <a href={item.url} target="blank">
                     <Icon name={item.icon} color={theme.colors.blue} size={'2x'} />
-                </Link>
+                </a>
             </Box>
         ))}
     </TrapezoidBackground>
