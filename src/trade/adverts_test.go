@@ -125,13 +125,6 @@ func TestSearchAdverts(t *testing.T) {
 			expectedBody:   `[{"id":1,"type":1,"author":"bob","tradeCashInPerson":true,"tradeCashByMail":true,"tradeMoneyOrderByMail":true,"tradeOther":false,"amountFrom":"100","amountTo":null,"fixedPrice":null,"percentageAdjustment":null,"currency":"EUR","additionalInfo":"","travelDistance":25,"travelDistanceUoM":"km","countryCode":"GR","stateCode":null,"city":"Athens","postalCode":"","status":1,"createdAt":"2018-03-06T00:00:00Z","expiredAt":"2018-03-06T00:00:00Z"},{"id":2,"type":1,"author":"bob","tradeCashInPerson":true,"tradeCashByMail":true,"tradeMoneyOrderByMail":true,"tradeOther":false,"amountFrom":"100","amountTo":"200","fixedPrice":null,"percentageAdjustment":null,"currency":"USD","additionalInfo":"","travelDistance":25,"travelDistanceUoM":"km","countryCode":"GR","stateCode":null,"city":"Athens","postalCode":"","status":1,"createdAt":"2018-03-06T00:00:00Z","expiredAt":"2018-03-06T00:00:00Z"}]`,
 		},
 		{
-			name:           "should return adverts which have type '1' (Sell type) with filters (amount, currency, city, countryCode)",
-			method:         "GET",
-			url:            "/api/postings/sell/search?amount=150&currency=EUR&city=Athens&countryCode=GR",
-			expectedStatus: http.StatusOK,
-			expectedBody:   `[{"id":1,"type":1,"author":"bob","tradeCashInPerson":true,"tradeCashByMail":true,"tradeMoneyOrderByMail":true,"tradeOther":false,"amountFrom":"100","amountTo":null,"fixedPrice":null,"percentageAdjustment":null,"currency":"EUR","additionalInfo":"","travelDistance":25,"travelDistanceUoM":"km","countryCode":"GR","stateCode":null,"city":"Athens","postalCode":"","status":1,"createdAt":"2018-03-06T00:00:00Z","expiredAt":"2018-03-06T00:00:00Z"}]`,
-		},
-		{
 			name:           "should return all adverts which have type '2' (Buy type)",
 			method:         "GET",
 			url:            "/api/postings/buy/search",
