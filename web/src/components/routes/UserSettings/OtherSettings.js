@@ -21,13 +21,13 @@ export default reduxForm({ form: 'userOtherSettingsForm' })(
                 handleSubmit,
                 pristine,
                 submitting,
-                submitSucceeded,
+                showSuccessMessage,
             } = this.props;
 
             return (
                 <Form onSubmit={handleSubmit}>
                     <Box width={[1, 1, 1 / 2]}>
-                        {submitSucceeded && <FormMessage>Settings updated</FormMessage>}
+                        {showSuccessMessage && <FormMessage>Settings updated</FormMessage>}
                         <Field
                             name="email"
                             component={FormInput}

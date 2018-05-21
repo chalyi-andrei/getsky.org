@@ -38,6 +38,19 @@ export default connect(
         changePassword,
     })(
         class extends React.Component {
+            state = {
+                showOtherSuccessMessage: false,
+                otherTimer: null,
+                showLocationSuccessMessage: false,
+                locationTimer: null,
+                showChangePasswordSuccessMessage: false,
+                changePasswordTimer: null,
+            }
+            componentWillUnmount() {
+                clearInterval(this.state.otherTimer);
+                clearInterval(this.state.locationTimer);
+                clearInterval(this.state.changePasswordTimer);
+            }
             saveOtherForm = form => {
                 const {
                     saveUserSettings,
@@ -51,6 +64,9 @@ export default connect(
                 return saveUserSettings({
                     ...userInfo,
                     ...extractFormValues(otherSettings.values, otherSettingsFormRegisteredValues),
+                }).then(() => {
+                    const otherTimer = setTimeout(() => this.setState((state) => ({ ...state, showOtherSuccessMessage: false })), 3000);
+                    this.setState((state) => ({ ...state, showOtherSuccessMessage: true, otherTimer }));
                 }).catch(err => {
                     throw new SubmissionError(err)
                 });
@@ -69,13 +85,19 @@ export default connect(
                     ...userInfo,
                     ...extractFormValues(locationForm.values, locationFormRegisteredValues),
                     timeOffset: parseInt(locationForm.values.timeOffset, 10),
+                }).then(() => {
+                    const locationTimer = setTimeout(() => this.setState((state) => ({ ...state, showLocationSuccessMessage: false })), 3000);
+                    this.setState((state) => ({ ...state, showLocationSuccessMessage: true, locationTimer }));
                 }).catch(err => {
                     throw new SubmissionError(err)
                 });
             }
             changePassword = form => {
                 return this.props.changePassword(form)
-                    .catch(err => {
+                    .then(() => {
+                        const changePasswordTimer = setTimeout(() => this.setState((state) => ({ ...state, showChangePasswordSuccessMessage: false })), 3000);
+                        this.setState((state) => ({ ...state, showChangePasswordSuccessMessage: true, changePasswordTimer }));
+                    }).catch(err => {
                         throw new SubmissionError(err)
                     });
             }
@@ -99,19 +121,26 @@ export default connect(
                             countries={countries}
                             states={states}
                             showStates={countryInFormHasStates(locationForm)}
-                            onSubmit={this.saveLocation} />
+                            onSubmit={this.saveLocation}
+                            showSuccessMessage={this.state.showLocationSuccessMessage}
+                        />
 
                         <Box mt={'30px'}>
                             <h2>Other settings</h2>
                             <OtherSettings
                                 enableReinitialize
-                                initialValues={userInfo && { ...userInfo, timeOffset: userInfo.timeOffset.toString()}}
-                                onSubmit={this.saveOtherForm} />
+                                initialValues={userInfo && { ...userInfo, timeOffset: userInfo.timeOffset.toString() }}
+                                onSubmit={this.saveOtherForm}
+                                showSuccessMessage={this.state.showOtherSuccessMessage}
+                            />
                         </Box>
 
                         <Box mt={'30px'}>
                             <h2>Change your password</h2>
-                            <ChangePasswordForm onSubmit={this.changePassword} />
+                            <ChangePasswordForm
+                                onSubmit={this.changePassword}
+                                showSuccessMessage={this.state.showChangePasswordSuccessMessage}
+                            />
                         </Box>
                     </Container>
                 );
