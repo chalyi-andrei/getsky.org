@@ -68,12 +68,11 @@ const PostAdvert = ({ advertType, states, countries, skyPrices, handleSubmit, ed
                         name={'distance'}
                         component={FormDropdownInput}
                         options={DISTANCE_UNITS_OPTIONS}
-                        parse={(v) => ({ ...v, data: v.data ? parseFloat(v.data) : '' })}
+                        parse={(v) => ({ ...v, data: v.data ? parseInt(v.data) : '' })}
                         label={'How far will you travel to trade?'}
                         isRequired
                         min={0}
                         max={9999}
-                        step={0.01}
                         validate={[rData, minData0, maxData9999]}
                     />
                 </FormGroup>

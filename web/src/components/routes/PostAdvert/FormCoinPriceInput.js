@@ -7,9 +7,7 @@ import { Button } from 'components/layout/Button';
 import { ControlInput, FormItem } from 'components/layout/Form';
 import TipToggles from 'components/layout/TipToggles';
 import { round } from 'utils/';
-
-const PERCENTAGE_ADJUSTMENT = 'PERCENTAGE_ADJUSTMENT';
-const FIXED_PRICE = 'FIXED_PRICE';
+import { PriceType } from 'constants/index';
 
 const fullWidth = { width: '100%' };
 const skyPriceWithPercents = (skyPrice, percent) => {
@@ -56,88 +54,41 @@ const Label = ({ skyPrice }) => (
 );
 
 class FormCoinPriceInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.setMode = this.setMode.bind(this);
-        this.onChange = this.onChange.bind(this);
-
-        this.state = {
-            mode: PERCENTAGE_ADJUSTMENT,
-            fixedPrice: '',
-            percentageAdjustment: '',
-        };
+    setMode = mode => {
+        const { input: { value, onChange } } = this.props;
+        onChange({ value, type: mode });
     };
-
-    componentDidMount() {
-        const { value } = this.props.input;
-
-        if (value !== '') {
-            if (value.type === PERCENTAGE_ADJUSTMENT) {
-                this.setState({ ...this.setState, mode: PERCENTAGE_ADJUSTMENT, percentageAdjustment: value.value })
-            } else {
-                this.setState({ ...this.setState, mode: FIXED_PRICE, fixedPrice: value.value })
-            }
-        }
-    }
-
-    setMode(mode) {
-        const { input: { onChange } } = this.props;
-        if (mode === PERCENTAGE_ADJUSTMENT) {
-            const value = this.state.percentageAdjustment;
-            onChange(value ? { type: mode, value } : null);
-        } else {
-            const value = this.state.fixedPrice;
-            onChange(value ? { type: mode, value } : null);
-        }
-
-        this.setState({ ...this.state, mode });
-    };
-
-    onChange(e) {
-        const { input: { onChange } } = this.props;
+    onChange = e => {
+        const { input: { value, onChange } } = this.props;
         const val = e.target.value;
-        const value = isNaN(parseFloat(val)) ? '' : parseFloat(val);
+        const newValue = isNaN(parseFloat(val)) ? '' : parseFloat(val);
 
-        if (val === '') {
-            onChange(null);
-        }
-        else {
-            onChange({ value, type: this.state.mode });
-        }
-
-        if (this.state.mode === PERCENTAGE_ADJUSTMENT) {
-            this.setState({ ...this.state, percentageAdjustment: value });
-        } else if (this.state.mode === FIXED_PRICE) {
-            this.setState({ ...this.state, fixedPrice: value });
-        }
+        onChange({ value: newValue, type: value.type });
     }
-
     render() {
-        const { isRequired, input, meta: { error, warning, touched }, skyPrices } = this.props;
-        const { fixedPrice, percentageAdjustment } = this.state;
+        const { isRequired, input: { name, value }, meta: { error, warning, touched }, skyPrices } = this.props;
         const showError = !!(touched && (error || warning));
-
         const skyPrice = skyPrices['USD'];
 
         return (
-            <FormItem name={input.name} label={<Label skyPrice={skyPrice} />} isRequired={isRequired} showError={showError} error={error}>
+            <FormItem name={name} label={<Label skyPrice={skyPrice} />} isRequired={isRequired} showError={showError} error={error}>
                 <Flex mt={3}>
-                    <Button type="button" text='PERCENTAGE ADJUSTMENT' onClick={() => this.setMode(PERCENTAGE_ADJUSTMENT)} style={fullWidth} primary={this.state.mode === PERCENTAGE_ADJUSTMENT} />
-                    <Button type="button" text='FIXED PRICE' onClick={() => this.setMode(FIXED_PRICE)} style={fullWidth} primary={this.state.mode === FIXED_PRICE} />
+                    <Button type="button" text='PERCENTAGE ADJUSTMENT' onClick={() => this.setMode(PriceType.PERCENT)} style={fullWidth} primary={value.type === PriceType.PERCENT} />
+                    <Button type="button" text='FIXED PRICE' onClick={() => this.setMode(PriceType.FIXED)} style={fullWidth} primary={value.type === PriceType.FIXED} />
                 </Flex>
                 <Flex mt={3} alignItems='center' >
-                    {this.state.mode === PERCENTAGE_ADJUSTMENT &&
-                        <ControlInput type="number" placeholder={'percentage adjustment, e.g. 5'} error={showError} min={0} max={100} step={0.01} value={percentageAdjustment} onChange={this.onChange} />
+                    {value.type === PriceType.PERCENT &&
+                        <ControlInput type="number" placeholder={'percentage adjustment, e.g. 5'} error={showError} min={0} max={100} step={0.01} value={value.value} onChange={this.onChange} />
                     }
-                    {this.state.mode === FIXED_PRICE &&
-                        <ControlInput type="number" placeholder={'USD'} error={showError} value={fixedPrice} step={0.01} onChange={this.onChange} />
+                    {value.type === PriceType.FIXED &&
+                        <ControlInput type="number" placeholder={'USD'} error={showError} value={value.value} step={0.01} onChange={this.onChange} />
                     }
                 </Flex>
                 <Box mt={3}>
-                    {this.state.mode === PERCENTAGE_ADJUSTMENT &&
+                    {value.type === PriceType.PERCENT &&
                         <PercentageAdjustmentTip skyPrice={skyPrice} />
                     }
-                    {this.state.mode === FIXED_PRICE &&
+                    {value.type === PriceType.FIXED &&
                         <FixedPriceTip />
                     }
                 </Box>

@@ -7,6 +7,7 @@ import { getPageTitle, getAdvertTypeFromLocation, AdvertType } from 'utils';
 import Container from 'components/layout/Container';
 import { BackIcLink } from 'components/layout/Links';
 import { setAdvertPreview, ADVERT_SELL, ADVERT_BUY } from 'components/routes/PostingsPreview/actions';
+import { PriceType } from '../../../constants';
 
 import PostingForm from './PostingForm';
 import { SellTitle, BuyTitle } from './Title';
@@ -22,7 +23,7 @@ class PostAdvert extends React.Component {
         const advertType = this.getAdvertType();
         const type = advertType === AdvertType.BUY ? ADVERT_BUY : ADVERT_SELL;
         const value = form.pricePerCoin.value;
-        const extraData = form.pricePerCoin.type === 'PERCENTAGE_ADJUSTMENT'
+        const extraData = form.pricePerCoin.type === PriceType.PERCENT
             ? { percentageAdjustment: value, fixedPrice: null, author: this.props.userInfo.username, type }
             : { percentageAdjustment: null, fixedPrice: value, author: this.props.userInfo.username, type };
 
@@ -46,7 +47,7 @@ class PostAdvert extends React.Component {
                     states={states}
                     onSubmit={this.onSubmit}
                     skyPrices={skyPrices}
-                    initialValues={{ ...userInfo, distance: { data: '', prefix: userInfo.distanceUnits }}}
+                    initialValues={{ ...userInfo, distance: { data: '', prefix: userInfo.distanceUnits }, pricePerCoin: { type: PriceType.PERCENT, value: '' }}}
                     enableReinitialize
                 />}
             </Container>

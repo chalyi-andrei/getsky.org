@@ -31,3 +31,8 @@ export const DISTANCE_UNITS_OPTIONS = [{
     text: 'Kilometers',
     value: 'km',
 }];
+
+export const PriceType = {
+    PERCENT: 'PERCENTAGE_ADJUSTMENT',
+    FIXED: 'FIXED_PRICE'
+};

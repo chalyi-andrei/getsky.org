@@ -12,6 +12,7 @@ import { saveAdvert } from './actions';
 import { ADVERT_BUY } from 'components/routes/PostingsPreview/actions';
 
 import PostingForm from '../PostAdvert/PostingForm';
+import { PriceType } from '../../../constants';
 
 const mapAcceptOptions = a => {
     return ['tradeCashByMail', 'tradeCashInPerson', 'tradeMoneyOrderByMail', 'tradeOther']
@@ -29,7 +30,7 @@ const mapAdvertDetailsToForm = a => (
         acceptOptions: mapAcceptOptions(a),
         distance: { data: a.travelDistance, prefix: a.travelDistanceUoM },
         pricePerCoin: {
-            type: a.percentageAdjustment ? 'PERCENTAGE_ADJUSTMENT' : '',
+            type: a.percentageAdjustment ? PriceType.PERCENT : PriceType.FIXED,
             value: a.percentageAdjustment || a.fixedPrice,
         }
     }
@@ -42,7 +43,7 @@ class EditAdvert extends React.Component {
     onSubmit = async form => {
         const { advertDetails, saveAdvert, push } = this.props;
         const { value } = form.pricePerCoin;
-        const extraData = form.pricePerCoin.type === 'PERCENTAGE_ADJUSTMENT'
+        const price = form.pricePerCoin.type === PriceType.PERCENT
             ? { percentageAdjustment: value, fixedPrice: null, }
             : { percentageAdjustment: null, fixedPrice: value, };
 
@@ -53,10 +54,8 @@ class EditAdvert extends React.Component {
             city: form.city,
             countryCode: form.countryCode,
             currency: 'USD',
-            fixedPrice: form.fixedPrice,
             id: advertDetails.id,
             postalCode: form.postalCode,
-            percentageAdjustment: form.percentageAdjustment,
             stateCode: form.stateCode,
             tradeCashByMail: form.acceptOptions.includes('tradeCashByMail'),
             tradeCashInPerson: form.acceptOptions.includes('tradeCashInPerson'),
@@ -64,7 +63,7 @@ class EditAdvert extends React.Component {
             tradeOther: form.acceptOptions.includes('tradeOther'),
             travelDistance: form.distance.data,
             travelDistanceUoM: form.distance.prefix,
-            ...extraData,
+            ...price,
         };
         await saveAdvert(advert);
         push(`/post/${advertDetails.id}`);
