@@ -47,7 +47,7 @@ func FeedbackHandler(s *HTTPServer) httputil.APIHandler {
 		message := fmt.Sprintf("From %s (%s) \r\n%s", body.Name, body.Email, body.Message)
 
 		err = s.mailer.SendFeedback(&mail.Letter{
-			Subject: "Feedback from >> " + body.Subject,
+			Subject: "BUYSKY >> " + body.Subject,
 			Body:    message,
 		})
 		return err
