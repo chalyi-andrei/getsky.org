@@ -52,7 +52,7 @@ class Filters extends React.PureComponent{
 
 
     render(){
-        const { countries, states, currencies, handleSubmit } = this.props;
+        const { countries, states, /*currencies,*/ handleSubmit } = this.props;
         return (
             <Form onSubmit={handleSubmit} noValidate>
                 <Flex py={4} mx={-4} flexWrap="wrap">

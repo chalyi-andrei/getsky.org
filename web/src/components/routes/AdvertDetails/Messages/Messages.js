@@ -146,6 +146,13 @@ const ShowMoreLinkContainer = styled.div`
     text-align: center;
 `;
 
+const MessageCount = ({ author }) =>
+    <MessagesInfo>
+        <Icon name={IconMap.Envelope} />
+        {author.newMessages > 0 && <span><NewMessagesInfo>{author.newMessages} new </NewMessagesInfo> / </span>}
+        {author.totalMessages}
+    </MessagesInfo>
+
 const Author = ({ backToUsers, selectedAuthor, messages, userInfo, allMessagesVisible, showAllMessages }) => (
     <AuthorInfo mt={[2, 0, 0]}>
         {selectedAuthor
@@ -159,14 +166,8 @@ const Author = ({ backToUsers, selectedAuthor, messages, userInfo, allMessagesVi
                 justifyContent="space-between"
                 alignItems="flex-end"
                 mt={3} pb={5} mb={5}>
-                <Heading>Messages from {selectedAuthor}</Heading>
-                <MessagesInfo>
-                    <Icon name={IconMap.Envelope} />
-                    <NewMessagesInfo>
-                        {messages.filter(m => m.author !== userInfo.username && !m.isRead).length} new
-                </NewMessagesInfo>
-                    / {messages.length}
-                </MessagesInfo>
+                <Heading>Messages from {selectedAuthor.author}</Heading>
+                <MessageCount author={selectedAuthor} />
             </UsernameContainer>}
         {!allMessagesVisible && <ShowMoreLinkContainer>
             <ShowMoreLink onClick={showAllMessages}>Show more </ShowMoreLink>
@@ -373,14 +374,6 @@ const UserSection = styled(Section) `
     }
 `;
 
-const getTotalNewMessages = (authors, userInfo) => {
-    return authors.filter(a => a.author !== userInfo.username).reduce((acc, a) => (acc + a.newMessages), 0);
-};
-
-const getTotalMessages = (authors, userInfo) => {
-    return authors.reduce((acc, a) => (acc + a.totalMessages), 0);
-};
-
 const Focused = styled.div`
     color: ${props => props.theme.colors.blue};
 `;
@@ -395,6 +388,7 @@ const MessageText = styled.div`
 `;
 
 const ArrowIcon = styled(Box) `
+    margin-left: 20px;
     svg {
         color: ${props => props.theme.colors.blue};
     }
@@ -413,20 +407,13 @@ const USER_INITIAL_COLORS = [
 
 const UsersList = ({ authors, selectAuthor, userInfo }) => (
     <div>
-        <Flex justifyContent="space-between" mb={5} mt={[4, 0, 0]}>
-            <Heading>Messages</Heading>
-            <MessagesInfo>
-                <Icon name={IconMap.Envelope} />
-                <NewMessagesInfo> {getTotalNewMessages(authors, userInfo)} new </NewMessagesInfo> / {getTotalMessages(authors, userInfo)}
-            </MessagesInfo>
-        </Flex>
         {authors.filter(a => a.author !== userInfo.username)
             .map((a, i) => (
                 <UserSection
                     key={i}
                     alignItems="center"
                     flexWrap="nowrap"
-                    onClick={() => selectAuthor(a.author)}>
+                    onClick={() => selectAuthor(a)}>
                     <UserInitials
                         isRead={a.newMessages === 0}
                         color={USER_INITIAL_COLORS[i % USER_INITIAL_COLORS.length]}>
@@ -434,19 +421,22 @@ const UsersList = ({ authors, selectAuthor, userInfo }) => (
                     </UserInitials>
                     <MessageInner flexDirection="column" px={3} justifyContent="space-between">
                         <Flex justifyContent="space-between">
-                            <Focused> {a.author} </Focused>
+                            <Flex flexDirection="column" justifyContent="space-between">
+                                <Focused>{a.author}</Focused>
+                                <MessageText>{a.lastMessage}</MessageText>
+                            </Flex>
                             <Flex alignItems="center">
-                                <DateView >
-                                    {dateToString(new Date(a.lastMessageTime))}
-                                </DateView>
+                                <Flex flexDirection="column">
+                                    <MessageCount author={a} />
+                                    <DateView >
+                                        {dateToString(new Date(a.lastMessageTime))}
+                                    </DateView>
+                                </Flex>
                                 <ArrowIcon ml={1}>
                                     <Icon name={IconMap.AngleRight} />
                                 </ArrowIcon>
                             </Flex>
                         </Flex>
-                        <MessageText>
-                            {a.lastMessage}
-                        </MessageText>
                     </MessageInner>
                 </UserSection>
             ))}
@@ -520,9 +510,9 @@ export default connect(
             };
             postMessage(message);
         }
-        selectAuthor = async author => {
-            const messages = await this.props.getMessages(this.props.advert.id, author);
-            this.props.selectAuthor(author);
+        selectAuthor = async authorData => {
+            const messages = await this.props.getMessages(this.props.advert.id, authorData.author);
+            this.props.selectAuthor(authorData);
 
             this.readMessages(messages);
         }
@@ -543,9 +533,11 @@ export default connect(
             postMessage(message);
         }
         backToUsers = () => {
+            const { selectAuthor, getMessagesAuthors, setMessagesState, advert } = this.props;
             this.hideMessages();
-            this.props.selectAuthor(null);
-            this.props.setMessagesState(messageStates.users);
+            selectAuthor(null);
+            getMessagesAuthors(advert.id);
+            setMessagesState(messageStates.users);
         }
         render() {
             const {

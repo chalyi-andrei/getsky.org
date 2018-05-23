@@ -68,7 +68,7 @@ const PostAdvert = ({ advertType, states, countries, skyPrices, handleSubmit, ed
                         name={'distance'}
                         component={FormDropdownInput}
                         options={DISTANCE_UNITS_OPTIONS}
-                        parse={(v) => ({ ...v, data: v.data ? parseInt(v.data) : '' })}
+                        parse={(v) => ({ ...v, data: v.data ? parseInt(v.data, 10) : '' })}
                         label={'How far will you travel to trade?'}
                         isRequired
                         min={0}

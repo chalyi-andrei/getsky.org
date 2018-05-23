@@ -8,7 +8,6 @@ import qs from 'qs';
 
 import Container from 'components/layout/Container';
 import { H2 } from 'components/layout/Text';
-import { Button } from 'components/layout/Button';
 import { FormInput, FormMessage } from 'components/layout/Form';
 import { Submit } from 'components/layout/Button';
 
