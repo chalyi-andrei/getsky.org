@@ -105,6 +105,12 @@
   revision = "9520e82c474b0a04dd04f8a40959027271bab992"
 
 [[projects]]
+  name = "github.com/namsral/flag"
+  packages = ["."]
+  revision = "71ceffbeb0ba60fccc853971bb3ed4d7d90bfd04"
+  version = "v1.7.4-pre"
+
+[[projects]]
   name = "github.com/pmezard/go-difflib"
   packages = ["difflib"]
   revision = "792786c7400a136282c1664665ae0a8db921c6c2"
@@ -172,6 +178,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "fa435af765abb9bf29c55cdc39418edbda47e5cd377d2f490c2364efbeaf35bb"
+  inputs-digest = "463d85bf07227e054984461e26af30d2aebb6b96142ad21d5da064037916b965"
   solver-name = "gps-cdcl"
   solver-version = 1

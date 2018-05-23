@@ -1,11 +1,11 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
+	"github.com/namsral/flag"
 	"github.com/skycoin/getsky.org/db"
 	"github.com/skycoin/getsky.org/src/mail"
 	"github.com/skycoin/getsky.org/src/skycoinPrice"
@@ -14,6 +14,7 @@ import (
 )
 
 func main() {
+	flag.String(flag.DefaultConfigFlagname, "", "path to config file")
 	bindingFlag := flag.String("binding", "0.0.0.0:8081", "HTTP server binding")
 	mysqlFlag := flag.String("mysql", "0.0.0.0:3306", "HTTP server binding")
 	recaptchaSecret := flag.String("recaptchaSecret", "6LcIDlkUAAAAAB7-YebjJSUBb2aINasOnNk0zF8W", "HTTP server binding")
@@ -24,6 +25,8 @@ func main() {
 	feedbackAddress := flag.String("feedbackAddress", "test2@email.com", "HTTP server binding")
 
 	flag.Parse()
+
+	fmt.Println("test", *bindingFlag)
 
 	log := logger.InitLogger()
 
