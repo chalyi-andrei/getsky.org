@@ -15,7 +15,7 @@ import { AdvertRow } from 'components/layout/TableAdverts';
 import { Tab, Tabs, TabList, TabPanel } from 'components/layout/Tabs';
 import Filters from './Filters';
 
-import { searchAdverts, setFilters } from "./actions";
+import { searchAdverts, setFilters, clearFilters } from "./actions";
 
 const buyAdvertsColumns = [
     { name: 'Seller' },
@@ -78,7 +78,9 @@ const mapAdverts = (adverts, prices) => adverts.map(a => ({ ...a, price: prices[
 
 class SearchAdverts extends React.Component {
     componentWillMount() {
-        this.props.searchAdverts('');
+        const { location } = this.props;
+
+        this.props.searchAdverts(location.search);
     }
     componentDidMount() {
         const { location } = this.props;
@@ -87,6 +89,10 @@ class SearchAdverts extends React.Component {
         if (!_.isEmpty(filters)) {
             this.props.setFilters(filters);
         }
+    }
+
+    componentWillUnmount() {
+        this.props.clearFilters();
     }
 
     handleFiltersChange = (values, dispatch, props, previousValues) => {
@@ -111,7 +117,7 @@ class SearchAdverts extends React.Component {
     };
 
     render() {
-        const { countries, states, currencies, location, search: { buyAdverts, sellAdverts }, skyPrices } = this.props;
+        const { countries, states, currencies, location, search: { buyAdverts, sellAdverts, loading }, skyPrices } = this.props;
         return (
             <div>
                 <Helmet><title>{getPageTitle('Search advert')}</title></Helmet>
@@ -140,22 +146,31 @@ class SearchAdverts extends React.Component {
                         </TabList>
                         <TabPanel>
                             <Container flex='1 0 auto' flexDirection="column" pt={9}>
-                                {this.props.loading && <Spinner />}
-                                <Title>
-                                    Seller adverts
-                                    {sellAdverts.length > 0 && <Badge>{sellAdverts.length}</Badge>}
-                                </Title>
-                                <Table columns={buyAdvertsColumns} rowComponent={AdvertRow} rowData={mapAdverts(sellAdverts, skyPrices)} />
+                                {loading && <Spinner />}
+                                {!loading && <div>
+                                    <Title>
+                                        Seller adverts
+                                        {sellAdverts.length > 0 && <Badge>{sellAdverts.length}</Badge>}
+                                    </Title>
+                                    <Table columns={buyAdvertsColumns} rowComponent={AdvertRow}
+                                           rowData={mapAdverts(sellAdverts, skyPrices)}/>
+                                </div>
+                                }
                             </Container>
                         </TabPanel>
                         <TabPanel>
                             <Container flex='1 0 auto' flexDirection="column" pt={9}>
-                                {this.props.loading && <Spinner />}
-                                <Title>
-                                    Buyer adverts
-                                    {buyAdverts.length > 0 && <Badge>{buyAdverts.length}</Badge>}
-                                </Title>
-                                <Table columns={sellAdvertsColumns} rowComponent={AdvertRow} rowData={mapAdverts(buyAdverts, skyPrices)} />
+                                {loading && <Spinner />}
+                                {!loading &&
+                                <div>
+                                    <Title>
+                                        Buyer adverts
+                                        {buyAdverts.length > 0 && <Badge>{buyAdverts.length}</Badge>}
+                                    </Title>
+                                    <Table columns={sellAdvertsColumns} rowComponent={AdvertRow}
+                                           rowData={mapAdverts(buyAdverts, skyPrices)}/>
+                                </div>
+                                }
                             </Container>
                         </TabPanel>
                     </Tabs>
@@ -174,4 +189,5 @@ const mapStateToProps = (state) => ({
     skyPrices: state.app.skyPrices,
 });
 
-export default connect(mapStateToProps, ({ searchAdverts, setFilters }))(SearchAdverts);
+export default connect(mapStateToProps, ({ searchAdverts, setFilters, clearFilters }))(SearchAdverts);
+

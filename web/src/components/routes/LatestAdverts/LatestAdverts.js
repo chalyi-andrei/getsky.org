@@ -60,7 +60,7 @@ class LatestAdverts extends React.Component {
     }
 
     render() {
-        const { skyPrices, buyAdverts, sellAdverts } = this.props;
+        const { skyPrices, buyAdverts, sellAdverts, loading } = this.props;
 
         const sellAdvertsWithPrice = sellAdverts.map(i => ({ ...i, price: skyPrices['USD'] }));
         const buyAdvertsWithPrice = buyAdverts.map(i => ({ ...i, price: skyPrices['USD'] }));
@@ -80,14 +80,14 @@ class LatestAdverts extends React.Component {
                     </TabList>
                     <TabPanel>
                         <Container flex='1 0 auto' flexDirection="column" pt={9}>
-                            {this.props.loading && <Spinner />}
-                            <Table columns={buyAdvertsColumns} rowComponent={AdvertRow} rowData={sellAdvertsWithPrice} />
+                            {loading && <Spinner />}
+                            {!loading && <Table columns={buyAdvertsColumns} rowComponent={AdvertRow} rowData={sellAdvertsWithPrice} />}
                         </Container>
                     </TabPanel>
                     <TabPanel>
                         <Container flex='1 0 auto' flexDirection="column" pt={9}>
-                            {this.props.loading && <Spinner />}
-                            <Table columns={sellAdvertsColumns} rowComponent={AdvertRow} rowData={buyAdvertsWithPrice} />
+                            {loading && <Spinner />}
+                            {!loading && <Table columns={sellAdvertsColumns} rowComponent={AdvertRow} rowData={buyAdvertsWithPrice} />}
                         </Container>
                     </TabPanel>
                 </Tabs>
