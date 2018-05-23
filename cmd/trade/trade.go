@@ -16,13 +16,13 @@ import (
 func main() {
 	flag.String(flag.DefaultConfigFlagname, "", "path to config file")
 	bindingFlag := flag.String("binding", "0.0.0.0:8081", "HTTP server binding")
-	mysqlFlag := flag.String("mysql", "0.0.0.0:3306", "HTTP server binding")
-	recaptchaSecret := flag.String("recaptchaSecret", "6LcIDlkUAAAAAB7-YebjJSUBb2aINasOnNk0zF8W", "HTTP server binding")
+	mysqlFlag := flag.String("mysql", "root:root@(0.0.0.0:3306)", "MySQL connect string")
+	recaptchaSecret := flag.String("recaptchaSecret", "6LcIDlkUAAAAAB7-YebjJSUBb2aINasOnNk0zF8W", "reCaptcha secret key")
 
-	mailHost := flag.String("mailHost", "smtp.gmail.com:587", "HTTP server binding")
-	mailUsername := flag.String("mailUsername", "test@email.com", "HTTP server binding")
-	mailPassword := flag.String("mailPassword", "password", "HTTP server binding")
-	feedbackAddress := flag.String("feedbackAddress", "test2@email.com", "HTTP server binding")
+	mailHost := flag.String("mailHost", "smtp.gmail.com:587", "SMTP server")
+	mailUsername := flag.String("mailUsername", "test@email.com", "SMTP server user")
+	mailPassword := flag.String("mailPassword", "password", "SMTP server password")
+	feedbackAddress := flag.String("feedbackAddress", "test2@email.com", "Feedback email address")
 
 	flag.Parse()
 
@@ -53,7 +53,7 @@ func main() {
 }
 
 func initDb(addr string) (*sqlx.DB, error) {
-	db, err := sqlx.Connect("mysql", fmt.Sprintf("root:root@(%s)/getskytrade?parseTime=true", addr))
+	db, err := sqlx.Connect("mysql", fmt.Sprintf("%s/getskytrade?parseTime=true", addr))
 	if err != nil {
 		return nil, err
 	}

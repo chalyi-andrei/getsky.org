@@ -6,8 +6,8 @@ command -v migrate >/dev/null 2>&1 || {
     go build -tags 'mysql' -o /usr/local/bin/migrate github.com/mattes/migrate/cli;
 }
 
-[[ -z "${TRADE_MYSQL}" ]] && MySql='0.0.0.0:3306' || MySql="${TRADE_MYSQL}"
-cmd="migrate -database \"mysql://root:root@($MySql)/getskytrade\" -source file://schema up"
+[[ -z "${TRADE_MYSQL}" ]] && MySql='root:root@(0.0.0.0:3306)' || MySql="${TRADE_MYSQL}"
+cmd="migrate -database \"mysql://$MySql/getskytrade\" -source file://schema up"
 
 ## try run migrations 5 times
 END=5
