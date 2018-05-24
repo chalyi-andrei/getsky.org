@@ -20,6 +20,7 @@ func main() {
 	recaptchaSecret := flag.String("recaptchaSecret", "6LcIDlkUAAAAAB7-YebjJSUBb2aINasOnNk0zF8W", "reCaptcha secret key")
 
 	mailHost := flag.String("mailHost", "smtp.gmail.com:587", "SMTP server")
+	mailFromAddress := flag.String("mailFromAddress", "noreply@getsky.org", "From address for email")
 	mailUsername := flag.String("mailUsername", "test@email.com", "SMTP server user")
 	mailPassword := flag.String("mailPassword", "password", "SMTP server password")
 	feedbackAddress := flag.String("feedbackAddress", "test2@email.com", "Feedback email address")
@@ -41,7 +42,7 @@ func main() {
 	geo := db.NewGeo(sqlDb)
 	messages := db.NewMessages(sqlDb)
 	skycoinPrices := skycoinPrice.NewSkycoinPrices()
-	mailer := mail.NewMailer(*mailHost, *mailUsername, *mailPassword, *feedbackAddress)
+	mailer := mail.NewMailer(*mailHost, *mailUsername, *mailPassword, *feedbackAddress, *mailFromAddress)
 	skycoinPricesInterface := skycoinPrice.Service(skycoinPrices)
 
 	server := trade.NewHTTPServer(*recaptchaSecret, *bindingFlag, storage, users, auth, log, geo, messages, mailer, &skycoinPricesInterface)

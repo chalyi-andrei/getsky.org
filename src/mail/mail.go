@@ -24,14 +24,16 @@ type Mailer struct {
 	host     string
 	username string
 	password string
+	from     string
 
 	feedbackAddress string
 }
 
 // NewMailer creates a new instance of the Mail
-func NewMailer(host string, username string, password string, feedbackAddress string) Mailer {
+func NewMailer(host string, username string, password string, feedbackAddress string, from string) Mailer {
 	return Mailer{
 		host:            host,
+		from:            from,
 		username:        username,
 		password:        password,
 		feedbackAddress: feedbackAddress,
@@ -62,5 +64,7 @@ func (m Mailer) SendMail(l *Letter) error {
 		"\r\n"+
 		"%s\r\n", l.To, l.Subject, l.Body)
 	msg := []byte(body)
-	return smtp.SendMail(m.host, auth, m.username, to, msg)
+	err = smtp.SendMail(m.host, auth, m.from, to, msg)
+	fmt.Println(err)
+	return err
 }
