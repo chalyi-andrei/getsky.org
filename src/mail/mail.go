@@ -59,10 +59,11 @@ func (m Mailer) SendMail(l *Letter) error {
 	mime := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
 
 	body := fmt.Sprintf("To: %s\r\n"+
+		"From: %s\r\n"+
 		"Subject: %s\r\n"+
 		mime+"\r\n"+
 		"\r\n"+
-		"%s\r\n", l.To, l.Subject, l.Body)
+		"%s\r\n", l.To, m.from, l.Subject, l.Body)
 	msg := []byte(body)
 	err = smtp.SendMail(m.host, auth, m.from, to, msg)
 	fmt.Println(err)
