@@ -27,8 +27,6 @@ func main() {
 
 	flag.Parse()
 
-	fmt.Println("test", *bindingFlag)
-
 	log := logger.InitLogger()
 
 	sqlDb, err := initDb(*mysqlFlag)

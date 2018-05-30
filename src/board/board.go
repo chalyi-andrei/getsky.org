@@ -19,6 +19,7 @@ const (
 // Board represents adverts board interface
 type Board interface {
 	GetAdvertsEnquiredByUserWithMessageCounts(int64) ([]models.EnquiredAdvertsWithMessageCounts, error)
+	GetDBStatus() error
 	GetAdvertsWithMessageCountsByUserID(int64) ([]models.AdvertsWithMessageCounts, error)
 	GetLatestAdverts(AdvertType, int, time.Time) ([]models.AdvertDetails, error)
 	GetAdvertDetails(int64) (models.AdvertDetails, error)

@@ -15,6 +15,7 @@ var currencies = []string{"EUR", "USD"}
 // Service provides a logic of retrieving Skycoin prices
 type Service interface {
 	GetSkycoinPrice(currency string) ([]byte, error)
+	GetLastUpdateTime() time.Time
 }
 
 // SkycoinPrice represents a cached value of the skycoin price
@@ -43,9 +44,10 @@ func getNewPrice(currency string) ([]byte, error) {
 
 // SkycoinPrices represents a storage of all cached values of the Skycoin price
 type SkycoinPrices struct {
-	prices map[string]*SkycoinPrice
-	stop   chan string
-	quit   chan os.Signal
+	prices         map[string]*SkycoinPrice
+	stop           chan string
+	quit           chan os.Signal
+	lastUpdateTime time.Time
 }
 
 // NewSkycoinPrices creates a new instance of the SkycoinPrices
@@ -65,6 +67,11 @@ func (prices SkycoinPrices) GetSkycoinPrice(currency string) ([]byte, error) {
 	return nil, errors.New("Specified currency doesn't exists")
 }
 
+// GetLastUpdateTime returns time of the last update of prices
+func (prices SkycoinPrices) GetLastUpdateTime() time.Time {
+	return prices.lastUpdateTime
+}
+
 func updatePrices(prices *SkycoinPrices, currencies []string) {
 rootLoop:
 	for {
@@ -78,6 +85,7 @@ rootLoop:
 			}
 			prices.prices[c] = &SkycoinPrice{apiResponse: resp}
 		}
+		prices.lastUpdateTime = time.Now()
 		select {
 		case <-prices.stop:
 			break rootLoop
@@ -88,8 +96,8 @@ rootLoop:
 }
 
 // StartUpdatingCycle starts cycle that requests prices from the remote server
-func (prices SkycoinPrices) StartUpdatingCycle() {
-	go updatePrices(&prices, currencies)
+func (prices *SkycoinPrices) StartUpdatingCycle() {
+	go updatePrices(prices, currencies)
 
 	go func() {
 		<-prices.quit

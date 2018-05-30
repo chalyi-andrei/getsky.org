@@ -42,6 +42,12 @@ func NewStorage(db *sqlx.DB) Storage {
 	return Storage{db}
 }
 
+// GetDBStatus returns a status of connection to DB
+func (s Storage) GetDBStatus() error {
+	tables := []string{}
+	return s.DB.Select(&tables, `SHOW TABLES`)
+}
+
 // GetAdvertsEnquiredByUserWithMessageCounts returns adverts that was enquired by the user and amount of related messages
 func (s Storage) GetAdvertsEnquiredByUserWithMessageCounts(userID int64) ([]models.EnquiredAdvertsWithMessageCounts, error) {
 	cmd := `SELECT ` + advertsFields + `, ` +
