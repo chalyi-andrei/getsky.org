@@ -2,8 +2,8 @@
 
 command -v migrate >/dev/null 2>&1 || { 
     echo "migrate not installed, installing";
-    go get -u -d github.com/mattes/migrate/cli github.com/go-sql-driver/mysql;
-    go build -tags 'mysql' -o /usr/local/bin/migrate github.com/mattes/migrate/cli;
+    go get -u -d github.com/golang-migrate/migrate/cli github.com/go-sql-driver/mysql;
+    go build -tags 'mysql' -o /usr/local/bin/migrate github.com/golang-migrate/migrate/cli;
 }
 
 [[ -z "${TRADE_MYSQL}" ]] && MySql='root:root@(0.0.0.0:3306)' || MySql="${TRADE_MYSQL}"

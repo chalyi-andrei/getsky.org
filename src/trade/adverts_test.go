@@ -15,7 +15,7 @@ import (
 	"github.com/skycoin/getsky.org/src/util/logger"
 	"github.com/skycoin/getsky.org/src/util/test"
 
-	_ "github.com/mattes/migrate/source/file"
+	_ "github.com/golang-migrate/migrate/source/file"
 	"github.com/stretchr/testify/require"
 )
 

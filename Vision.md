@@ -18,7 +18,7 @@ The latest Skycoin/Fiat currency convertion rates are to be fetched from [coinma
 ## Database management
 MySql DB is used to store main portal data (users, adverts, messages etc.)
 
-We handle DB schema using [mattes/migrate](https://github.com/mattes/migrate) package by creating schema migrations that are applied automatically during deployment.
+We handle DB schema using [golang-migrate/migrate](https://github.com/golang-migrate/migrate) package by creating schema migrations that are applied automatically during deployment.
 
 ## API implementation
 Use basic `net/http` module to build a set of API endpoints to:

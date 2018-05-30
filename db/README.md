@@ -1,7 +1,7 @@
 # Working with database
 
 We use MySql as a main database, storing all adverts, users, messages etc.
-The DB schema is managed using [migrate](https://github.com/mattes/migrate) <br/>
+The DB schema is managed using [migrate](https://github.com/golang-migrate/migrate) <br/>
 The DB access code is implemented using [sqlx](https://github.com/jmoiron/sqlx) 
 
 ## Changing schema
@@ -21,12 +21,12 @@ Example:
 
 ## Applying schema changes
 
-More details on how to install and use migrate cli can be found [here](https://github.com/mattes/migrate/tree/master/cli).
+More details on how to install and use migrate cli can be found [here](https://github.com/golang-migrate/migrate/tree/master/cli).
 
 ### Install the migrate cli:
 ```sh
-$ go get -u -d github.com/mattes/migrate/cli github.com/go-sql-driver/mysql
-$ go build -tags 'mysql' -o /usr/local/bin/migrate github.com/mattes/migrate/cli
+$ go get -u -d github.com/golang-migrate/migrate/cli github.com/go-sql-driver/mysql
+$ go build -tags 'mysql' -o /usr/local/bin/migrate github.com/golang-migrate/migrate/cli
 ```
 
 ### Run all migrations against the local DB:

@@ -35,6 +35,16 @@
   version = "v1.3"
 
 [[projects]]
+  name = "github.com/golang-migrate/migrate"
+  packages = [
+    ".",
+    "database/mysql",
+    "source/file"
+  ]
+  revision = "035c07716cd373d88456ec4d701402df52584cb4"
+  version = "v3.0.1"
+
+[[projects]]
   name = "github.com/gorilla/context"
   packages = ["."]
   revision = "1ea25387ff6f684839d82767c1733ff4d4d15d0a"
@@ -79,9 +89,7 @@
   packages = [
     ".",
     "database",
-    "database/mysql",
-    "source",
-    "source/file"
+    "source"
   ]
   revision = "035c07716cd373d88456ec4d701402df52584cb4"
   version = "v3.0.1"
@@ -178,6 +186,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "463d85bf07227e054984461e26af30d2aebb6b96142ad21d5da064037916b965"
+  inputs-digest = "37da05eedc910dd052280b3c6f46be961de8aa8b8347b74564c0489ca992c2f8"
   solver-name = "gps-cdcl"
   solver-version = 1

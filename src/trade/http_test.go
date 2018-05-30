@@ -6,9 +6,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/mattes/migrate"
-	"github.com/mattes/migrate/database/mysql"
-	_ "github.com/mattes/migrate/source/file"
+	"github.com/golang-migrate/migrate"
+	"github.com/golang-migrate/migrate/database/mysql"
+	_ "github.com/golang-migrate/migrate/source/file"
 )
 
 const dbName = "getskytrade"
