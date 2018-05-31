@@ -29,6 +29,7 @@ ssh $RUN_USER@$IP -p $PORT <<EOF
   export MAIL_PASSWORD=${MAIL_PASSWORD}
   export REACT_APP_RECAPTCHA_KEY=${REACT_APP_RECAPTCHA_KEY}
   export FEEDBACK_ADDRESS=${FEEDBACK_ADDRESS}
+  export MAIL_HOST=${MAIL_HOST}
   cd $DEPLOY_DIR
   sudo service docker restart # restart docker service to prevent "timeout" errors (https://github.com/docker/compose/issues/3633#issuecomment-254194717)
   make run-test-docker

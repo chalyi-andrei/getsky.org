@@ -27,12 +27,13 @@ services:
       MAIL_USERNAME: ${MAIL_USERNAME}
       MAIL_PASSWORD: ${MAIL_PASSWORD}
       FEEDBACK_ADDRESS: ${FEEDBACK_ADDRESS}
+      MAIL_HOST: ${MAIL_HOST}
     volumes:
       - ./cmd:/usr/local/go/src/github.com/skycoin/getsky.org/cmd
       - ./db:/usr/local/go/src/github.com/skycoin/getsky.org/db
       - ./src:/usr/local/go/src/github.com/skycoin/getsky.org/src
       - ./vendor:/usr/local/go/src/github.com/skycoin/getsky.org/vendor
-    command: /bin/bash -c 'cd /usr/local/go/src/github.com/skycoin/getsky.org/cmd/trade/ && go run ./trade.go -binding=0.0.0.0:8081 -mysql="root:root@(mysql:3306)" -recaptchaSecret=${RECAPTCHA_SECRET} -mailUsername=${MAIL_USERNAME} -mailPassword=${MAIL_PASSWORD} -feedbackAddress=${FEEDBACK_ADDRESS}'
+    command: /bin/bash -c 'cd /usr/local/go/src/github.com/skycoin/getsky.org/cmd/trade/ && go run ./trade.go -binding=0.0.0.0:8081 -mysql="root:root@(mysql:3306)" -recaptchaSecret=${RECAPTCHA_SECRET} -mailUsername=${MAIL_USERNAME} -mailPassword=${MAIL_PASSWORD} -feedbackAddress=${FEEDBACK_ADDRESS} -mailHost=${MAIL_HOST}'
   web:
     image: nginx
     restart: always

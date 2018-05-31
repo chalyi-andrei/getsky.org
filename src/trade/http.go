@@ -24,7 +24,7 @@ import (
 // HTTPServer holds http server info
 type HTTPServer struct {
 	serverTime     ServerTime
-	mailer         mail.IMailer
+	mailer         mail.Mailer
 	skycoinPrices  *skycoinPrice.Service
 	checkRecaptcha auth.RecaptchaChecker
 	binding        string
@@ -41,7 +41,7 @@ type HTTPServer struct {
 }
 
 // NewHTTPServer creates new http server
-func NewHTTPServer(recaptchaSecret string, binding string, board board.Board, users user.Users, a auth.Authenticator, log logrus.FieldLogger, g geo.Geo, messages messages.Messages, mailer mail.IMailer, skycoinPrices *skycoinPrice.Service) *HTTPServer {
+func NewHTTPServer(recaptchaSecret string, binding string, board board.Board, users user.Users, a auth.Authenticator, log logrus.FieldLogger, g geo.Geo, messages messages.Messages, mailer mail.Mailer, skycoinPrices *skycoinPrice.Service) *HTTPServer {
 	return &HTTPServer{
 		checkRecaptcha: auth.InitRecaptchaChecker(recaptchaSecret),
 		skycoinPrices:  skycoinPrices,

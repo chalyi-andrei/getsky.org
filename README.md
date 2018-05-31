@@ -18,7 +18,7 @@ An online Skycoin advert platform, part of the [getsky.org](http://getsky.org)
 ### Backend configuration
 1. Run backend using following command 
 ```sh 
-$ go run ./trade.go -binding=127.0.0.1:8081 -mysql=localhost:3306 -recaptchaSecret=RECAPTCHA_SECRET -mailUsername=MAIL_USERNAME -mailPassword=MAIL_PASSWORD 
+$ go run ./trade.go -binding=127.0.0.1:8081 -mysql=localhost:3306 -recaptchaSecret=RECAPTCHA_SECRET -mailUsername=MAIL_USERNAME -mailPassword=MAIL_PASSWORD -mailHost=MAIL_HOST
 ```
 
 ### Client app configuration
