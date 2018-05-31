@@ -40,7 +40,12 @@ func (m PostfixMailer) SendMail(l *Letter) error {
 		m.log.Errorln("PostfixMailer.SendMail > (smtp.Dial): ", m.host, "\n", err)
 		return nil
 	}
-	defer client.Close()
+	// Avoid failing build because of error check
+	defer func() {
+		if err := client.Close(); err != nil {
+			return
+		}
+	}()
 
 	if err = client.Mail(m.from); err != nil {
 		m.log.Errorln("PostfixMailer.SendMail > (client.Mail): ", m.from, "\n", err)
