@@ -40,6 +40,7 @@ func (m PostfixMailer) SendMail(l *Letter) error {
 		m.log.Errorln("PostfixMailer.SendMail > (smtp.Dial): ", m.host, "\n", err)
 		return nil
 	}
+	defer client.Close()
 
 	if err = client.Mail(m.from); err != nil {
 		m.log.Errorln("PostfixMailer.SendMail > (client.Mail): ", m.from, "\n", err)
@@ -69,7 +70,7 @@ func (m PostfixMailer) SendMail(l *Letter) error {
 		return err
 	}
 
-	err = client.Close()
+	err = client.Quit()
 	if err != nil {
 		m.log.Errorln("PostfixMailer.SendMail > (client.Close): ", "\n", err)
 		return err
