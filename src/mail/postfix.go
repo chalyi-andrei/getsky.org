@@ -36,7 +36,6 @@ func (m PostfixMailer) SendMail(l *Letter) error {
 	if err != nil {
 		return nil
 	}
-	defer client.Close()
 
 	if err = client.Mail(m.from); err != nil {
 		return err
@@ -57,6 +56,11 @@ func (m PostfixMailer) SendMail(l *Letter) error {
 	}
 
 	err = w.Close()
+	if err != nil {
+		return err
+	}
+
+	err = client.Close()
 	if err != nil {
 		return err
 	}
