@@ -40,7 +40,7 @@ func main() {
 	geo := db.NewGeo(sqlDb)
 	messages := db.NewMessages(sqlDb)
 	skycoinPrices := skycoinPrice.NewSkycoinPrices()
-	mailer := mail.NewPostfixMailer(*mailHost, *mailUsername, *mailPassword, *feedbackAddress, *mailFromAddress)
+	mailer := mail.NewPostfixMailer(*mailHost, *mailUsername, *mailPassword, *feedbackAddress, *mailFromAddress, log)
 	skycoinPricesInterface := skycoinPrice.Service(skycoinPrices)
 
 	server := trade.NewHTTPServer(*recaptchaSecret, *bindingFlag, storage, users, auth, log, geo, messages, mailer, &skycoinPricesInterface)
