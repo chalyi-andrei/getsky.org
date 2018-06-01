@@ -77,12 +77,6 @@ func (m PostfixMailer) SendMail(l *Letter) error {
 
 	err = client.Quit()
 	if err != nil {
-		m.log.Errorln("PostfixMailer.SendMail > (client.Close): ", "\n", err)
-		return err
-	}
-
-	err = client.Quit()
-	if err != nil {
 		m.log.Errorln("PostfixMailer.SendMail > (client.Quit): ", "\n", err)
 	}
 	return err
