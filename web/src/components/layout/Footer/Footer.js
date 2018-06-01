@@ -109,7 +109,7 @@ export default () => (
         </Background>
         <DonationSection>
             <Container justifyContent="center">
-                <DonationText>Buysky is fee-free and run entirely on donations. If you feel the team deserves to eat this week buy us lunch! <span role="img" aria-label="wink">&#x1f609;</span></DonationText>
+                <DonationText>Buysky is fee-free and run entirely on donations. If you feel the team deserves to eat this week buy us lunch! <span role="img" aria-label="wink">&#x1f609;</span>4oooDGxvaQtdaSQBPxGRabWTHg6CGS4kvH</DonationText>
             </Container>
         </DonationSection>
     </Box>
