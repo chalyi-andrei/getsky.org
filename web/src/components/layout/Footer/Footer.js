@@ -100,7 +100,7 @@ export default () => (
                 <Brand />
             </Container>
             <Container justifyContent={'space-between'} alignItems={'center'} flexDirection={['column', 'row']} height={'74px'} >
-                <MicroText order={1} mt={[2, 4]} textAlign={['center', 'left']} width={[1, 1 / 5]}><a target="_blank" href="https://www.skycoin.net/">Skycoin</a></MicroText>
+                <MicroText order={1} mt={[2, 4]} textAlign={['center', 'left']} width={[1, 1 / 5]}><a target="_blank" rel="noopener noreferrer" href="https://www.skycoin.net/">Skycoin</a></MicroText>
                 <Box order={[3, 2]} mt={[4, 0]} width={[1, 3 / 5]}>
                     <SocialLinks />
                 </Box>

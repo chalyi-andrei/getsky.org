@@ -2,15 +2,16 @@ package skycoinPrice
 
 import (
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/skycoin/getsky.org/src/currencies"
 )
 
 const refreshInterval = time.Minute * 5
-
-var currencies = []string{"EUR", "USD"}
 
 // Service provides a logic of retrieving Skycoin prices
 type Service interface {
@@ -48,14 +49,17 @@ type SkycoinPrices struct {
 	stop           chan string
 	quit           chan os.Signal
 	lastUpdateTime time.Time
+
+	currencies *currencies.Currencies
 }
 
 // NewSkycoinPrices creates a new instance of the SkycoinPrices
-func NewSkycoinPrices() *SkycoinPrices {
+func NewSkycoinPrices(currencies currencies.Currencies) *SkycoinPrices {
 	return &SkycoinPrices{
-		prices: make(map[string]*SkycoinPrice),
-		stop:   make(chan string, 1),
-		quit:   make(chan os.Signal, 1),
+		prices:     make(map[string]*SkycoinPrice),
+		stop:       make(chan string, 1),
+		quit:       make(chan os.Signal, 1),
+		currencies: &currencies,
 	}
 }
 
@@ -72,18 +76,23 @@ func (prices SkycoinPrices) GetLastUpdateTime() time.Time {
 	return prices.lastUpdateTime
 }
 
-func updatePrices(prices *SkycoinPrices, currencies []string) {
+func updatePrices(prices *SkycoinPrices, currenciesProvider *currencies.Currencies) {
 rootLoop:
 	for {
+		currencies, err := (*currenciesProvider).GetAllCurrencies()
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
 		for _, c := range currencies {
-			resp, err := getNewPrice(c)
+			resp, err := getNewPrice(c.CurrencyCode)
 			if err != nil {
 				continue
 			}
-			if v, exists := prices.prices[c]; exists {
+			if v, exists := prices.prices[c.CurrencyCode]; exists {
 				v.apiResponse = resp
 			}
-			prices.prices[c] = &SkycoinPrice{apiResponse: resp}
+			prices.prices[c.CurrencyCode] = &SkycoinPrice{apiResponse: resp}
 		}
 		prices.lastUpdateTime = time.Now()
 		select {
@@ -97,7 +106,7 @@ rootLoop:
 
 // StartUpdatingCycle starts cycle that requests prices from the remote server
 func (prices *SkycoinPrices) StartUpdatingCycle() {
-	go updatePrices(prices, currencies)
+	go updatePrices(prices, prices.currencies)
 
 	go func() {
 		<-prices.quit
