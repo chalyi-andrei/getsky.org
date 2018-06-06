@@ -12,14 +12,15 @@ export const initialState = {
     states: [],
     userInfo: null,
     skyPrices: {},
-    currencies: ['USD'] //, 'EUR'],
 };
 
-const saveSkycoinPrice = (prices, currency, price) => {
+const saveSkycoinPrices = (prices) => {
     const mutation = {};
-    mutation[currency] = price;
+    prices.forEach(v => {
+        mutation[v.code] = v.price;
+    })
 
-    return { ...prices, ...mutation };
+    return mutation;
 }
 
 export default (state = initialState, action) => {
@@ -31,7 +32,7 @@ export default (state = initialState, action) => {
         case GET_USER_INFO_RESPONSE:
             return { ...state, userInfo: action.userInfo };
         case SKYCOIN_PRICE_RESPONSE:
-            return { ...state, skyPrices: saveSkycoinPrice(state.skyPrices, action.currency, action.price) };
+            return { ...state, skyPrices: saveSkycoinPrices(action.prices) };
         case LOGOUT_USER:
             return { ...state, userInfo: null };
         default:

@@ -1,11 +1,13 @@
 package skycoinPrice
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/skycoin/getsky.org/src/currencies"
@@ -15,13 +17,14 @@ const refreshInterval = time.Minute * 5
 
 // Service provides a logic of retrieving Skycoin prices
 type Service interface {
-	GetSkycoinPrice(currency string) ([]byte, error)
+	GetSkycoinPrice(currency string) (string, error)
+	GetAllCurrencies() []string
 	GetLastUpdateTime() time.Time
 }
 
 // SkycoinPrice represents a cached value of the skycoin price
 type SkycoinPrice struct {
-	apiResponse []byte
+	price string
 }
 
 // NewSkycoinPrice creates a new instance of SkycoinPrice
@@ -29,18 +32,23 @@ func NewSkycoinPrice() *SkycoinPrice {
 	return &SkycoinPrice{}
 }
 
-func getNewPrice(currency string) ([]byte, error) {
+func getNewPrice(currency string) (string, error) {
 	resp, err := http.Get("https://api.coinmarketcap.com/v1/ticker/skycoin/?convert=" + currency)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
-	return body, nil
+	var objmap []map[string]string
+	err = json.Unmarshal(body, &objmap)
+
+	value := objmap[0]["price_"+strings.ToLower(currency)]
+
+	return value, nil
 }
 
 // SkycoinPrices represents a storage of all cached values of the Skycoin price
@@ -64,11 +72,20 @@ func NewSkycoinPrices(currencies currencies.Currencies) *SkycoinPrices {
 }
 
 // GetSkycoinPrice returns a skycon price
-func (prices SkycoinPrices) GetSkycoinPrice(currency string) ([]byte, error) {
+func (prices SkycoinPrices) GetSkycoinPrice(currency string) (string, error) {
 	if val, exists := prices.prices[currency]; exists {
-		return val.apiResponse, nil
+		return val.price, nil
 	}
-	return nil, errors.New("Specified currency doesn't exists")
+	return "", errors.New("Specified currency doesn't exists")
+}
+
+// GetAllCurrencies returns all currencies codes
+func (prices SkycoinPrices) GetAllCurrencies() []string {
+	currenciesCodes := make([]string, 0, len(prices.prices))
+	for k := range prices.prices {
+		currenciesCodes = append(currenciesCodes, k)
+	}
+	return currenciesCodes
 }
 
 // GetLastUpdateTime returns time of the last update of prices
@@ -90,9 +107,9 @@ rootLoop:
 				continue
 			}
 			if v, exists := prices.prices[c.CurrencyCode]; exists {
-				v.apiResponse = resp
+				v.price = resp
 			}
-			prices.prices[c.CurrencyCode] = &SkycoinPrice{apiResponse: resp}
+			prices.prices[c.CurrencyCode] = &SkycoinPrice{price: resp}
 		}
 		prices.lastUpdateTime = time.Now()
 		select {
