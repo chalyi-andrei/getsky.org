@@ -65,3 +65,17 @@ export const getAdvertsForDashboardOk = (advertsStub) => () => new Promise((reso
 export const deleteAdvertOk = advertId => new Promise((resolve, reject) => resolve({ data: {} }));
 
 export const extendExpirationDateOk = advertId => new Promise((resolve, reject) => resolve({ data: {} }));
+
+export const resetPasswordRequestOk = requestForm => () => new Promise((resolve, reject) => resolve());
+
+export const resetPasswordRequest404 = requestForm => () => new Promise((resolve, reject) => {
+    reject({ response: { status: 404 } })
+});
+
+export const saveNewPasswordOk = requestForm => requestForm => new Promise((resolve, reject) => resolve());
+
+export const saveNewPasswordFail = requestForm => requestForm => new Promise((resolve, reject) =>
+    reject({ response: { status: 404 } })
+);
+
+export const saveNewPasswordOk = requestForm => requestForm => new Promise((resolve, reject) => resolve());
