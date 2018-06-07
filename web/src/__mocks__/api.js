@@ -78,4 +78,3 @@ export const saveNewPasswordFail = requestForm => requestForm => new Promise((re
     reject({ response: { status: 404 } })
 );
 
-export const saveNewPasswordOk = requestForm => requestForm => new Promise((resolve, reject) => resolve());
