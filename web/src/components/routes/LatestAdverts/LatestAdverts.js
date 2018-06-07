@@ -35,7 +35,7 @@ const Intro = styled.div`
     }
 `;
 
-const IntroContainer = styled(Container)`
+const IntroContainer = styled(Container) `
     background: url(${bgImage}) 100% 0 no-repeat;
     padding-bottom: ${props => props.theme.space[9] * 2}px;
 `;
@@ -60,10 +60,13 @@ class LatestAdverts extends React.Component {
     }
 
     render() {
-        const { skyPrices, buyAdverts, sellAdverts, loading } = this.props;
+        const { skyPrices, buyAdverts, sellAdverts, loading, userInfo, } = this.props;
 
-        const sellAdvertsWithPrice = sellAdverts.map(i => ({ ...i, price: skyPrices['USD'] }));
-        const buyAdvertsWithPrice = buyAdverts.map(i => ({ ...i, price: skyPrices['USD'] }));
+        const userCurrency = userInfo && userInfo.currency;
+        const selectedCurrency = userCurrency || 'USD';
+
+        const sellAdvertsWithPrice = sellAdverts.map(i => ({ ...i, price: skyPrices[selectedCurrency], currency: selectedCurrency, }));
+        const buyAdvertsWithPrice = buyAdverts.map(i => ({ ...i, price: skyPrices[selectedCurrency], currency: selectedCurrency, }));
         return (
             <Box>
                 <Helmet><title>{getPageTitle('Latest adverts')}</title></Helmet>
@@ -96,5 +99,5 @@ class LatestAdverts extends React.Component {
     }
 }
 
-export default connect(({ latestAdverts, app: { skyPrices } }) => ({ ...latestAdverts, skyPrices }),
+export default connect(({ latestAdverts, app: { skyPrices, userInfo, } }) => ({ ...latestAdverts, skyPrices, userInfo }),
     ({ getAdverts }))(LatestAdverts);

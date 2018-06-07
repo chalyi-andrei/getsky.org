@@ -58,7 +58,7 @@ const getFullAddress = advert => `${advert.countryCode}, ${advert.city} ${advert
 
 const getPrice = advert => `${advert.amountFrom} ${advert.amountTo ? `- ${advert.amountTo}` : ''} SKY`;
 
-const getConvertedPrice = advert => `${advert.amountFrom * (advert.fixedPrice || advert.price)} ${advert.amountTo ? `- ${advert.amountTo * (advert.fixedPrice || advert.price)}` : ''} USD`;
+const getConvertedPrice = advert => `${advert.amountFrom * (advert.fixedPrice || advert.price)} ${advert.amountTo ? `- ${advert.amountTo * (advert.fixedPrice || advert.price)}` : ''} ${advert.currency}`;
 
 const getTradeOptionsText = advert => {
     const advertOptions = pickBy(pick(advert, keys(TRADE_OPTIONS)), item => item);

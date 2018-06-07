@@ -3,6 +3,7 @@ import {
     GET_STATES_RESPONSE,
     GET_USER_INFO_RESPONSE,
     SKYCOIN_PRICE_RESPONSE,
+    CHANGE_USERS_CURRENCY,
 } from './actions';
 
 import { LOGOUT_USER } from 'components/routes/Login/actions';
@@ -33,6 +34,8 @@ export default (state = initialState, action) => {
             return { ...state, userInfo: action.userInfo };
         case SKYCOIN_PRICE_RESPONSE:
             return { ...state, skyPrices: saveSkycoinPrices(action.prices) };
+        case CHANGE_USERS_CURRENCY:
+            return { ...state, userInfo: { ...state.userInfo, currency: action.currency } };
         case LOGOUT_USER:
             return { ...state, userInfo: null };
         default:

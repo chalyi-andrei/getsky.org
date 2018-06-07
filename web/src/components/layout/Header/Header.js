@@ -11,6 +11,7 @@ import UserSubmenu from 'components/layout/UserSubmenu';
 import SkyPrice from 'components/layout/SkyPrice';
 import theme from 'components/theme';
 import { logout } from 'components/routes/Login/actions';
+import { changeUsersCurrency } from 'components/AppInitializer/actions';
 
 import Navigation from './Navigation';
 
@@ -42,11 +43,11 @@ const authNavItems = [
 const HomePageStyle = { position: 'absolute', width: '100%' };
 const OtherPagesStyle = { backgroundColor: theme.colors.black };
 
-const Header = ({ authorized, userInfo, skyPrices, currencies, location, logout, push }) => (
+const Header = ({ authorized, userInfo, skyPrices, currencies, location, logout, push, changeUsersCurrency }) => (
     <header style={{ overflow: 'hidden' }}>
         <SubHeaderWrapper>
             <Container alignItems={'center'} justifyContent={'space-between'}>
-                <SkyPrice skyPrices={skyPrices} />
+                <SkyPrice skyPrices={skyPrices} userCurrency={userInfo && userInfo.currency} changeUsersCurrency={changeUsersCurrency} />
                 {authorized && <UserSubmenu push={push} userInfo={userInfo} logout={logout} />}
             </Container>
         </SubHeaderWrapper>
@@ -73,4 +74,4 @@ const mapStateToProps = ({ login, app, routing }) => {
     }
 };
 
-export default connect(mapStateToProps, { logout, push })(Header);
+export default connect(mapStateToProps, { logout, push, changeUsersCurrency, })(Header);
