@@ -123,10 +123,7 @@ class SearchAdverts extends React.Component {
             location,
             search: { buyAdverts, sellAdverts, loading },
             skyPrices,
-            userInfo, } = this.props;
-
-        const userCurrency = userInfo && userInfo.currency;
-        const selectedCurrency = userCurrency || 'USD';
+            selectedCurrency, } = this.props;
 
         return (
             <div>
@@ -196,7 +193,7 @@ const mapStateToProps = (state) => ({
     states: state.app.states,
     search: state.search,
     skyPrices: state.app.skyPrices,
-    userInfo: state.app.userInfo,
+    selectedCurrency: state.app.selectedCurrency,
 });
 
 export default connect(mapStateToProps, ({ searchAdverts, setFilters, clearFilters }))(SearchAdverts);

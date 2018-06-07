@@ -29,17 +29,11 @@ const CurrencySelectorWrapper = styled.div`
 `;
 
 class SkyPrice extends React.Component {
-    state = {
-        selectedCurrency: '',
-    }
     changeSelectedCurrency = e => {
-        this.setState({ ...this.state, selectedCurrency: e.target.value });
-        this.props.changeUsersCurrency(e.target.value);
+        this.props.changeSelectedCurrency(e.target.value);
     }
     render() {
-        const { skyPrices, userCurrency, } = this.props;
-
-        const selectedCurrency = this.state.selectedCurrency || userCurrency || 'USD';
+        const { skyPrices, selectedCurrency, } = this.props;
 
         const currencies = Object.keys(skyPrices).map(c => ({ value: c, text: c }));
 

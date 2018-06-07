@@ -69,5 +69,5 @@ export const requestSkycoinPrice = () =>
         }
     };
 
-export const CHANGE_USERS_CURRENCY = 'CHANGE_USERS_CURRENCY';
-export const changeUsersCurrency = currency => ({ type: CHANGE_USERS_CURRENCY, currency });
+export const CHANGE_SELECTED_CURRENCY = 'CHANGE_SELECTED_CURRENCY';
+export const changeSelectedCurrency = currency => ({ type: CHANGE_SELECTED_CURRENCY, currency });
