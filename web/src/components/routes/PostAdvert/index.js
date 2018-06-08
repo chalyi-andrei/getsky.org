@@ -32,7 +32,7 @@ class PostAdvert extends React.Component {
     }
 
     render() {
-        const { countries, states, userInfo, skyPrices } = this.props;
+        const { countries, states, userInfo, skyPrices, selectedCurrency, } = this.props;
         const advertType = this.getAdvertType();
         const PostingTitle = advertType === AdvertType.BUY ? BuyTitle : SellTitle;
 
@@ -47,6 +47,7 @@ class PostAdvert extends React.Component {
                     states={states}
                     onSubmit={this.onSubmit}
                     skyPrices={skyPrices}
+                    selectedCurrency={selectedCurrency}
                     initialValues={{ ...userInfo, distance: { data: '', prefix: userInfo.distanceUnits }, pricePerCoin: { type: PriceType.PERCENT, value: '' }}}
                     enableReinitialize
                 />}
@@ -60,6 +61,7 @@ const mapStateToProps = ({ app }) => ({
     states: app.states,
     userInfo: app.userInfo,
     skyPrices: app.skyPrices,
+    selectedCurrency: app.selectedCurrency,
 })
 
 export default connect(mapStateToProps, { setAdvertPreview, push })(PostAdvert);

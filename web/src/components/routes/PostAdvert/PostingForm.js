@@ -23,8 +23,8 @@ const rData = required(v => v ? v.data === 0 ? 1 : v.data : v);
 const minData0 = min(0, v => v.data);
 const maxData9999 = max(9999, v => v.data);
 
-const PostAdvert = ({ advertType, states, countries, skyPrices, handleSubmit, editMode, theForm }) => {
-    return(
+const PostAdvert = ({ advertType, states, countries, skyPrices, selectedCurrency, handleSubmit, editMode, theForm }) => {
+    return (
         <Form onSubmit={handleSubmit} noValidate>
             <Box width={[1, 1, 1 / 2]}>
                 <FormGroup>
@@ -49,8 +49,9 @@ const PostAdvert = ({ advertType, states, countries, skyPrices, handleSubmit, ed
                     <Field
                         name="pricePerCoin"
                         component={FormCoinPriceInput}
-                        placeholder={'USD'}
+                        placeholder={selectedCurrency}
                         label={'Price per coin'}
+                        selectedCurrency={selectedCurrency}
                         skyPrices={skyPrices}
                         isRequired
                         validate={[r]}

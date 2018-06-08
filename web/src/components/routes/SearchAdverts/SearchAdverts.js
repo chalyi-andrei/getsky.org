@@ -74,7 +74,7 @@ const Badge = styled.span`
     vertical-align: top;
 `;
 
-const mapAdverts = (adverts, prices, selectedCurrency) => adverts.map(a => ({ ...a, price: prices[selectedCurrency], currency: selectedCurrency, }));
+const mapAdverts = (adverts, prices, selectedCurrency) => adverts.map(a => ({ ...a, price: prices[a.currency], selectedCurrency,  selectedCurrencyPrice: prices[selectedCurrency] }));
 
 class SearchAdverts extends React.Component {
     componentWillMount() {

@@ -17,14 +17,15 @@ const destroyForm = formName => ({
 });
 
 export const setAdvertPreview = (formPreview, extraData) =>
-    dispatch => {
+    (dispatch, getState) => {
+        const selectedCurrency = getState().app.selectedCurrency;
         const preview = {
             additionalInfo: formPreview.additionalInfo,
             amountFrom: formPreview.cashAmount.from,
             amountTo: formPreview.cashAmount.to === '' ? undefined : formPreview.cashAmount.to,
             city: formPreview.city,
             countryCode: formPreview.countryCode,
-            currency: 'USD',
+            currency: selectedCurrency,
             fixedPrice: formPreview.fixedPrice,
             id: null,
             postalCode: formPreview.postalCode,

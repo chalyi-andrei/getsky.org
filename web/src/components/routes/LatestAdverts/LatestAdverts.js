@@ -35,7 +35,7 @@ const Intro = styled.div`
     }
 `;
 
-const IntroContainer = styled(Container) `
+const IntroContainer = styled(Container)`
     background: url(${bgImage}) 100% 0 no-repeat;
     padding-bottom: ${props => props.theme.space[9] * 2}px;
 `;
@@ -62,8 +62,8 @@ class LatestAdverts extends React.Component {
     render() {
         const { skyPrices, buyAdverts, sellAdverts, loading, selectedCurrency, } = this.props;
 
-        const sellAdvertsWithPrice = sellAdverts.map(i => ({ ...i, price: skyPrices[selectedCurrency], currency: selectedCurrency, }));
-        const buyAdvertsWithPrice = buyAdverts.map(i => ({ ...i, price: skyPrices[selectedCurrency], currency: selectedCurrency, }));
+        const sellAdvertsWithPrice = sellAdverts.map(i => ({ ...i, price: skyPrices[i.currency], selectedCurrency, selectedCurrencyPrice: skyPrices[selectedCurrency] }));
+        const buyAdvertsWithPrice = buyAdverts.map(i => ({ ...i, price: skyPrices[i.currency], selectedCurrency, selectedCurrencyPrice: skyPrices[selectedCurrency] }));
         return (
             <Box>
                 <Helmet><title>{getPageTitle('Latest adverts')}</title></Helmet>
