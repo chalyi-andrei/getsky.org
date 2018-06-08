@@ -75,3 +75,10 @@ export const saveNewPasswordFail = requestForm => requestForm => new Promise((re
     reject({ response: { status: 404 } })
 );
 
+export const searchAllAdverts = () => new Promise((resolve, reject) => {
+    resolve({ sellAdverts: [], buyAdverts: [] });
+});
+
+export const searchAllAdvertsFail = () => new Promise((resolve, reject) => {
+    reject({ response: { data: 'error' } });
+});
