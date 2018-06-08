@@ -45,6 +45,9 @@ func getNewPrice(currency string) (string, error) {
 
 	var objmap []map[string]string
 	err = json.Unmarshal(body, &objmap)
+	if err != nil {
+		return "", err
+	}
 
 	value := objmap[0]["price_"+strings.ToLower(currency)]
 

@@ -32,11 +32,8 @@ export const getAdvertDetails404 = id => new Promise((resolve, reject) => {
     reject({ response: { status: 404 } });
 });
 
-export const getSkycoinPriceOk = price => currency => new Promise((resolve, reject) => {
-    const currencyFieldName = `price_${currency.toLowerCase()}`;
-    const responseData = {};
-    responseData[currencyFieldName] = price;
-    resolve({ data: [responseData] });
+export const getSkycoinPriceOk = price => () => new Promise((resolve, reject) => {
+    resolve({ data: [{ code: "EUR", price: "19.4068220127" }, { code: "UAH", price: "601.275954735" }, { code: "USD", price: "22.9115" }] });
 });
 
 export const getStatesOk = () => new Promise((resolve, reject) => { resolve({ data: [] }) })

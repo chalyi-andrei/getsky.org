@@ -51,7 +51,7 @@ describe('postingsPreview actions', () => {
                 }
             }];
 
-            const store = mockStore({});
+            const store = mockStore({ app: { selectedCurrency: 'USD' } });
             store.dispatch(actions.setAdvertPreview(formStub, extraDataStub));
             expect(store.getActions()).toEqual(expectedActions);
         });
