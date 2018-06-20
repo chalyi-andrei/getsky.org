@@ -24,12 +24,13 @@ const SelectWrapper = styled.div`
 const Select = styled.select`
     width: 100%;
     height: ${props => props.theme.controlHeight}px;
-    padding: ${props => props.theme.space[1]}px ${props => props.theme.space[6]}px ${props => props.theme.space[1]}px ${props => props.theme.space[2]}px;
+    padding: 2px 30px 2px 10px;
     border-width: 1px;
     border-style: solid;
     border-color: ${props => getBorderColor(props)};
     border-radius: 0;
-    background: transparent;
+    background-color: #07172e;
+    color: #fff;
     font-family: ${props => props.theme.fontLight};
     font-size: ${props => props.theme.fontSizes[1]}px;
     
