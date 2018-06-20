@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import { getPageTitle } from 'utils';
-import { H1, H2, P } from 'components/layout/Text';
+import { H1, H2, H3, P } from 'components/layout/Text';
 import Breadcrumbs from '../../layout/Breadcrumbs/Breadcrumbs';
 
 import TipToggles from './TipToggles';
